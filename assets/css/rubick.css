@@ -3984,7 +3984,7 @@ body.noscroll {
 .footer a:not(.btn-social),
 .footer .copyright {
   font-size: 14px;
-  font-family: "Droid Serif", "Helvetica Neue", "Helvetica", "Arial";
+  font-family: "Poppins", sans-serif, "Helvetica", "Arial";
 }
 .footer .btn-social {
   color: #9a9a9a;
