@@ -1,0 +1,45 @@
+.footer_des {
+  font-size: 12px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  color: #777777;
+}
+.footer_title {
+  font-size: 12px;
+  font-weight: 800;
+}
+.main-btn {
+  margin-top: 20px;
+  padding-left: 50px;
+  padding-right: 50px;
+  font-size: 15px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  color: white;
+  border-color: white;
+}
+.main-btn:hover {
+  color: #ecaf5d;
+  border-color: #ecaf5d;
+}
+.nav-links {
+  padding-bottom: 8px;
+}
+.team {
+  margin-bottom: 0px;
+}
+.font-light {
+  font-family: "Poppins", sans-serif;
+  font-weight: 100;
+}
+.font-medium {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+}
+.font-hard {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+}
+.footer-nav:hover {
+  color: white;
+}
