@@ -1,46 +1,127 @@
-.footer_des {
-  font-size: 12px;
-  font-family: "Poppins", sans-serif;
-  font-weight: 400;
-  color: #777777;
+.cs-hide {
+  display: none;
 }
-.footer_title {
-  font-family: "Poppins", sans-serif;
-  font-size: 12px;
-  font-weight: 400;
+.cs-show {
+  display: block;
 }
-.main-btn {
-  margin-top: 20px;
-  padding-left: 50px;
-  padding-right: 50px;
-  font-size: 15px;
-  font-family: "Poppins", sans-serif;
-  font-weight: 300;
-  color: white;
-  border-color: white;
+.card-title {
+  font-size: 24px;
+  font-weight: 800;
 }
-.main-btn:hover {
-  color: #ecaf5d;
-  border-color: #ecaf5d;
+.modal-content {
+  width: 100%;
+  margin-left: 5%;
+  margin-right: 5%;
 }
-.nav-links {
-  padding-bottom: 8px;
+.tbl-header {
 }
-.team {
-  margin-bottom: 0px;
+.tbl-data {
+  width: 19%;
+  text-align: center;
 }
-.font-light {
-  font-family: "Poppins", sans-serif;
-  font-weight: 100;
+.tbl-data-action {
+  width: 22vw;
 }
-.font-medium {
-  font-family: "Poppins", sans-serif;
-  font-weight: 300;
+.has-search .form-control {
+  padding-left: 2.375rem;
 }
-.font-hard {
-  font-family: "Poppins", sans-serif;
-  font-weight: 600;
+
+.has-search .form-control-feedback {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  width: 2.375rem;
+  height: 2.375rem;
+  line-height: 2.375rem;
+  text-align: center;
+  pointer-events: none;
+  color: #aaa;
 }
-.footer-nav:hover {
-  color: white;
+
+.modal-confirm {
+  color: #636363;
+  width: 400px;
+}
+.modal-confirm .modal-content {
+  padding: 20px;
+  border-radius: 5px;
+  border: none;
+  text-align: center;
+  font-size: 14px;
+}
+.modal-confirm .modal-header {
+  border-bottom: none;
+  position: relative;
+}
+.modal-confirm h4 {
+  text-align: center;
+  font-size: 26px;
+  margin: 30px 0 -10px;
+}
+.modal-confirm .close {
+  position: absolute;
+  top: -5px;
+  right: -2px;
+}
+.modal-confirm .modal-body {
+  color: #999;
+}
+.modal-confirm .modal-footer {
+  border: none;
+  text-align: center;
+  border-radius: 5px;
+  font-size: 13px;
+  padding: 10px 15px 25px;
+}
+.modal-confirm .modal-footer a {
+  color: #999;
+}
+.modal-confirm .icon-box {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto;
+  border-radius: 50%;
+  z-index: 9;
+  text-align: center;
+  border: 3px solid #f15e5e;
+}
+.modal-confirm .icon-box i {
+  color: #f15e5e;
+  font-size: 46px;
+  display: inline-block;
+  margin-top: 13px;
+}
+.modal-confirm .btn,
+.modal-confirm .btn:active {
+  color: #fff;
+  border-radius: 4px;
+  background: #60c7c1;
+  text-decoration: none;
+  transition: all 0.4s;
+  line-height: normal;
+  min-width: 120px;
+  border: none;
+  min-height: 40px;
+  border-radius: 3px;
+  margin: 0 5px;
+}
+.modal-confirm .btn-secondary {
+  background: #c1c1c1;
+}
+.modal-confirm .btn-secondary:hover,
+.modal-confirm .btn-secondary:focus {
+  background: #a8a8a8;
+}
+.modal-confirm .btn-danger {
+  background: #f15e5e;
+}
+.modal-confirm .btn-danger:hover,
+.modal-confirm .btn-danger:focus {
+  background: #ee3535;
+}
+.trigger-btn {
+  display: inline-block;
+  margin: 100px auto;
+}
+#deleteBus {
 }
