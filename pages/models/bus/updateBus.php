@@ -26,7 +26,7 @@
                 </div>
                 <div class="card-footer">
                     <button class="btn btn-fill btn-success float-right" onclick="modelUpBus()">
-                        Create Now
+                        Update Now
                     </button>
                     <button class="btn btn-fill btn-danger float-right mr-2" data-dismiss="modal" aria-label="Close">
                         Close

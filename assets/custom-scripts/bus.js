@@ -16,16 +16,18 @@ function modelCreateBus() {
     beforeSend: function () {},
     success: function (feedback) {
       if (feedback.status == 1) {
-        console.log(feedback.msg);
+        toastr.success(feedback.msg);
         setTimeout(function () {
           location.reload();
         }, 2000);
       } else {
         console.log(feedback.msg);
+        toastr.error(feedback.msg);
       }
     },
     error: function (error) {
       console.log(error);
+      toastr.warning("Error occoured.");
     },
   });
 }
@@ -42,16 +44,17 @@ function modelDelBus() {
     beforeSend: function () {},
     success: function (feedback) {
       if (feedback.status == 1) {
-        console.log(feedback.msg);
+        toastr.success(feedback.msg);
         setTimeout(function () {
           location.reload();
         }, 2000);
       } else {
-        console.log(feedback.msg);
+        toastr.error(feedback.msg);
       }
     },
     error: function (error) {
       console.log(error);
+      toastr.warning("Error occoured.");
     },
   });
 }
@@ -73,16 +76,17 @@ function modelUpBus() {
     beforeSend: function () {},
     success: function (feedback) {
       if (feedback.status == 1) {
-        console.log(feedback.msg);
+        toastr.success(feedback.msg);
         setTimeout(function () {
           location.reload();
         }, 2000);
       } else {
-        console.log(feedback.msg);
+        toastr.error(feedback.msg);
       }
     },
     error: function (error) {
       console.log(error);
+      toastr.warning("Error occoured.");
     },
   });
 }

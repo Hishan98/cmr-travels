@@ -1,24 +1,13 @@
-<!--
-=========================================================
-* Material Kit 2 PRO - v3.0.0
-=========================================================
-
-* Product Page:  https://www.creative-tim.com/product/material-kit-pro 
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
-* Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
 <!DOCTYPE html>
-<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+<html lang="en">
 
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png" />
   <link rel="icon" type="image/png" href="assets/img/favicon.png" />
-  <title>Material Kit 2 PRO by Creative Tim</title>
+  <title>C.M.R Travels</title>
+
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
   <!-- Nucleo Icons -->
@@ -43,10 +32,10 @@
         py-3
       ">
     <div class="container">
-      <a class="navbar-brand text-white" href="https://demos.creative-tim.com/material-kit-pro/index" rel="tooltip" title="Designed and Coded by Creative Tim" data-placement="bottom" target="_blank">
+      <a class="navbar-brand text-white" href="#" rel="tooltip" title="Designed and Coded by Creative Tim" data-placement="bottom" target="_blank">
         C.M.R Travels
       </a>
-      <a href="https://www.creative-tim.com/product/material-design-system-pro#pricingCard" class="
+      <a href="pages/user/sign-in.php" class="
             btn btn-sm
             bg-gradient-primary
             btn-round
@@ -64,7 +53,7 @@
       <div class="collapse navbar-collapse w-100 pt-3 pb-2 py-lg-0" id="navigation">
         <ul class="navbar-nav navbar-nav-hover mx-auto">
           <li class="nav-item mx-2">
-            <a href="../../index.php" class="
+            <a href="#Home" class="
                   nav-link
                   ps-2
                   d-flex
@@ -76,7 +65,7 @@
             </a>
           </li>
           <li class="nav-item mx-2">
-            <a class="
+            <a href="#about-us" class="
                   nav-link
                   ps-2
                   d-flex
@@ -88,7 +77,7 @@
             </a>
           </li>
           <li class="nav-item mx-2">
-            <a class="
+            <a href="#gallery" class="
                   nav-link
                   ps-2
                   d-flex
@@ -96,14 +85,26 @@
                   cursor-pointer
                   align-items-center
                 " role="button">
-              Gallery
+              Services
+            </a>
+          </li>
+          <li class="nav-item mx-2">
+            <a href="#team" class="
+                  nav-link
+                  ps-2
+                  d-flex
+                  justify-content-between
+                  cursor-pointer
+                  align-items-center
+                " role="button">
+              Team
             </a>
           </li>
           <li class="nav-item dropdown dropdown-hover mx-2">
             <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" id="dropdownMenuAccount" data-bs-toggle="dropdown" aria-expanded="false" role="button">
               <i class="material-icons opacity-6 me-2 text-md">contacts</i>
               Account
-              <img src="../../assets/img/down-arrow-dark.svg" alt="down-arrow" class="arrow ms-auto ms-lg-2" />
+              <img src="assets/img/down-arrow-dark.svg" alt="down-arrow" class="arrow ms-auto ms-lg-2" />
             </a>
             <div class="
                   dropdown-menu dropdown-menu-animation dropdown-md
@@ -120,7 +121,7 @@
                         border-0
                         p-0
                       ">
-                    <a href="/pages/user/sign-in.html" class="
+                    <a href="pages/user/sign-in.php" class="
                           dropdown-item
                           border-radius-md
                           text-dark
@@ -178,7 +179,7 @@
 
         <ul class="navbar-nav d-lg-block d-none">
           <li class="nav-item">
-            <a href="#" class="btn btn-sm bg-gradient-primary mb-0 me-1" role="button">Book Now</a>
+            <a href="pages/user/sign-in.php" class="btn btn-sm bg-gradient-primary mb-0 me-1" role="button">Book Now</a>
           </li>
         </ul>
       </div>
@@ -204,19 +205,21 @@
               Plan journey | Reserve bus seats | Reach destination
             </p>
             <div class="buttons">
-              <button type="button" class="btn bg-gradient-primary mt-4">
-                Book Now
-              </button>
+              <a href="pages/user/sign-in.php">
+                <button type="button" class="btn bg-gradient-primary mt-4">
+                  Book Now
+                </button>
+              </a>
             </div>
           </div>
         </div>
       </div>
     </div>
   </header>
-  <!-- -------- END HEADER 1 w/ text and image on right ------- -->
+
   <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6 mb-4">
-    <!-- -------- START Features w/ 4 cols w/ colored icon & title & text -------- -->
-    <section class="py-md-7">
+
+    <section class="py-md-7" id="Home">
       <div class="container">
         <div class="row justify-content-start">
           <div class="col-md-4 ms-md-auto me-md-4">
@@ -300,9 +303,8 @@
         </div>
       </div>
     </section>
-    <!-- -------- END Features w/ 4 cols w/ colored icon & title & text -------- -->
-    <!-- START Testimonials w/ user image & text & info -->
-    <section class="py-4 position-relative">
+
+    <section class="py-4 position-relative" id="about-us">
       <div class="container-fluid">
         <div class="row">
           <div class="col-10 mx-auto bg-gradient-dark border-radius-lg">
@@ -349,10 +351,8 @@
         </div>
       </div>
     </section>
-    <!-- END Testimonials w/ user image & text & info -->
-    <!-- -------- START Features w/ icons and text on left & gradient title and text on right -------- -->
-    <!-- -------- END Features w/ icons and text on left & gradient title and text on right -------- -->
-    <section class="features-3 py-4">
+
+    <section class="features-3 py-4" id="gallery">
       <div class="container">
         <div class="row text-center justify-content-center">
           <div class="col-lg-6">
@@ -446,8 +446,8 @@
         </div>
       </div>
     </section>
-    <!-- -------- START PRE-FOOTER 8 w/ TEXT, BG IMAGE AND 2 BUTTONS ------- -->
-    <section class="pb-5 position-relative bg-gradient-dark mx-n3">
+
+    <section class="pb-5 position-relative bg-gradient-dark mx-n3" id="team">
       <div class="container">
         <div class="row">
           <div class="col-md-8 text-start mb-5 mt-5">
@@ -545,13 +545,10 @@
       <div class="row">
         <div class="col-md-3 mb-4 ms-auto">
           <div>
-            <a href="https://www.creative-tim.com/product/material-kit-pro">
-              <img src="../assets/img/logo-ct-dark.png" class="mb-3 footer-logo" alt="main_logo" />
-            </a>
-            <h6 class="font-weight-bolder mb-4">C.M.R Travels</h6>
+            <h6 class="font-weight-bolder mb-4"">C.M.R Travels</h6>
           </div>
           <div>
-            <ul class="d-flex flex-row ms-n3 nav">
+            <ul class=" d-flex flex-row ms-n3 nav">
               <li class="nav-item">
                 <a class="nav-link pe-1" href="#" target="_blank">
                   <i class="fab fa-facebook text-lg opacity-8"></i>
@@ -562,31 +559,30 @@
                   <i class="fab fa-twitter text-lg opacity-8"></i>
                 </a>
               </li>
-            </ul>
+              </ul>
           </div>
         </div>
-        <div class="col-md-2 col-sm-6 col-6 mb-4">
+        <div class="col-md-2 col-sm-3 col-3 mb-4">
           <div>
             <h6 class="text-sm">Company</h6>
             <ul class="flex-column ms-n3 nav">
               <li class="nav-item">
-                <a class="nav-link" href="#" target="_blank"> Home </a>
+                <a class="nav-link" href="#Home"> Home </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="pages/admin/sign-in.php" target="_blank">
-                  Admin portal
-                </a>
+                <a class="nav-link" href="#about-us"> About </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="pages/user/sign-in.php" target="_blank">
-                  Book now
-                </a>
+                <a class="nav-link" href="#gallery"> Services </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#team"> Team </a>
               </li>
             </ul>
           </div>
         </div>
 
-        <div class="col-md-7 col-sm-6 col-6 mb-4 me-auto">
+        <div class="col-md-7 col-sm-9 col-9 mb-4 me-auto">
           <div>
             <h6 class="text-sm">About us</h6>
             <p style="font-size: 15px">
@@ -610,21 +606,21 @@
     </div>
   </footer>
   <!--   Core JS Files   -->
-  <script src="../assets/js/core/popper.min.js" type="text/javascript"></script>
-  <script src="../assets/js/core/bootstrap.min.js" type="text/javascript"></script>
-  <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
+  <script src="assets/js/core/popper.min.js" type="text/javascript"></script>
+  <script src="assets/js/core/bootstrap.min.js" type="text/javascript"></script>
+  <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>
   <!--  Plugin for TypedJS, full documentation here: https://github.com/mattboldt/typed.js/ -->
-  <script src="../assets/js/plugins/typedjs.js"></script>
+  <script src="assets/js/plugins/typedjs.js"></script>
   <!--  Plugin for Parallax, full documentation here: https://github.com/wagerfield/parallax  -->
-  <script src="../assets/js/plugins/parallax.min.js"></script>
+  <script src="assets/js/plugins/parallax.min.js"></script>
   <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-  <script src="../assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
+  <script src="assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
   <!--  Plugin for the blob animation -->
-  <script src="../assets/js/plugins/anime.min.js" type="text/javascript"></script>
+  <script src="assets/js/plugins/anime.min.js" type="text/javascript"></script>
   <!-- Control Center for Material UI Kit: parallax effects, scripts for the example pages etc -->
   <!--  Google Maps Plugin    -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTTfWur0PDbZWPr7Pmq8K3jiDp0_xUziI"></script>
-  <script src="../assets/js/material-kit-pro.min.js?v=3.0.0" type="text/javascript"></script>
+  <script src="assets/js/material-kit-pro.min.js?v=3.0.0" type="text/javascript"></script>
 </body>
 
 </html>

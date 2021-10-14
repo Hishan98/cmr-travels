@@ -14,7 +14,7 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png" />
   <link rel="icon" type="image/png" href="../../assets/img/favicon.png" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <title>Dashboard</title>
+  <title>Buses</title>
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no" name="viewport" />
   <?php include_once '../components/header-links.php'; ?>
 </head>
@@ -52,25 +52,25 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="dashboard.php">
+            <a class="nav-link" href="passengers.php">
               <i class="material-icons" style="font-size: 30px">people_alt</i>
               <p>Passengers</p>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="dashboard.php">
+            <a class="nav-link" href="routes.php">
               <i class="material-icons" style="font-size: 30px">edit_road</i>
               <p>Routes</p>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="dashboard.php">
+            <a class="nav-link" href="seats.php">
               <i class="material-icons" style="font-size: 30px">airline_seat_recline_normal</i>
               <p>Seats</p>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="dashboard.php">
+            <a class="nav-link" href="bookings.php">
               <i class="material-icons" style="font-size: 30px">library_books</i>
               <p>Bookings</p>
             </a>
@@ -92,7 +92,7 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
                 <i class="fa fa-navicon visible-on-sidebar-mini"></i>
               </button>
             </div>
-            <a class="navbar-brand" href="#pablo"> Dashboard</a>
+            <a class="navbar-brand" href="#pablo"> Buses</a>
           </div>
           <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar burger-lines"></span>
@@ -131,144 +131,73 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
       <!-- End Navbar -->
       <div class="content">
         <div class="container-fluid">
-          <div class="row">
-            <div class="col-lg-3 col-sm-6">
-              <div class="card card-stats">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-5">
-                      <div class="icon-big text-center icon-warning">
-                        <i class="fa fa-list text-warning"></i>
-                      </div>
-                    </div>
-                    <div class="col-7">
-                      <div class="numbers" style="margin-top: 0.5rem">
-                        <p class="card-category">Bookings</p>
-                        <h4 class="card-title">500</h4>
-                      </div>
-                    </div>
-                  </div>
+          <div class="row justify-content-center">
+            <div class="col-md-6">
+              <div class="card stacked-form">
+                <div class="card-header ">
+                  <h4 class="card-title">Update Profile</h4>
                 </div>
-                <div class="card-footer">
-                  <hr />
-                  <div class="stats">
-                    <i class="fa fa-clock-o"></i> Current
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-              <div class="card card-stats">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-5">
-                      <div class="icon-big text-center icon-warning">
-                        <i class="fa fa-bus text-success"></i>
-                      </div>
+                <div class="card-body ">
+                  <form id="adminUpDetails">
+                    <div class="form-group">
+                      <label>First Name</label>
+                      <input type="text" placeholder="Enter first name" class="form-control" name="profileFName" value="<?= $_SESSION["admin_fname"] ?>" required>
                     </div>
-                    <div class="col-7">
-                      <div class="numbers" style="margin-top: 0.5rem">
-                        <p class="card-category">Buses</p>
-                        <h4 class="card-title">1,345</h4>
-                      </div>
+                    <div class="form-group">
+                      <label>Last Name</label>
+                      <input type="text" placeholder="Enter last name" class="form-control" name="profileLName" value="<?= $_SESSION["admin_lname"] ?>" required>
                     </div>
-                  </div>
-                </div>
-                <div class="card-footer">
-                  <hr />
-                  <div class="stats">
-                    <i class="fa fa-calendar-o"></i> Registered
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-              <div class="card card-stats">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-5">
-                      <div class="icon-big text-center icon-warning">
-                        <i class="fa fa-road text-danger"></i>
-                      </div>
+                    <div class="form-group">
+                      <label>Gender</label>
+                      <select class="form-control form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="profile_gender" name="profileGender" required>
+                        <option hidden>Select gender</option>
+                        <option value="1">male</option>
+                        <option value="2">female</option>
+                      </select>
                     </div>
-                    <div class="col-7">
-                      <div class="numbers" style="margin-top: 0.5rem">
-                        <p class="card-category">Routes</p>
-                        <h4 class="card-title">50</h4>
-                      </div>
+                    <div class="form-group">
+                      <label>Phone number</label>
+                      <input type="number" placeholder="Enter phone number" class="form-control" name="profilePhone" value="<?= $_SESSION["admin_phone"] ?>" required>
                     </div>
-                  </div>
-                </div>
-                <div class="card-footer">
-                  <hr />
-                  <div class="stats">
-                    <i class="fa fa-clock-o"></i> Current
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-              <div class="card card-stats">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-5">
-                      <div class="icon-big text-center icon-warning">
-                        <i class="fa fa-users text-primary"></i>
-                      </div>
+                    <div class="form-group">
+                      <label>Email address</label>
+                      <input type="email" placeholder="Enter email" class="form-control" name="profileEmail" value="<?= $_SESSION["admin_email"] ?>" required>
                     </div>
-                    <div class="col-7">
-                      <div class="numbers" style="margin-top: 0.5rem">
-                        <p class="card-category">Passengers</p>
-                        <h4 class="card-title">4000</h4>
-                      </div>
+                    <div class="card-footer text-center">
+                      <button type="submit" class="btn btn-success" style="width: 20%; min-width:100px">Update</button>
                     </div>
-                  </div>
-                </div>
-                <div class="card-footer">
-                  <hr />
-                  <div class="stats">
-                    <i class="fa fa-clock-o"></i> Current
-                  </div>
+                  </form>
                 </div>
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card strpied-tabled-with-hover">
-                <div class="card-header">
-                  <h4 class="card-title">Bookings</h4>
-                  <p class="card-category">today</p>
+          <div class="row justify-content-center">
+            <div class="col-md-6">
+              <div class="card stacked-form">
+                <div class="card-header ">
+                  <h4 class="card-title">Update password</h4>
                 </div>
-                <div class="card-body table-full-width table-responsive">
-                  <table class="table table-hover table-striped">
-                    <thead>
-                      <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Salary</th>
-                        <th>Country</th>
-                        <th>City</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-
-                      <tr>
-                        <td>1</td>
-                        <td>Dakota Rice</td>
-                        <td>$36,738</td>
-                        <td>Niger</td>
-                        <td>Oud-Turnhout</td>
-                      </tr>
-
-                    </tbody>
-                  </table>
+                <div class="card-body ">
+                  <form id="adminUpPass">
+                    <div class="form-group">
+                      <label>New password</label>
+                      <input type="password" placeholder="Enter new password" class="form-control" name="profileNewPass" required>
+                    </div>
+                    <div class="form-group">
+                      <label>Re-enter new password</label>
+                      <input type="password" placeholder="Reenter new Password" class="form-control" name="profileRePass" required>
+                    </div>
+                    <div class="card-footer text-center">
+                      <button type="submit" class="btn btn-success" style="width: 20%; min-width:100px">Update</button>
+                    </div>
+                  </form>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+
       <footer class="footer">
         <div class="container">
           <nav>
@@ -302,7 +231,31 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
     </div>
   </div>
 </body>
+<!--   Core JS Files   -->
+<script>
+  $("#adminUpDetails").submit(function(event) {
+    adminUpDetails();
+    event.preventDefault();
+  });
+  $("#adminUpPass").submit(function(event) {
+    adminUpPass();
+    event.preventDefault();
+  });
+
+  var gender = '<?php echo $_SESSION["admin_gender"] ?>';
+  if (gender == "male") {
+    document.getElementById("profile_gender").value = "1";
+  } else if (gender == "female") {
+    document.getElementById("profile_gender").value = "2";
+  }
+</script>
 <script src="../../assets/custom-scripts/common.js" typ="text/javascript"></script>
+<script src="../../assets/custom-scripts/profile.js" typ="text/javascript"></script>
+
+<?php include_once '../models/bus/createBus.php'; ?>
+<?php include_once '../models/bus/updateBus.php'; ?>
+<?php include_once '../models/bus/deleteBus.php'; ?>
+
 <?php include_once '../components/footer-links.php'; ?>
 
 </html>
