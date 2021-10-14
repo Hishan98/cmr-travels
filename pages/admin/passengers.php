@@ -92,7 +92,7 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
                 <i class="fa fa-navicon visible-on-sidebar-mini"></i>
               </button>
             </div>
-            <a class="navbar-brand" href="#pablo"> Buses</a>
+            <a class="navbar-brand" href="#pablo">Passengers</a>
           </div>
           <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar burger-lines"></span>
@@ -133,7 +133,7 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
         <div class="container-fluid">
           <div class="row justify-content-center">
             <div class="col-md-5">
-              <h3 style="margin: 10px;">List Of Buses</h3>
+              <h3 style="margin: 10px;">List Of Passengers</h3>
             </div>
             <div class="col-md-3">
               <div class="form-group has-search">
@@ -142,7 +142,7 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
               </div>
             </div>
             <div class="col-md-2">
-              <button class="btn btn-success btn-wd" data-toggle="modal" data-target="#createBus" style="width: 100%;"><span class="fa fa-plus-circle pr-3"></span>Create</button>
+              <button class="btn btn-success btn-wd" data-toggle="modal" data-target="#createPassenger" style="width: 100%;"><span class="fa fa-plus-circle pr-3"></span>Create</button>
             </div>
           </div>
           <div class="row justify-content-center">
@@ -160,16 +160,26 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
                             <tr>
                               <th data-field="name">
                                 <div class="th-inner sortable both tbl-header">
-                                  Bus Number
+                                  Passenger id
+                                </div>
+                                <div class="fht-cell"></div>
+                              </th>
+                              <th data-field="name">
+                                <div class="th-inner sortable both">
+                                  Name
                                 </div>
                                 <div class="fht-cell"></div>
                               </th>
                               <th data-field="salary">
-                                <div class="th-inner sortable both">Name</div>
+                                <div class="th-inner sortable both">Nic</div>
                                 <div class="fht-cell"></div>
                               </th>
                               <th data-field="country">
-                                <div class="th-inner sortable both">Type</div>
+                                <div class="th-inner sortable both">Phone Number</div>
+                                <div class="fht-cell"></div>
+                              </th>
+                              <th data-field="country">
+                                <div class="th-inner sortable both">Email</div>
                                 <div class="fht-cell"></div>
                               </th>
                               <th class="td-actions text-right" data-field="actions">
@@ -183,27 +193,35 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
                             <?php
                             include_once '../../controllers/dbConnection.php';
 
-                            $loadDataSql = "SELECT * FROM bus";
+                            $loadDataSql = "SELECT * FROM passenger";
 
                             $loadDataResult = $con->query($loadDataSql);
 
                             if ($loadDataResult->num_rows > 0) {
                               // output data of each row
                               while ($loadDataRow = $loadDataResult->fetch_assoc()) {
-                                $busNumber = $loadDataRow["busNumber"];
-                                $busName = $loadDataRow["busName"];
-                                $busType = $loadDataRow["busType"];
+                                $passengerId = $loadDataRow["id"];
+                                $passengerNic = $loadDataRow["nic"];
+                                $passengerFName = $loadDataRow["fname"];
+                                $passengerLNAme = $loadDataRow["lname"];
+                                $passengerName = $loadDataRow["fname"] . " " . $loadDataRow["lname"];
+                                $passengerGender = $loadDataRow["gender"];
+                                $passengerPhone = $loadDataRow["phone"];
+                                $passengerEmail = $loadDataRow["email"];
+
                                 echo '
                                 
                                 <tr class="row_data" data-index="0">
-                                  <td class="tbl-data">' . $busNumber . '</td>
-                                  <td>' . $busName . '</td>
-                                  <td>' . $loadDataRow["busType"] . '</td>
+                                <td>' . $passengerId . '</td>
+                                  <td>' . $passengerName . '</td>
+                                  <td>' . $passengerNic . '</td>
+                                  <td>' . $passengerPhone . '</td>
+                                  <td>' . $passengerEmail . '</td>
                                   <td class="td-actions text-right">
-                                    <a rel="tooltip" title="Edit" class="btn btn-link btn-warning table-action" data-toggle="modal" data-target="#editBus" onclick="setValueToDiv2(\'' . $busNumber . '\', \'' . $busName . '\', \'' . $busType . '\')">
+                                    <a rel="tooltip" title="Edit" class="btn btn-link btn-warning table-action" data-toggle="modal" data-target="#editPassenger" onclick="SetPassengerUpdateVal(\'' . $passengerId . '\', \'' . $passengerNic . '\', \'' . $passengerFName . '\', \'' . $passengerLNAme . '\', \'' . $passengerPhone . '\', \'' . $passengerEmail . '\')">
                                         <i class="fa fa-edit"></i>
                                     </a>
-                                    <a rel="tooltip" title="Remove" class="btn btn-link btn-danger table-action" data-toggle="modal" data-target="#deleteBus" onclick="setValueToDiv(\'' . $busNumber . '\', \'del_bus_num\')" >
+                                    <a rel="tooltip" title="Remove" class="btn btn-link btn-danger table-action" data-toggle="modal" data-target="#deletePassenger" onclick="setValueToDiv(\'' . $passengerId . '\', \'del_passenger_id\')" >
                                       <i class="fa fa-remove"></i>
                                     </a>
                                   </td>
@@ -260,12 +278,13 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
   </div>
 </body>
 <!--   Core JS Files   -->
-<script src="../../assets/custom-scripts/common.js" typ="text/javascript"></script>
-<script src="../../assets/custom-scripts/bus.js" typ="text/javascript"></script>
 
-<?php include_once '../models/bus/createBus.php'; ?>
-<?php include_once '../models/bus/updateBus.php'; ?>
-<?php include_once '../models/bus/deleteBus.php'; ?>
+<script src="../../assets/custom-scripts/common.js" typ="text/javascript"></script>
+<script src="../../assets/custom-scripts/passenger.js" typ="text/javascript"></script>
+
+<?php include_once '../models/passengers/createPassenger.php'; ?>
+<?php include_once '../models/passengers/updatePassenger.php'; ?>
+<?php include_once '../models/passengers/deletePassenger.php'; ?>
 
 <?php include_once '../components/footer-links.php'; ?>
 

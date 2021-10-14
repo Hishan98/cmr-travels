@@ -144,7 +144,20 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
                     <div class="col-7">
                       <div class="numbers" style="margin-top: 0.5rem">
                         <p class="card-category">Bookings</p>
-                        <h4 class="card-title">500</h4>
+                        <?php
+                        include_once '../../controllers/dbConnection.php';
+
+                        $loadDataSql = "SELECT COUNT(id) AS idCount FROM booking;";
+
+                        $loadDataResult = $con->query($loadDataSql);
+
+                        if ($loadDataResult->num_rows > 0) {
+                          // output data of each row
+                          while ($loadDataRow = $loadDataResult->fetch_assoc()) {
+                            echo '<h4 class="card-title">' . $loadDataRow["idCount"] . '</h4>';
+                          }
+                        }
+                        ?>
                       </div>
                     </div>
                   </div>
@@ -169,7 +182,20 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
                     <div class="col-7">
                       <div class="numbers" style="margin-top: 0.5rem">
                         <p class="card-category">Buses</p>
-                        <h4 class="card-title">1,345</h4>
+                        <?php
+                        include_once '../../controllers/dbConnection.php';
+
+                        $loadDataSql = "SELECT COUNT(busNumber) AS idCount FROM bus;";
+
+                        $loadDataResult = $con->query($loadDataSql);
+
+                        if ($loadDataResult->num_rows > 0) {
+                          // output data of each row
+                          while ($loadDataRow = $loadDataResult->fetch_assoc()) {
+                            echo '<h4 class="card-title">' . $loadDataRow["idCount"] . '</h4>';
+                          }
+                        }
+                        ?>
                       </div>
                     </div>
                   </div>
@@ -194,7 +220,20 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
                     <div class="col-7">
                       <div class="numbers" style="margin-top: 0.5rem">
                         <p class="card-category">Routes</p>
-                        <h4 class="card-title">50</h4>
+                        <?php
+                        include_once '../../controllers/dbConnection.php';
+
+                        $loadDataSql = "SELECT COUNT(id) AS idCount FROM route;";
+
+                        $loadDataResult = $con->query($loadDataSql);
+
+                        if ($loadDataResult->num_rows > 0) {
+                          // output data of each row
+                          while ($loadDataRow = $loadDataResult->fetch_assoc()) {
+                            echo '<h4 class="card-title">' . $loadDataRow["idCount"] . '</h4>';
+                          }
+                        }
+                        ?>
                       </div>
                     </div>
                   </div>
@@ -219,7 +258,20 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
                     <div class="col-7">
                       <div class="numbers" style="margin-top: 0.5rem">
                         <p class="card-category">Passengers</p>
-                        <h4 class="card-title">4000</h4>
+                        <?php
+                        include_once '../../controllers/dbConnection.php';
+
+                        $loadDataSql = "SELECT COUNT(id) AS idCount FROM passenger;";
+
+                        $loadDataResult = $con->query($loadDataSql);
+
+                        if ($loadDataResult->num_rows > 0) {
+                          // output data of each row
+                          while ($loadDataRow = $loadDataResult->fetch_assoc()) {
+                            echo '<h4 class="card-title">' . $loadDataRow["idCount"] . '</h4>';
+                          }
+                        }
+                        ?>
                       </div>
                     </div>
                   </div>
@@ -244,22 +296,46 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
                   <table class="table table-hover table-striped">
                     <thead>
                       <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Salary</th>
-                        <th>Country</th>
-                        <th>City</th>
+                        <th>Booking Id</th>
+                        <th>Passenger Id</th>
+                        <th>Seat Id</th>
+                        <th>Route Id</th>
+                        <th>Date</th>
                       </tr>
                     </thead>
                     <tbody>
 
-                      <tr>
-                        <td>1</td>
-                        <td>Dakota Rice</td>
-                        <td>$36,738</td>
-                        <td>Niger</td>
-                        <td>Oud-Turnhout</td>
-                      </tr>
+                      <?php
+                      include_once '../../controllers/dbConnection.php';
+
+                      $loadDataSql = "SELECT * FROM booking";
+
+                      $loadDataResult = $con->query($loadDataSql);
+
+                      if ($loadDataResult->num_rows > 0) {
+                        // output data of each row
+                        while ($loadDataRow = $loadDataResult->fetch_assoc()) {
+
+                          $bookingId = $loadDataRow["id"];
+                          $bookingPId = $loadDataRow["passengerId"];
+                          $bookingSeatId = $loadDataRow["seatId"];
+                          $bookingRouteId = $loadDataRow["routeId"];
+                          $bookingDate = $loadDataRow["date"];
+
+                          echo '
+                                
+                                <tr class="row_data" data-index="0">
+                                  <td class="tbl-data">' . $bookingId . '</td>
+                                  <td>' . $bookingPId . '</td>
+                                  <td>' . $bookingSeatId . '</td>
+                                  <td>' . $bookingRouteId . '</td>
+                                  <td>' . $bookingDate . '</td>
+                                </tr>
+
+                                ';
+                        }
+                      }
+                      ?>
 
                     </tbody>
                   </table>

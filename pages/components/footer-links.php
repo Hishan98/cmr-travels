@@ -4,7 +4,8 @@
 <script src="../../assets/js/dashboard/core/bootstrap.min.js" type="text/javascript"></script>
 <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
 <script src="../../assets/js/dashboard/plugins/bootstrap-switch.js"></script>
-
+<!--  Google Maps Plugin    -->
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?YOUR_KEY_HERE"></script>
 <!--  Chartist Plugin  -->
 <script src="../../assets/js/dashboard/plugins/chartist.min.js"></script>
 <!--  Notifications Plugin    -->
@@ -28,7 +29,7 @@
 <!--  Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
 <script src="../../assets/js/dashboard/plugins/jquery.bootstrap-wizard.js"></script>
 <!--  Bootstrap Table Plugin -->
-<script src="../../assets/js/dashboard/plugins/bootstrap-table.js"></script>
+<!-- <script src="../../assets/js/dashboard/plugins/bootstrap-table.js"></script> -->
 <!--  DataTable Plugin -->
 <script src="../../assets/js/dashboard/plugins/jquery.dataTables.min.js"></script>
 <!--  Full Calendar   -->
