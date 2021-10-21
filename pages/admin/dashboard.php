@@ -34,7 +34,10 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
           </div>
           <div class="info">
             <a data-toggle="collapse" href="#collapseExample" class="collapsed">
-              <span><?= $_SESSION["admin_name"] ?></span>
+              <span style="font-size: 16px;
+              font-weight: 600;
+              text-transform: uppercase;">
+                <?= $_SESSION["admin_name"] ?></span>
             </a>
           </div>
         </div>
@@ -52,25 +55,25 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="dashboard.php">
+            <a class="nav-link" href="passengers.php">
               <i class="material-icons" style="font-size: 30px">people_alt</i>
               <p>Passengers</p>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="dashboard.php">
+            <a class="nav-link" href="routes.php">
               <i class="material-icons" style="font-size: 30px">edit_road</i>
               <p>Routes</p>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="dashboard.php">
+            <a class="nav-link" href="seats.php">
               <i class="material-icons" style="font-size: 30px">airline_seat_recline_normal</i>
               <p>Seats</p>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="dashboard.php">
+            <a class="nav-link" href="bookings.php">
               <i class="material-icons" style="font-size: 30px">library_books</i>
               <p>Bookings</p>
             </a>
@@ -261,7 +264,7 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
                         <?php
                         include_once '../../controllers/dbConnection.php';
 
-                        $loadDataSql = "SELECT COUNT(id) AS idCount FROM passenger;";
+                        $loadDataSql = "SELECT COUNT(nic) AS idCount FROM passenger;";
 
                         $loadDataResult = $con->query($loadDataSql);
 
@@ -297,7 +300,7 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
                     <thead>
                       <tr>
                         <th>Booking Id</th>
-                        <th>Passenger Id</th>
+                        <th>Passenger NIC</th>
                         <th>Seat Id</th>
                         <th>Route Id</th>
                         <th>Date</th>
@@ -317,7 +320,7 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
                         while ($loadDataRow = $loadDataResult->fetch_assoc()) {
 
                           $bookingId = $loadDataRow["id"];
-                          $bookingPId = $loadDataRow["passengerId"];
+                          $bookingPId = $loadDataRow["passengerNIC"];
                           $bookingSeatId = $loadDataRow["seatId"];
                           $bookingRouteId = $loadDataRow["routeId"];
                           $bookingDate = $loadDataRow["date"];
@@ -334,6 +337,15 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
 
                                 ';
                         }
+                      } else {
+                        echo '
+                        <tr class="row_data" data-index="0">
+                          <td colspan="6" style="text-align: center; background-color: #EFB25F; color: white;">
+                            <i class="fa fa-exclamation-circle"></i>&nbsp;  Now Record found
+                          </td>
+                          <td style="display: none"></td>
+                        </tr>
+                        ';
                       }
                       ?>
 

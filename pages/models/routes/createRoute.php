@@ -44,6 +44,10 @@
                             <label>Departure Time</label>
                             <input type="text" class="form-control timepicker" placeholder="Select Time" id="route_departure_time" name="route_departure_time" required>
                         </div>
+                        <div class="form-group">
+                            <label>Cost (Rs)</label>
+                            <input type="number" placeholder="Enter Trip starting location" class="form-control" id="route_cost" name="route_cost" required>
+                        </div>
                         <button type="submit" class="btn btn-fill btn-success float-right">
                             Create Now
                         </button>

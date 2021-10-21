@@ -29,9 +29,9 @@ if (isset($_POST['adminCreatePassenger']) && $_POST['adminCreatePassenger'] == t
     $con->close();
 } else if (isset($_POST['adminDeletePassenger']) && $_POST['adminDeletePassenger'] == true) {
     //define data
-    $id = $_POST['id'];
+    $passenger_nic = $_POST['nic'];
 
-    $sql = "DELETE FROM passenger WHERE id='" . $id . "'";
+    $sql = "DELETE FROM passenger WHERE nic='" . $passenger_nic . "'";
 
     if ($con->query($sql) === TRUE) {
         echo json_encode(['status' => '1', 'msg' => 'Passenger Deleted']);
@@ -41,10 +41,9 @@ if (isset($_POST['adminCreatePassenger']) && $_POST['adminCreatePassenger'] == t
     $con->close();
 } else if (isset($_POST['adminUpdatePassenger']) && $_POST['adminUpdatePassenger'] == true) {
     //define data
-    $passenger_id = $_POST['up_passenger_id'];
+    $passenger_nic = $_POST['up_passenger_nic'];
     $passenger_fname = $_POST['up_passenger_fname'];
     $passenger_lname = $_POST['up_passenger_lname'];
-    $passenger_nic = $_POST['up_passenger_nic'];
     $passenger_phone = $_POST['up_passenger_phone'];
     $passenger_gender = $_POST['up_passenger_gender'];
     $passenger_email = $_POST['up_passenger_email'];
@@ -54,7 +53,7 @@ if (isset($_POST['adminCreatePassenger']) && $_POST['adminCreatePassenger'] == t
     $crypt_pass = crypt($md5_pass, "db");
     $shal_pass = Sha1($crypt_pass); //encrypting password
 
-    $sql = "UPDATE passenger SET nic='" . $passenger_nic . "', fname='" . $passenger_fname . "',lname='" . $passenger_lname . "', gender='" . $passenger_gender . "',phone='" . $passenger_phone . "', email='" . $passenger_email . "',password='" . $shal_pass . "' WHERE id='" . $passenger_id . "'";
+    $sql = "UPDATE passenger SET fname='" . $passenger_fname . "',lname='" . $passenger_lname . "', gender='" . $passenger_gender . "',phone='" . $passenger_phone . "', email='" . $passenger_email . "',password='" . $shal_pass . "' WHERE nic='" . $passenger_nic . "'";
 
     if ($con->query($sql) === TRUE) {
         echo json_encode(['status' => '1', 'msg' => 'Updated']);

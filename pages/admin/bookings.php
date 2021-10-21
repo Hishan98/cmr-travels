@@ -223,6 +223,15 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
 
                                 ';
                               }
+                            } else {
+                              echo '
+                              <tr class="row_data" data-index="0">
+                                <td colspan="6" style="text-align: center; background-color: #EFB25F; color: white;">
+                                  <i class="fa fa-exclamation-circle"></i>&nbsp;  Now Record found
+                                </td>
+                                <td style="display: none"></td>
+                              </tr>
+                              ';
                             }
                             ?>
                           </tbody>

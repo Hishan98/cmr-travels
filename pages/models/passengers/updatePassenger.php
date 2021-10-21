@@ -9,7 +9,6 @@
                 </div>
                 <div class="card-body">
                     <form id="updatePassengerForm">
-                        <input type="text" class="cs-hide" id="up_passenger_id" name="up_passenger_id" />
                         <div class="form-group">
                             <label>First Name</label>
                             <input type="text" placeholder="Enter First Namer" class="form-control" id="up_passenger_fname" name="up_passenger_fname" required>
@@ -60,11 +59,10 @@
             event.preventDefault();
         });
 
-        function SetPassengerUpdateVal(id, nic, fname, lname, phone, email) {
-            document.getElementById("up_passenger_id").value = id;
+        function SetPassengerUpdateVal(nic, fname, lname, phone, email) {
+            document.getElementById("up_passenger_nic").value = nic;
             document.getElementById("up_passenger_fname").value = fname;
             document.getElementById("up_passenger_lname").value = lname;
-            document.getElementById("up_passenger_nic").value = nic;
             document.getElementById("up_passenger_phone").value = phone;
             document.getElementById("up_passenger_email").value = email;
         }

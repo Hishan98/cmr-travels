@@ -28,11 +28,14 @@
   <nav class="
         navbar navbar-expand-lg navbar-dark
         bg-gradient-dark
-        z-index-3
         py-3
-      ">
+      " style="position: fixed;
+        width: 100%;
+        z-index: 100;">
     <div class="container">
-      <a class="navbar-brand text-white" href="#" rel="tooltip" title="Designed and Coded by Creative Tim" data-placement="bottom" target="_blank">
+      <a class="navbar-brand text-white" href="#" rel="tooltip" title="Designed and Coded by Creative Tim" data-placement="bottom" target="_blank" style="font-size: 20px;
+      font-weight: 400;
+      padding: 0px;">
         C.M.R Travels
       </a>
       <a href="pages/user/sign-in.php" class="
@@ -77,7 +80,7 @@
             </a>
           </li>
           <li class="nav-item mx-2">
-            <a href="#gallery" class="
+            <a href="#routes" class="
                   nav-link
                   ps-2
                   d-flex
@@ -85,7 +88,7 @@
                   cursor-pointer
                   align-items-center
                 " role="button">
-              Services
+              Routes
             </a>
           </li>
           <li class="nav-item mx-2">
@@ -352,97 +355,90 @@
       </div>
     </section>
 
-    <section class="features-3 py-4" id="gallery">
+    <section class="features-3 py-4" id="routes">
       <div class="container">
         <div class="row text-center justify-content-center">
           <div class="col-lg-6">
-            <span class="badge rounded-pill badge-primary mb-2">Worldwide</span>
-            <h2>OUR SERVICES</h2>
-            <p>we provide world wide service to our customers.</p>
+            <span class="badge rounded-pill badge-primary mb-2">Country Wide</span>
+            <h2>ROUTES</h2>
+            <p>we have 100+ registered buses running on 30 different routes.</p>
           </div>
         </div>
         <div class="row mt-5">
-          <div class="col-lg-4 mb-lg-0 mb-4">
-            <!-- Start Card Raised Header -->
-            <div class="card">
-              <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                <a class="d-block blur-shadow-image">
-                  <img src="assets/img/custom/gallery 9.jpg" alt="img-blur-shadow" class="img-fluid shadow border-radius-lg" loading="lazy" />
-                </a>
-              </div>
-            </div>
-            <!-- End Card Raised Header -->
-            <!-- Start Card Raised Header -->
-            <div class="card mt-5">
-              <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                <a class="d-block blur-shadow-image">
-                  <img src="assets/img/custom/gallery 19.jpg" alt="img-blur-shadow" class="img-fluid shadow border-radius-lg" loading="lazy" />
-                </a>
-              </div>
-            </div>
-            <!-- End Card Raised Header -->
-            <div class="card mt-5">
-              <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                <a class="d-block blur-shadow-image">
-                  <img src="assets/img/custom/gallery 20.jpg" alt="img-blur-shadow" class="img-fluid shadow border-radius-lg" loading="lazy" />
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 mb-lg-0 mb-4">
-            <!-- Start Card Raised Header -->
-            <div class="card">
-              <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                <a class="d-block blur-shadow-image">
-                  <img src="assets/img/custom/gallery 10.jpg" alt="img-blur-shadow" class="img-fluid shadow border-radius-lg" loading="lazy" />
-                </a>
-              </div>
-            </div>
-            <!-- End Card Raised Header -->
-            <!-- Start Card Raised Header -->
-            <div class="card mt-5">
-              <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                <a class="d-block blur-shadow-image">
-                  <img src="assets/img/custom/gallery 11.jpg" alt="img-blur-shadow" class="img-fluid shadow border-radius-lg" loading="lazy" />
-                </a>
-              </div>
-            </div>
-            <!-- End Card Raised Header -->
-            <div class="card mt-5">
-              <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                <a class="d-block blur-shadow-image">
-                  <img src="assets/img/custom/gallery 26.jpg" alt="img-blur-shadow" class="img-fluid shadow border-radius-lg" loading="lazy" />
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <!-- Start Card Raised Header -->
-            <div class="card">
-              <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                <a class="d-block blur-shadow-image">
-                  <img src="assets/img/custom/gallery 27.jpg" alt="img-blur-shadow" class="img-fluid shadow border-radius-lg" loading="lazy" />
-                </a>
-              </div>
-            </div>
-            <!-- End Card Raised Header -->
-            <!-- Start Card Raised Header -->
-            <div class="card mt-5">
-              <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                <a class="d-block blur-shadow-image">
-                  <img src="assets/img/custom/gallery 25.jpg" alt="img-blur-shadow" class="img-fluid shadow border-radius-lg" loading="lazy" />
-                </a>
-              </div>
-            </div>
-            <!-- End Card Raised Header -->
-            <div class="card mt-5">
-              <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                <a class="d-block blur-shadow-image">
-                  <img src="assets/img/custom/gallery 28.jpg" alt="img-blur-shadow" class="img-fluid shadow border-radius-lg" loading="lazy" />
-                </a>
-              </div>
-            </div>
-          </div>
+
+          <?php
+          include_once 'controllers/dbConnection.php';
+
+          $loadDataSql = "SELECT * FROM route INNER JOIN bus ON route.busNumber = bus.busNumber LIMIT 4;";
+
+          $loadDataResult = $con->query($loadDataSql);
+
+          if ($loadDataResult->num_rows > 0) {
+            // output data of each row
+            while ($loadDataRow = $loadDataResult->fetch_assoc()) {
+
+              $routeFrom = $loadDataRow["routeFrom"];
+              $routeTo = $loadDataRow["routeTo"];
+              $routeDTime = $loadDataRow["departureTime"];
+              $routeATime = $loadDataRow["arrivalTime"];
+              $routeBusNum = $loadDataRow["busNumber"];
+              $routePrice = $loadDataRow["price"];
+              $busCondition = $loadDataRow["busType"];
+
+              $format = 'H:i:s';
+              $defaultDTime = DateTime::createFromFormat($format, $routeDTime);
+              $newDTime = $defaultDTime->format('h:i a');
+
+              $defaultATime = DateTime::createFromFormat($format, $routeATime);
+              $newATime = $defaultATime->format('h:i a');
+
+              echo '
+                            <div class="col-lg-3 col-sm-6 mb-lg-0 mb-4">
+                              <div class="card bg-gradient-dark h-100">
+                                <div class="card-header bg-transparent text-sm-start text-center pt-4 pb-3 px-4">
+                                  <h5 class="mb-1 text-white">' . $routeFrom . ' - ' . $routeTo . '</h5>
+                                  <p class="mb-3 text-sm text-white">' . $busCondition . '</p>
+                                  <h3 class="font-weight-bolder mt-3 text-white">
+                                    Rs ' . $routePrice . ' <small class="text-sm text-white font-weight-bold">/ per head</small>
+                                  </h3>
+                                  <a href="pages/user/sign-in.php" class="btn btn-sm btn-white w-100 border-radius-md mt-4 mb-2">Book now</a>
+                                </div>
+                                <hr class="horizontal light my-0">
+                                <div class="card-body">
+                                  <div class="d-flex pb-3">
+                                    <i class="material-icons my-auto text-white">done</i>
+                                    <span class="text-sm text-white ps-3">' . $newATime . ' From ' . $routeFrom . '</span>
+                                  </div>
+
+                                  <div class="d-flex pb-3">
+                                    <i class="material-icons my-auto text-white">done</i>
+                                    <span class="text-sm text-white ps-3">' . $newDTime . ' To ' . $routeTo . '</span>
+                                  </div>
+
+                                  <div class="d-flex pb-3">
+                                    <i class="material-icons my-auto text-white">done</i>
+                                    <span class="text-sm text-white ps-3">Bus Number ' . $routeBusNum . '</span>
+                                  </div>
+
+                                </div>
+                              </div>
+                            </div>
+                          ';
+            }
+          } else {
+            echo '
+                          <div class="col-lg-12 col-sm-12 mb-lg-0 mb-4">
+                            <div class="card bg-gradient-dark h-20 pt-3 text-center">
+                              <div class="row w-100 justify-content-center">
+                                <div class="col-lg-1" style="padding-top:0.1rem;"><i class="material-icons my-auto text-white">close</i></div>
+                                <div class="col-lg-2"><p class="text-white" style="font-weight: 200;"> No Routes to Show</p></div>
+                              </div>
+                            </div>
+                          <div>
+                          ';
+          }
+          ?>
+
         </div>
       </div>
     </section>
@@ -573,7 +569,7 @@
                 <a class="nav-link" href="#about-us"> About </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#gallery"> Services </a>
+                <a class="nav-link" href="#routes"> Routes </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#team"> Team </a>

@@ -49,12 +49,12 @@ function updatePassenger() {
 }
 
 function deletePassenger() {
-  var id = document.getElementById("del_passenger_id").value;
+  var nic = document.getElementById("del_passenger_nic").value;
   $.ajax({
     type: "POST",
     url: "../../controllers/adminPassengerController.php",
     data: {
-      id: id,
+      nic: nic,
       adminDeletePassenger: true,
     },
     dataType: "JSON",

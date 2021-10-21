@@ -135,14 +135,11 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
             <div class="col-md-5">
               <h3 style="margin: 10px;">List Of Passengers</h3>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-5">
               <div class="form-group has-search">
                 <span class="fa fa-search form-control-feedback"></span>
                 <input type="text" class="form-control" placeholder="Search" id="txt_search" onkeyup="sort_dives('txt_search', 'row_data')">
               </div>
-            </div>
-            <div class="col-md-2">
-              <button class="btn btn-success btn-wd" data-toggle="modal" data-target="#createPassenger" style="width: 100%;"><span class="fa fa-plus-circle pr-3"></span>Create</button>
             </div>
           </div>
           <div class="row justify-content-center">
@@ -160,7 +157,7 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
                             <tr>
                               <th data-field="name">
                                 <div class="th-inner sortable both tbl-header">
-                                  Passenger id
+                                  Nic
                                 </div>
                                 <div class="fht-cell"></div>
                               </th>
@@ -168,10 +165,6 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
                                 <div class="th-inner sortable both">
                                   Name
                                 </div>
-                                <div class="fht-cell"></div>
-                              </th>
-                              <th data-field="salary">
-                                <div class="th-inner sortable both">Nic</div>
                                 <div class="fht-cell"></div>
                               </th>
                               <th data-field="country">
@@ -200,7 +193,6 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
                             if ($loadDataResult->num_rows > 0) {
                               // output data of each row
                               while ($loadDataRow = $loadDataResult->fetch_assoc()) {
-                                $passengerId = $loadDataRow["id"];
                                 $passengerNic = $loadDataRow["nic"];
                                 $passengerFName = $loadDataRow["fname"];
                                 $passengerLNAme = $loadDataRow["lname"];
@@ -212,16 +204,15 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
                                 echo '
                                 
                                 <tr class="row_data" data-index="0">
-                                <td>' . $passengerId . '</td>
+                                <td class="tbl-data">' . $passengerNic . '</td>
                                   <td>' . $passengerName . '</td>
-                                  <td>' . $passengerNic . '</td>
                                   <td>' . $passengerPhone . '</td>
                                   <td>' . $passengerEmail . '</td>
                                   <td class="td-actions text-right">
-                                    <a rel="tooltip" title="Edit" class="btn btn-link btn-warning table-action" data-toggle="modal" data-target="#editPassenger" onclick="SetPassengerUpdateVal(\'' . $passengerId . '\', \'' . $passengerNic . '\', \'' . $passengerFName . '\', \'' . $passengerLNAme . '\', \'' . $passengerPhone . '\', \'' . $passengerEmail . '\')">
+                                    <a rel="tooltip" title="Edit" class="btn btn-link btn-warning table-action" data-toggle="modal" data-target="#editPassenger" onclick="SetPassengerUpdateVal(\'' . $passengerNic . '\', \'' . $passengerFName . '\', \'' . $passengerLNAme . '\', \'' . $passengerPhone . '\', \'' . $passengerEmail . '\')">
                                         <i class="fa fa-edit"></i>
                                     </a>
-                                    <a rel="tooltip" title="Remove" class="btn btn-link btn-danger table-action" data-toggle="modal" data-target="#deletePassenger" onclick="setValueToDiv(\'' . $passengerId . '\', \'del_passenger_id\')" >
+                                    <a rel="tooltip" title="Remove" class="btn btn-link btn-danger table-action" data-toggle="modal" data-target="#deletePassenger" onclick="setValueToDiv(\'' . $passengerNic . '\', \'del_passenger_nic\')" >
                                       <i class="fa fa-remove"></i>
                                     </a>
                                   </td>
@@ -229,6 +220,15 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
 
                                 ';
                               }
+                            } else {
+                              echo '
+                              <tr class="row_data" data-index="0">
+                                <td colspan="6" style="text-align: center; background-color: #EFB25F; color: white;">
+                                  <i class="fa fa-exclamation-circle"></i>&nbsp;  Now Record found
+                                </td>
+                                <td style="display: none"></td>
+                              </tr>
+                              ';
                             }
                             ?>
                           </tbody>

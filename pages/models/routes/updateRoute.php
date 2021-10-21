@@ -45,6 +45,10 @@
                             <label>Departure Time</label>
                             <input type="text" class="form-control timepicker" placeholder="Time Picker Here" id="up_route_departure_time" name="up_route_departure_time" required>
                         </div>
+                        <div class="form-group">
+                            <label>Cost (Rs)</label>
+                            <input type="number" placeholder="Enter NIC" class="form-control" id="up_route_from" name="up_route_cost" required>
+                        </div>
                         <button type="submit" class="btn btn-fill btn-success float-right">
                             Update Now
                         </button>

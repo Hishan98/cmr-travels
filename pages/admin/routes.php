@@ -182,6 +182,10 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
                                 <div class="th-inner sortable both">Departure Time</div>
                                 <div class="fht-cell"></div>
                               </th>
+                              <th data-field="country">
+                                <div class="th-inner sortable both">Cost (Rs)</div>
+                                <div class="fht-cell"></div>
+                              </th>
                               <th class="td-actions text-right" data-field="actions">
                                 <div class="th-inner">Actions</div>
                                 <div class="fht-cell"></div>
@@ -206,6 +210,7 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
                                 $routeFrom = $loadDataRow["routeFrom"];
                                 $routeArrival = $loadDataRow["arrivalTime"];
                                 $routeDeparture = $loadDataRow["departureTime"];
+                                $routePrice = $loadDataRow["price"];
 
                                 echo '
                                 
@@ -216,6 +221,7 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
                                   <td>' . $routeFrom . '</td>
                                   <td>' . $routeArrival . '</td>
                                   <td>' . $routeDeparture . '</td>
+                                  <td>' . $routePrice . '</td>
                                   <td class="td-actions text-right">
                                     <a rel="tooltip" title="Edit" class="btn btn-link btn-warning table-action" data-toggle="modal" data-target="#editRoute" onclick="SetRouterUpdateVal(\'' . $routeId . '\',\'' . $routeBusNumber . '\', \'' . $routeTo . '\', \'' . $routeFrom . '\', \'' . $routeArrival . '\', \'' . $routeDeparture . '\')">
                                         <i class="fa fa-edit"></i>
@@ -228,6 +234,15 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
 
                                 ';
                               }
+                            } else {
+                              echo '
+                              <tr class="row_data" data-index="0">
+                                <td colspan="6" style="text-align: center; background-color: #EFB25F; color: white;">
+                                  <i class="fa fa-exclamation-circle"></i>&nbsp;  Now Record found
+                                </td>
+                                <td style="display: none"></td>
+                              </tr>
+                              ';
                             }
                             ?>
                           </tbody>
