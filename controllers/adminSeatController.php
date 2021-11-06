@@ -16,7 +16,7 @@ if (isset($_POST['adminCreateSeat']) && $_POST['adminCreateSeat'] == true) {
     if ($con->query($sql) === TRUE) {
         echo json_encode(['status' => '1', 'msg' => 'Seat Created']);
     } else {
-        echo json_encode(['status' => '0', 'msg' => 'error']);
+        echo json_encode(['status' => '0', 'msg' => $con->error]);
     }
     $con->close();
 } else if (isset($_POST['adminDeleteSeat']) && $_POST['adminDeleteSeat'] == true) {
@@ -28,7 +28,7 @@ if (isset($_POST['adminCreateSeat']) && $_POST['adminCreateSeat'] == true) {
     if ($con->query($sql) === TRUE) {
         echo json_encode(['status' => '1', 'msg' => 'Seat Deleted']);
     } else {
-        echo json_encode(['status' => '0', 'msg' => 'error']);
+        echo json_encode(['status' => '0', 'msg' => $con->error]);
     }
     $con->close();
 } else if (isset($_POST['adminUpdateSeat']) && $_POST['adminUpdateSeat'] == true) {
@@ -45,7 +45,7 @@ if (isset($_POST['adminCreateSeat']) && $_POST['adminCreateSeat'] == true) {
     if ($con->query($sql) === TRUE) {
         echo json_encode(['status' => '1', 'msg' => 'Seat Updated']);
     } else {
-        echo json_encode(['status' => '0', 'msg' => 'error']);
+        echo json_encode(['status' => '0', 'msg' => $con->error]);
     }
     $con->close();
 } else {

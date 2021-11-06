@@ -23,7 +23,7 @@ if (isset($_POST['adminUpDetails']) && $_POST['adminUpDetails'] == true) {
 
         echo json_encode(['status' => '1', 'msg' => 'Profile Updated']);
     } else {
-        echo json_encode(['status' => '0', 'msg' => 'error']);
+        echo json_encode(['status' => '0', 'msg' => $con->error]);
     }
     $con->close();
 } else if (isset($_POST['adminUpPassword']) && $_POST['adminUpPassword'] == true) {
@@ -42,7 +42,7 @@ if (isset($_POST['adminUpDetails']) && $_POST['adminUpDetails'] == true) {
         if ($con->query($sql) === TRUE) {
             echo json_encode(['status' => '1', 'msg' => 'Password Updated']);
         } else {
-            echo json_encode(['status' => '0', 'msg' => 'error']);
+            echo json_encode(['status' => '0', 'msg' => $con->error]);
         }
         $con->close();
     } else {

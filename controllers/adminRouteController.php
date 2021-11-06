@@ -19,7 +19,7 @@ if (isset($_POST['adminCreateRoute']) && $_POST['adminCreateRoute'] == true) {
     if ($con->query($sql) === TRUE) {
         echo json_encode(['status' => '1', 'msg' => 'Route Created']);
     } else {
-        echo json_encode(['status' => '0', 'msg' => 'error']);
+        echo json_encode(['status' => '0', 'msg' => $con->error]);
     }
     $con->close();
 } else if (isset($_POST['adminDeleteRoute']) && $_POST['adminDeleteRoute'] == true) {
@@ -31,7 +31,7 @@ if (isset($_POST['adminCreateRoute']) && $_POST['adminCreateRoute'] == true) {
     if ($con->query($sql) === TRUE) {
         echo json_encode(['status' => '1', 'msg' => 'Route Deleted']);
     } else {
-        echo json_encode(['status' => '0', 'msg' => 'error']);
+        echo json_encode(['status' => '0', 'msg' => $con->error]);
     }
     $con->close();
 } else if (isset($_POST['adminUpdateRoute']) && $_POST['adminUpdateRoute'] == true) {
@@ -49,7 +49,7 @@ if (isset($_POST['adminCreateRoute']) && $_POST['adminCreateRoute'] == true) {
     if ($con->query($sql) === TRUE) {
         echo json_encode(['status' => '1', 'msg' => 'Route Updated']);
     } else {
-        echo json_encode(['status' => '0', 'msg' => 'error']);
+        echo json_encode(['status' => '0', 'msg' => $con->error]);
     }
     $con->close();
 } else {

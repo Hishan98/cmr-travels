@@ -60,7 +60,7 @@ if (isset($_POST['adminLogPassword'])) {
         if ($con->query($sql) === TRUE) {
             echo json_encode(['status' => '1', 'msg' => 'Account Created']);
         } else {
-            echo json_encode(['status' => '0', 'msg' => 'Sql error']);
+            echo json_encode(['status' => '0', 'msg' => $con->error]);
         }
         $con->close();
     } else {

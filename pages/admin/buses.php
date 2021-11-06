@@ -20,6 +20,14 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
 </head>
 
 <body>
+
+  <!-- loader -->
+  <div class="loading-overlay pageLoader">
+    <lord-icon src="https://cdn.lordicon.com/dpinvufc.json" trigger="loop" colors="primary:#F5A953,secondary:#08a88a" style="width:100px;height:100px">
+    </lord-icon>
+  </div>
+  <!-- End: loader -->
+
   <div class="wrapper">
     <div class="sidebar" data-color="orange" data-image="../../assets/img/sidebar-6.jpg">
       <div class="sidebar-wrapper">

@@ -452,7 +452,7 @@
             </h3>
           </div>
         </div>
-        <div class="row">
+        <!-- <div class="row">
           <div class="col-lg-6 col-12">
             <div class="card card-profile mt-4">
               <div class="row">
@@ -491,7 +491,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
         <div class="row mt-4">
           <div class="col-lg-6 col-12">
             <div class="card card-profile mt-4 z-index-2">
@@ -505,7 +505,7 @@
                 </div>
                 <div class="col-lg-8 col-md-6 col-12 my-auto">
                   <div class="card-body ps-lg-0">
-                    <h5 class="mb-0">Chanaka Madushan</h5>
+                    <h5 class="mb-0">Chameera Ranathunga</h5>
                     <h6 class="text-info">Manager</h6>
                   </div>
                 </div>
@@ -518,13 +518,13 @@
                 <div class="col-lg-4 col-md-6 col-12 mt-n5">
                   <a href="javascript:;">
                     <div class="p-3 pe-md-0">
-                      <img class="w-100 border-radius-md shadow-lg" src="assets/img/crew 1.jpg" alt="image" />
+                      <img class="w-100 border-radius-md shadow-lg" src="assets/img/crew 2.jpg" alt="image" />
                     </div>
                   </a>
                 </div>
                 <div class="col-lg-8 col-md-6 col-12 my-auto">
                   <div class="card-body ps-lg-0">
-                    <h5 class="mb-0">Kevin Kalana</h5>
+                    <h5 class="mb-0">Shanika Ranathunga</h5>
                     <h6 class="text-info">Assistant Manager</h6>
                   </div>
                 </div>
@@ -539,9 +539,15 @@
   <footer class="footer pt-5 mt-5">
     <div class="container">
       <div class="row">
-        <div class="col-md-3 mb-4 ms-auto">
+        <div class="col-md-6 mb-4 ms-auto">
           <div>
-            <h6 class="font-weight-bolder mb-4"">C.M.R Travels</h6>
+            <h6 class="font-weight-bolder mb-1"">C.M.R Travels</h6>
+            <p style=" font-size: 15px">
+              Providing exceptional bus travel arrangements is the vision
+              that’s followed at C.M.S travels so one can make the right
+              travel arrangements for a great holiday. This is the World largest online
+              bus ticketing platform.
+              </p>
           </div>
           <div>
             <ul class=" d-flex flex-row ms-n3 nav">
@@ -555,10 +561,10 @@
                   <i class="fab fa-twitter text-lg opacity-8"></i>
                 </a>
               </li>
-              </ul>
+            </ul>
           </div>
         </div>
-        <div class="col-md-2 col-sm-3 col-3 mb-4">
+        <div class="col-md-2 col-sm-5 col-5 mb-4">
           <div>
             <h6 class="text-sm">Company</h6>
             <ul class="flex-column ms-n3 nav">
@@ -578,17 +584,22 @@
           </div>
         </div>
 
-        <div class="col-md-7 col-sm-9 col-9 mb-4 me-auto">
+        <div class="col-md-4 col-sm-6 col-6 mb-4 me-auto">
           <div>
-            <h6 class="text-sm">About us</h6>
-            <p style="font-size: 15px">
-              Providing exceptional bus travel arrangements is the vision
-              that’s followed at C.M.S travels so one can make the right
-              travel arrangements for a great holiday. World largest online
-              bus ticketing platform has driven the country’s bus booking
-              journey over the past 15+ years through thousands of bus
-              operators and routes.
-            </p>
+            <h6 class="text-sm">Contact us</h6>
+            <div class="row pb-1">
+              <div class="col-1" style="text-align: right;"><i class="fa fa-phone" style="font-size: 14px;"></i></div>
+              <div class="col-5" style="font-size: 15px;">+94 713611973</div>
+            </div>
+            <div class="row pb-1">
+              <div class="col-1" style="text-align: right;"><i class="fa fa-envelope" style="font-size: 14px;"></i></div>
+              <div class="col-5" style="font-size: 15px;">cmrtravels@gmail.com</div>
+            </div>
+            <div class="row pb-1">
+              <div class="col-1" style="text-align: right;"><i class="fa fa-address-book" style="font-size: 14px;"></i></div>
+              <div class="col-5" style="font-size: 15px;">C M R Travels, Labuyaya, Kuliyapitiya</div>
+            </div>
+
           </div>
         </div>
         <div class="col-12">

@@ -1,79 +1,26 @@
-function modelCreateBus() {
-  var busNumber = document.getElementById("input_bus_number").value;
-  var busName = document.getElementById("input_bus_name").value;
-  var busType = document.getElementById("input_bus_type").value;
-
-  $.ajax({
-    type: "POST",
-    url: "../../controllers/busController.php",
-    data: {
-      busNumber: busNumber,
-      busName: busName,
-      busType: busType,
-      createBus: true,
-    },
-    dataType: "JSON",
-    beforeSend: function () {},
-    success: function (feedback) {
-      if (feedback.status == 1) {
-        toastr.success(feedback.msg);
-        setTimeout(function () {
-          location.reload();
-        }, 2000);
-      } else {
-        console.log(feedback.msg);
-        toastr.error(feedback.msg);
-      }
-    },
-    error: function (error) {
-      console.log(error);
-      toastr.warning("Error occoured.");
-    },
-  });
+function modelCreateBusFun(modelId) {
+  var data = $("#modelCreateBusForm").serialize() + "&createBus=true";
+  scheduleAjaxPost(data, modelId);
 }
-function modelDelBus() {
-  var busNumber = document.getElementById("del_bus_num").value;
-  $.ajax({
-    type: "POST",
-    url: "../../controllers/busController.php",
-    data: {
-      busNumber: busNumber,
-      deleteBus: true,
-    },
-    dataType: "JSON",
-    beforeSend: function () {},
-    success: function (feedback) {
-      if (feedback.status == 1) {
-        toastr.success(feedback.msg);
-        setTimeout(function () {
-          location.reload();
-        }, 2000);
-      } else {
-        toastr.error(feedback.msg);
-      }
-    },
-    error: function (error) {
-      console.log(error);
-      toastr.warning("Error occoured.");
-    },
-  });
+function modelUpdateBusFun(modelId) {
+  var data = $("#modelUpdateBusForm").serialize() + "&updateBus=true";
+  scheduleAjaxPost(data, modelId);
 }
-function modelUpBus() {
-  var busNumber = document.getElementById("up_bus_num").value;
-  var busName = document.getElementById("up_bus_name").value;
-  var busType = document.getElementById("up_bus_type").value;
+function modelDeleteBusFun(modelId) {
+  var data = $("#modelDeleteBusForm").serialize() + "&deleteBus=true";
+  scheduleAjaxPost(data, modelId);
+}
 
+function scheduleAjaxPost(data, modelId) {
   $.ajax({
     type: "POST",
     url: "../../controllers/busController.php",
-    data: {
-      busNumber: busNumber,
-      busName: busName,
-      busType: busType,
-      updateBus: true,
-    },
+    data: data,
     dataType: "JSON",
-    beforeSend: function () {},
+    beforeSend: function () {
+      $("#" + modelId).modal("hide");
+      pageLoaderToggle(true);
+    },
     success: function (feedback) {
       if (feedback.status == 1) {
         toastr.success(feedback.msg);
@@ -81,12 +28,13 @@ function modelUpBus() {
           location.reload();
         }, 2000);
       } else {
-        toastr.error(feedback.msg);
+        toastr.warning(feedback.msg);
       }
+      pageLoaderToggle(false);
     },
     error: function (error) {
-      console.log(error);
-      toastr.warning("Error occoured.");
+      errorDisplay(error);
+      pageLoaderToggle(false);
     },
   });
 }

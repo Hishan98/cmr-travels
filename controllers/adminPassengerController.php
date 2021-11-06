@@ -24,7 +24,7 @@ if (isset($_POST['adminCreatePassenger']) && $_POST['adminCreatePassenger'] == t
     if ($con->query($sql) === TRUE) {
         echo json_encode(['status' => '1', 'msg' => 'Passenger Created']);
     } else {
-        echo json_encode(['status' => '0', 'msg' => 'error']);
+        echo json_encode(['status' => '0', 'msg' => $con->error]);
     }
     $con->close();
 } else if (isset($_POST['adminDeletePassenger']) && $_POST['adminDeletePassenger'] == true) {
@@ -36,7 +36,7 @@ if (isset($_POST['adminCreatePassenger']) && $_POST['adminCreatePassenger'] == t
     if ($con->query($sql) === TRUE) {
         echo json_encode(['status' => '1', 'msg' => 'Passenger Deleted']);
     } else {
-        echo json_encode(['status' => '0', 'msg' => 'error']);
+        echo json_encode(['status' => '0', 'msg' => $con->error]);
     }
     $con->close();
 } else if (isset($_POST['adminUpdatePassenger']) && $_POST['adminUpdatePassenger'] == true) {
@@ -58,7 +58,7 @@ if (isset($_POST['adminCreatePassenger']) && $_POST['adminCreatePassenger'] == t
     if ($con->query($sql) === TRUE) {
         echo json_encode(['status' => '1', 'msg' => 'Updated']);
     } else {
-        echo json_encode(['status' => '0', 'msg' => 'error']);
+        echo json_encode(['status' => '0', 'msg' => $con->error]);
     }
     $con->close();
 } else {

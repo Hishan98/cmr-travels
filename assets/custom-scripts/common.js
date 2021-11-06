@@ -47,3 +47,22 @@ function signOut() {
     },
   });
 }
+
+function errorDisplay(error) {
+  toastr.warning(
+    "<h4>Internal server Error !!</h4><p class='cs-text-'>" +
+      error.responseText +
+      "</p>"
+  );
+}
+
+function pageLoaderToggle(state) {
+  var proBarCount = document.getElementsByClassName("pageLoader");
+  for (let index = 0; index < proBarCount.length; index++) {
+    if (state) {
+      proBarCount[index].classList.remove("is-active");
+    } else {
+      proBarCount[index].classList.add("is-active");
+    }
+  }
+}

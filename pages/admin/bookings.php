@@ -14,12 +14,20 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png" />
   <link rel="icon" type="image/png" href="../../assets/img/favicon.png" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <title>Buses</title>
+  <title>Bookings</title>
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no" name="viewport" />
   <?php include_once '../components/header-links.php'; ?>
 </head>
 
 <body>
+
+  <!-- loader -->
+  <div class="loading-overlay">
+    <lord-icon src="https://cdn.lordicon.com/dpinvufc.json" trigger="loop" colors="primary:#F5A953,secondary:#08a88a" style="width:100px;height:100px">
+    </lord-icon>
+  </div>
+  <!-- End: loader -->
+
   <div class="wrapper">
     <div class="sidebar" data-color="orange" data-image="../../assets/img/sidebar-6.jpg">
       <div class="sidebar-wrapper">
@@ -163,15 +171,15 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
                                 <div class="fht-cell"></div>
                               </th>
                               <th data-field="salary">
-                                <div class="th-inner sortable both">Passenger Id</div>
+                                <div class="th-inner sortable both">Passenger</div>
                                 <div class="fht-cell"></div>
                               </th>
                               <th data-field="salary">
-                                <div class="th-inner sortable both">Seat Id</div>
+                                <div class="th-inner sortable both">Seat</div>
                                 <div class="fht-cell"></div>
                               </th>
                               <th data-field="salary">
-                                <div class="th-inner sortable both">Route Id</div>
+                                <div class="th-inner sortable both">Route</div>
                                 <div class="fht-cell"></div>
                               </th>
                               <th data-field="country">
@@ -189,7 +197,13 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
                             <?php
                             include_once '../../controllers/dbConnection.php';
 
-                            $loadDataSql = "SELECT * FROM booking";
+                            $loadDataSql = "SELECT * FROM booking 
+                            INNER JOIN
+                            seat ON booking.seatId = seat.seatId
+                            INNER JOIN
+                            route ON booking.routeId = route.routeId
+                            INNER JOIN passenger
+                            ON booking.passengerNIC = passenger.nic;";
 
                             $loadDataResult = $con->query($loadDataSql);
 
@@ -198,24 +212,32 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
                               while ($loadDataRow = $loadDataResult->fetch_assoc()) {
 
                                 $bookingId = $loadDataRow["id"];
-                                $bookingPId = $loadDataRow["passengerId"];
+
+                                $bookingPaNIC = $loadDataRow["passengerNIC"];
+                                $bookingPaName = $loadDataRow["fname"];
+
                                 $bookingSeatId = $loadDataRow["seatId"];
+                                $bookingSeatName = $loadDataRow["seatNumber"];
+
                                 $bookingRouteId = $loadDataRow["routeId"];
+                                $bookingRouteFrom = $loadDataRow["routeFrom"];
+                                $bookingRouteTo = $loadDataRow["routeTo"];
+
                                 $bookingDate = $loadDataRow["date"];
 
                                 echo '
                                 
                                 <tr class="row_data" data-index="0">
                                   <td class="tbl-data">' . $bookingId . '</td>
-                                  <td>' . $bookingPId . '</td>
-                                  <td>' . $bookingSeatId . '</td>
-                                  <td>' . $bookingRouteId . '</td>
+                                  <td>' . $bookingPaName . ' (' . $bookingPaNIC . ')</td>
+                                  <td>' . $bookingSeatName . '</td>
+                                  <td>' . $bookingRouteFrom . ' - ' . $bookingRouteTo . '</td>
                                   <td>' . $bookingDate . '</td>
                                   <td class="td-actions text-right">
-                                    <a rel="tooltip" title="Edit" class="btn btn-link btn-warning table-action" data-toggle="modal" data-target="#editBooking" onclick="SetBookingUpdateVal(\'' . $bookingId . '\',  \'' . $bookingPId . '\',\'' . $bookingSeatId . '\', \'' . $bookingRouteId . '\', \'' . $bookingDate . '\')">
+                                    <a rel="tooltip" title="Edit" class="btn btn-link btn-warning table-action" data-toggle="modal" data-target="#editBooking">
                                         <i class="fa fa-edit"></i>
                                     </a>
-                                    <a rel="tooltip" title="Remove" class="btn btn-link btn-danger table-action" data-toggle="modal" data-target="#deleteBooking" onclick="setValueToDiv(\'' . $bookingId . '\', \'del_booking_id\')" >
+                                    <a rel="tooltip" title="Remove" class="btn btn-link btn-danger table-action" data-toggle="modal" data-target="#deleteBooking">
                                       <i class="fa fa-remove"></i>
                                     </a>
                                   </td>

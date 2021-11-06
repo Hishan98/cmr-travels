@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once 'dbConnection.php';
 
 if (isset($_POST['userLogPassword'])) {
@@ -17,6 +18,14 @@ if (isset($_POST['userLogPassword'])) {
             if ($Result->num_rows > 0) {
                 while ($r = $Result->fetch_assoc()) {
                     if ($r["password"] == $shal_pass) {
+
+                        $_SESSION["user_nic"] = $r["nic"];
+                        $_SESSION["user_fname"] = $r["fname"];
+                        $_SESSION["user_lname"] = $r["lname"];
+                        $_SESSION["user_phone"] = $r["phone"];
+                        $_SESSION["user_email"] = $r["email"];
+                        $_SESSION["user_status"] = "logged";
+
                         echo json_encode(['status' => '1', 'msg' => 'Logged in']);
                     } else {
                         echo json_encode(['status' => '0', 'msg' => 'Incorrect password']);
@@ -49,7 +58,7 @@ if (isset($_POST['userLogPassword'])) {
         if ($con->query($sql) === TRUE) {
             echo json_encode(['status' => '1', 'msg' => 'Account Created']);
         } else {
-            echo json_encode(['status' => '0', 'msg' => 'Sql error']);
+            echo json_encode(['status' => '0', 'msg' => $con->error]);
         }
         $con->close();
     } else {

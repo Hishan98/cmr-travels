@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 15, 2021 at 12:40 AM
+-- Generation Time: Oct 21, 2021 at 11:43 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.6
 
@@ -56,7 +56,7 @@ INSERT INTO `admin` (`id`, `fname`, `lname`, `gender`, `phone`, `email`, `passwo
 DROP TABLE IF EXISTS `booking`;
 CREATE TABLE `booking` (
   `id` int(11) NOT NULL,
-  `passengerId` int(11) NOT NULL,
+  `passengerNIC` int(20) NOT NULL,
   `seatId` int(11) DEFAULT NULL,
   `routeId` int(11) DEFAULT NULL,
   `date` date NOT NULL
@@ -66,12 +66,9 @@ CREATE TABLE `booking` (
 -- Dumping data for table `booking`
 --
 
-INSERT INTO `booking` (`id`, `passengerId`, `seatId`, `routeId`, `date`) VALUES
-(3, 3, 3, 1, '2021-10-20'),
-(4, 4, 3, 1, '2021-10-20'),
-(5, 2, 1, 2, '2021-10-21'),
-(6, 2, 1, 2, '2021-10-13'),
-(7, 3, 3, 2, '2020-10-12');
+INSERT INTO `booking` (`id`, `passengerNIC`, `seatId`, `routeId`, `date`) VALUES
+(9, 263213213, 1, 4, '2021-10-13'),
+(10, 263213213, 3, 1, '2021-10-13');
 
 -- --------------------------------------------------------
 
@@ -109,7 +106,6 @@ INSERT INTO `bus` (`busNumber`, `busName`, `busType`) VALUES
 
 DROP TABLE IF EXISTS `passenger`;
 CREATE TABLE `passenger` (
-  `id` int(11) NOT NULL,
   `nic` int(20) NOT NULL DEFAULT 0,
   `fname` varchar(50) NOT NULL,
   `lname` varchar(50) NOT NULL,
@@ -123,10 +119,8 @@ CREATE TABLE `passenger` (
 -- Dumping data for table `passenger`
 --
 
-INSERT INTO `passenger` (`id`, `nic`, `fname`, `lname`, `gender`, `phone`, `email`, `password`) VALUES
-(2, 986532658, 'Kasun', 'Kavishka', 'male', 713677319, 'hishansjc@gmail.com', 'b6dc86a08084cb8db99fe22b0a8901bb6500996f'),
-(3, 968532741, 'Gayan', 'Kanishka', 'male', 8888888, 'hishansjc@gmail.com', 'b6dc86a08084cb8db99fe22b0a8901bb6500996f'),
-(4, 263213213, 'Himansa', 'Katulanda', 'male', 765322986, 'himansa@gmail.com', 'sadasdwfasdasfasdfasdasdaw');
+INSERT INTO `passenger` (`nic`, `fname`, `lname`, `gender`, `phone`, `email`, `password`) VALUES
+(263213213, 'Himansa', 'Katulanda', 'male', 765322986, 'test@gmail.com', '5cdb22744b3ab3b52db97ce7086a26376027e355');
 
 -- --------------------------------------------------------
 
@@ -141,18 +135,22 @@ CREATE TABLE `route` (
   `routeTo` varchar(50) DEFAULT NULL,
   `departureTime` time NOT NULL,
   `arrivalTime` time NOT NULL,
-  `busNumber` varchar(20) NOT NULL
+  `busNumber` varchar(20) NOT NULL,
+  `price` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `route`
 --
 
-INSERT INTO `route` (`id`, `routeFrom`, `routeTo`, `departureTime`, `arrivalTime`, `busNumber`) VALUES
-(1, 'Kadawatha', 'Mathara', '00:30:00', '04:30:00', 'CAS3356'),
-(2, 'wathtala', 'Mathara', '00:30:00', '04:30:00', 'CAS3356'),
-(4, 'Jaffna', 'Kaduwela', '04:00:00', '08:00:00', 'BHS5567'),
-(5, 'Pannipitiya', 'Nugegoda', '03:00:00', '12:00:00', 'BHS5567');
+INSERT INTO `route` (`id`, `routeFrom`, `routeTo`, `departureTime`, `arrivalTime`, `busNumber`, `price`) VALUES
+(1, 'Kadawatha', 'Mathara', '00:30:00', '04:30:00', 'CAS3356', 250),
+(2, 'wathtala', 'Mathara', '00:30:00', '04:30:00', 'CAS3356', 100),
+(4, 'Jaffna', 'Kaduwela', '04:00:00', '08:00:00', 'BHS5567', 500),
+(5, 'Pannipitiya', 'Nugegoda', '03:00:00', '12:00:00', 'BHS5567', 450),
+(6, 'Maharagama', 'Koswaththa', '17:50:00', '03:10:00', 'CAS3356', 200),
+(7, 'Waththala', 'Makola', '10:00:00', '08:00:00', 'CAW2224', 500),
+(8, 'Nugegoda', 'Koswaththa', '14:00:00', '08:20:00', 'CAS3356', 88);
 
 -- --------------------------------------------------------
 
@@ -193,9 +191,9 @@ ALTER TABLE `admin`
 --
 ALTER TABLE `booking`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `passengerId` (`passengerId`),
   ADD KEY `seatId` (`seatId`),
-  ADD KEY `routeId` (`routeId`);
+  ADD KEY `routeId` (`routeId`),
+  ADD KEY `passengerNIC` (`passengerNIC`);
 
 --
 -- Indexes for table `bus`
@@ -207,7 +205,7 @@ ALTER TABLE `bus`
 -- Indexes for table `passenger`
 --
 ALTER TABLE `passenger`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`nic`);
 
 --
 -- Indexes for table `route`
@@ -237,19 +235,13 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT for table `passenger`
---
-ALTER TABLE `passenger`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `route`
 --
 ALTER TABLE `route`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `seat`
@@ -265,9 +257,9 @@ ALTER TABLE `seat`
 -- Constraints for table `booking`
 --
 ALTER TABLE `booking`
-  ADD CONSTRAINT `booking_ibfk_1` FOREIGN KEY (`passengerId`) REFERENCES `passenger` (`id`),
   ADD CONSTRAINT `booking_ibfk_2` FOREIGN KEY (`seatId`) REFERENCES `seat` (`id`),
-  ADD CONSTRAINT `booking_ibfk_3` FOREIGN KEY (`routeId`) REFERENCES `route` (`id`);
+  ADD CONSTRAINT `booking_ibfk_3` FOREIGN KEY (`routeId`) REFERENCES `route` (`id`),
+  ADD CONSTRAINT `booking_ibfk_4` FOREIGN KEY (`passengerNIC`) REFERENCES `passenger` (`nic`);
 
 --
 -- Constraints for table `route`

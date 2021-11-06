@@ -11,7 +11,7 @@
                     <form id="createBookingForm">
                         <div class="form-group">
                             <label>Passenger Id</label>
-                            <select class="form-control form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="booking_passenger_id" name="booking_passenger_id">
+                            <select class="form-control form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="booking_passenger_NIC" name="booking_passenger_NIC">
                                 <option selected hidden>Select Passenger Id</option>
                                 <?php
                                 include_once '../../controllers/dbConnection.php';
@@ -21,7 +21,7 @@
                                     // output data of each row
                                     while ($loadDataRow = $loadDataResult->fetch_assoc()) {
                                         echo '
-                                            <option value="' . $loadDataRow["id"] . '">' . $loadDataRow["fname"] . '</option>
+                                            <option value="' . $loadDataRow["nic"] . '">' . $loadDataRow["fname"] . ' ' . $loadDataRow["lname"] . '</option>
                                         ';
                                     }
                                 }
@@ -84,7 +84,7 @@
     <!-- model end -->
     <script>
         $("#createBookingForm").submit(function(event) {
-            cerateBooking();
+            cerateBookingFun('createBooking');
             event.preventDefault();
         });
     </script>

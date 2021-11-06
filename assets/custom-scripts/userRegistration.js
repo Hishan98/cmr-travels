@@ -9,7 +9,7 @@ function userLogin() {
       if (feedback.status == 1) {
         toastr.success(feedback.msg);
         setTimeout(function () {
-          location.replace("../../index.php");
+          location.replace("booking.php");
         }, 2000);
       } else {
         console.log(feedback.msg);

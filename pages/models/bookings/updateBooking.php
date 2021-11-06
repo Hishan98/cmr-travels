@@ -9,10 +9,10 @@
                 </div>
                 <div class="card-body">
                     <form id="updateBookingForm">
-                        <input type="text" class="cs-hide" id="up_booking_id" name="up_booking_id">
+                        <input type="text" class="cs-hide" id="up_booking_id" name="up_booking_id" value="<?= $bookingId ?>">
                         <div class="form-group">
                             <label>Passenger Id</label>
-                            <select class="form-control form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="up_booking_passenger_id" name="up_booking_passenger_id">
+                            <select class="form-control form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="up_booking_passenger_NIC" name="up_booking_passenger_NIC" required>
                                 <option selected hidden>Select Passenger Id</option>
                                 <?php
                                 include_once '../../controllers/dbConnection.php';
@@ -21,9 +21,15 @@
                                 if ($loadDataResult->num_rows > 0) {
                                     // output data of each row
                                     while ($loadDataRow = $loadDataResult->fetch_assoc()) {
-                                        echo '
-                                            <option value="' . $loadDataRow["id"] . '">' . $loadDataRow["fname"] . '</option>
-                                        ';
+                                        if ($bookingPaNIC == $loadDataRow["nic"]) {
+                                            echo '
+                                                <option selected value="' . $loadDataRow["nic"] . '">' . $loadDataRow["fname"] . ' ' . $loadDataRow["lname"] . '</option>
+                                            ';
+                                        } else {
+                                            echo '
+                                                <option value="' . $loadDataRow["nic"] . '">' . $loadDataRow["fname"] . ' ' . $loadDataRow["lname"] . '</option>
+                                            ';
+                                        }
                                     }
                                 }
                                 ?>
@@ -31,7 +37,7 @@
                         </div>
                         <div class="form-group">
                             <label>Seat Id</label>
-                            <select class="form-control form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="up_booking_seat_id" name="up_booking_seat_id">
+                            <select class="form-control form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="up_booking_seat_id" name="up_booking_seat_id" required>
                                 <option selected hidden>Select Seat Id</option>
                                 <?php
                                 include_once '../../controllers/dbConnection.php';
@@ -40,9 +46,15 @@
                                 if ($loadDataResult->num_rows > 0) {
                                     // output data of each row
                                     while ($loadDataRow = $loadDataResult->fetch_assoc()) {
-                                        echo '
-                                            <option value="' . $loadDataRow["id"] . '">' . $loadDataRow["seatNumber"] . '</option>
-                                        ';
+                                        if ($bookingSeatId == $loadDataRow["id"]) {
+                                            echo '
+                                                <option selected value="' . $loadDataRow["id"] . '">' . $loadDataRow["seatNumber"] . '</option>
+                                            ';
+                                        } else {
+                                            echo '
+                                                <option value="' . $loadDataRow["id"] . '">' . $loadDataRow["seatNumber"] . '</option>
+                                            ';
+                                        }
                                     }
                                 }
                                 ?>
@@ -50,7 +62,7 @@
                         </div>
                         <div class="form-group">
                             <label>Route Id</label>
-                            <select class="form-control form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="up_booking_route_id" name="up_booking_route_id">
+                            <select class="form-control form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="up_booking_route_id" name="up_booking_route_id" required>
                                 <option selected hidden>Select Route Id</option>
                                 <?php
                                 include_once '../../controllers/dbConnection.php';
@@ -59,9 +71,15 @@
                                 if ($loadDataResult->num_rows > 0) {
                                     // output data of each row
                                     while ($loadDataRow = $loadDataResult->fetch_assoc()) {
-                                        echo '
-                                            <option value="' . $loadDataRow["id"] . '">' . $loadDataRow["routeFrom"] . ' - ' . $loadDataRow["routeTo"] . '</option>
-                                        ';
+                                        if ($bookingRouteId == $loadDataRow["id"]) {
+                                            echo '
+                                                <option selected value="' . $loadDataRow["id"] . '">' . $loadDataRow["routeFrom"] . ' - ' . $loadDataRow["routeTo"] . '</option>
+                                            ';
+                                        } else {
+                                            echo '
+                                                <option value="' . $loadDataRow["id"] . '">' . $loadDataRow["routeFrom"] . ' - ' . $loadDataRow["routeTo"] . '</option>
+                                            ';
+                                        }
                                     }
                                 }
                                 ?>
@@ -69,7 +87,7 @@
                         </div>
                         <div class="form-group">
                             <label>Booking Date</label>
-                            <input id="datepicker" type="text" class="form-control datepicker" placeholder="Select Date" id="up_booking_date" name="up_booking_date">
+                            <input id="datepicker" type="text" class="form-control datepicker" placeholder="Select Date" id="up_booking_date" name="up_booking_date" value="<?= $bookingDate ?>" required>
                         </div>
                         <button type="submit" class="btn btn-fill btn-success float-right">
                             Update Now
@@ -85,15 +103,7 @@
     <!-- model end -->
     <script>
         $("#updateBookingForm").submit(function(event) {
-            updateBooking();
+            updateBookingFun('editBooking');
             event.preventDefault();
         });
-
-        function SetBookingUpdateVal(id, pass_id, seat_id, route_id, date) {
-            document.getElementById("up_booking_id").value = id;
-            document.getElementById("up_booking_passenger_id").value = pass_id;
-            document.getElementById("up_booking_seat_id").value = seat_id;
-            document.getElementById("up_booking_route_id").value = route_id;
-            document.getElementById("up_booking_date").value = date;
-        }
     </script>
