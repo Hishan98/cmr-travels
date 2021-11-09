@@ -24,9 +24,9 @@ if (isset($_POST['adminCreateRoute']) && $_POST['adminCreateRoute'] == true) {
     $con->close();
 } else if (isset($_POST['adminDeleteRoute']) && $_POST['adminDeleteRoute'] == true) {
     //define data
-    $id = $_POST['id'];
+    $id = $_POST['del_route_id'];
 
-    $sql = "DELETE FROM route WHERE id='" . $id . "'";
+    $sql = "DELETE FROM route WHERE routeId='" . $id . "'";
 
     if ($con->query($sql) === TRUE) {
         echo json_encode(['status' => '1', 'msg' => 'Route Deleted']);
@@ -44,7 +44,7 @@ if (isset($_POST['adminCreateRoute']) && $_POST['adminCreateRoute'] == true) {
     $route_departure_time = $_POST['up_route_departure_time'];
     $route_cost = $_POST['up_route_cost'];
 
-    $sql = "UPDATE route SET routeFrom='" . $route_from . "', routeTo='" . $route_to . "',departureTime='" . $route_departure_time . "', arrivalTime='" . $route_arrival_time . "',busNumber='" . $route_bus_number . "',price='" . $route_cost . "' WHERE id='" . $route_id . "'";
+    $sql = "UPDATE route SET routeFrom='" . $route_from . "', routeTo='" . $route_to . "',departureTime='" . $route_departure_time . "', arrivalTime='" . $route_arrival_time . "',busNumber='" . $route_bus_number . "',price='" . $route_cost . "' WHERE routeId='" . $route_id . "'";
 
     if ($con->query($sql) === TRUE) {
         echo json_encode(['status' => '1', 'msg' => 'Route Updated']);

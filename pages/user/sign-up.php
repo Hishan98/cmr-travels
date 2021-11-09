@@ -52,6 +52,12 @@
                 Login
               </p>
               <form id="userRegistration" role="form" class="text-start">
+
+                <div class="input-group input-group-outline my-3">
+                  <label class="form-label">NIC</label>
+                  <input type="text" class="form-control" onchange="checkNIC()" id="userNIC" name="userNIC" required />
+                </div>
+
                 <div class="input-group input-group-outline my-3">
                   <label class="form-label">Firstname</label>
                   <input type="text" class="form-control" name="userFname" required />
@@ -73,7 +79,7 @@
                   <input type="password" class="form-control" name="userRePassword" required />
                 </div>
                 <div class="text-center">
-                  <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2" style="background-color: #c68841">
+                  <button type="submit" id="userSignUpBtn" class="btn bg-gradient-primary w-100 my-4 mb-2" style="background-color: #c68841">
                     Sign up
                   </button>
                 </div>
@@ -111,6 +117,7 @@
     });
   </script>
   <script src="../../assets/custom-scripts/userRegistration.js" type="text/javascript"></script>
+  <script src="../../assets/custom-scripts/common.js" type="text/javascript"></script>
   <?php include_once '../components/loginRegFooter-links.php'; ?>
 </body>
 

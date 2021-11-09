@@ -50,7 +50,7 @@ function signOut() {
 
 function errorDisplay(error) {
   toastr.warning(
-    "<h4>Internal server Error !!</h4><p class='cs-text-'>" +
+    "<p class='pb-0 mb-0' style='font-size: 15px; font-weight:600;'>Internal server Error !!</p><p class='cs-text-'>" +
       error.responseText +
       "</p>"
   );

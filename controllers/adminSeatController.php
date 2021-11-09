@@ -21,9 +21,9 @@ if (isset($_POST['adminCreateSeat']) && $_POST['adminCreateSeat'] == true) {
     $con->close();
 } else if (isset($_POST['adminDeleteSeat']) && $_POST['adminDeleteSeat'] == true) {
     //define data
-    $id = $_POST['id'];
+    $id = $_POST['del_seat_id'];
 
-    $sql = "DELETE FROM seat WHERE id='" . $id . "'";
+    $sql = "DELETE FROM seat WHERE seatId='" . $id . "'";
 
     if ($con->query($sql) === TRUE) {
         echo json_encode(['status' => '1', 'msg' => 'Seat Deleted']);
@@ -40,7 +40,7 @@ if (isset($_POST['adminCreateSeat']) && $_POST['adminCreateSeat'] == true) {
 
 
 
-    $sql = "UPDATE seat SET seatNumber='" . $seat_number . "', seatType='" . $seat_type . "',busNumber='" . $seat_bus_number . "' WHERE id='" . $seat_id . "'";
+    $sql = "UPDATE seat SET seatNumber='" . $seat_number . "', seatType='" . $seat_type . "',busNumber='" . $seat_bus_number . "' WHERE seatId='" . $seat_id . "'";
 
     if ($con->query($sql) === TRUE) {
         echo json_encode(['status' => '1', 'msg' => 'Seat Updated']);

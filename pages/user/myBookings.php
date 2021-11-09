@@ -1,7 +1,7 @@
 <?php
 // Start the session
 session_start();
-if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
+if (isset($_SESSION["user_status"]) && $_SESSION["user_status"] != null) {
 } else {
   header("Location: sign-in.php");
 }
@@ -14,7 +14,7 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png" />
   <link rel="icon" type="image/png" href="../../assets/img/favicon.png" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <title>Buses</title>
+  <title>Bookings</title>
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no" name="viewport" />
   <?php include_once '../components/header-links.php'; ?>
 </head>
@@ -42,27 +42,27 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
           </div>
           <div class="info">
             <a data-toggle="collapse" href="#collapseExample" class="collapsed">
-              <span><?= $_SESSION["admin_name"] ?></span>
+              <span><?= $_SESSION["user_fname"] . " " . $_SESSION["user_lname"] ?></span>
             </a>
           </div>
         </div>
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="dashboard.php">
-              <i class="material-icons" style="font-size: 30px">dashboard</i>
-              <p>Dashboard</p>
+            <a class="nav-link" href="bookNow.php">
+              <i class="material-icons" style="font-size: 30px">book_online</i>
+              <p>Book Now</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="myBookings.php">
+              <i class="material-icons" style="font-size: 30px">class</i>
+              <p>My Bookings</p>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="buses.php">
               <i class="material-icons" style="font-size: 30px">directions_bus</i>
               <p>Buses</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="passengers.php">
-              <i class="material-icons" style="font-size: 30px">people_alt</i>
-              <p>Passengers</p>
             </a>
           </li>
           <li class="nav-item">
@@ -75,12 +75,6 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
             <a class="nav-link" href="seats.php">
               <i class="material-icons" style="font-size: 30px">airline_seat_recline_normal</i>
               <p>Seats</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="bookings.php">
-              <i class="material-icons" style="font-size: 30px">library_books</i>
-              <p>Bookings</p>
             </a>
           </li>
         </ul>
@@ -100,7 +94,7 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
                 <i class="fa fa-navicon visible-on-sidebar-mini"></i>
               </button>
             </div>
-            <a class="navbar-brand" href="#pablo">Seats</a>
+            <a class="navbar-brand" href="#pablo"> Bookings</a>
           </div>
           <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar burger-lines"></span>
@@ -141,7 +135,7 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
         <div class="container-fluid">
           <div class="row justify-content-center">
             <div class="col-md-5">
-              <h3 style="margin: 10px;">List Of Seats</h3>
+              <h3 style="margin: 10px;">List Of Bookings</h3>
             </div>
             <div class="col-md-3">
               <div class="form-group has-search">
@@ -150,7 +144,7 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
               </div>
             </div>
             <div class="col-md-2">
-              <button class="btn btn-success btn-wd" data-toggle="modal" data-target="#createSeat" style="width: 100%;"><span class="fa fa-plus-circle pr-3"></span>Create</button>
+              <button class="btn btn-success btn-wd" data-toggle="modal" data-target="#createBooking" style="width: 100%;"><span class="fa fa-plus-circle pr-3"></span>Create</button>
             </div>
           </div>
           <div class="row justify-content-center">
@@ -167,17 +161,23 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
                           <thead>
                             <tr>
                               <th data-field="name">
-                                <div class="th-inner sortable both tbl-header">
-                                  Bus Number
-                                </div>
+                                <div class="th-inner sortable both tbl-header">Booking Id</div>
                                 <div class="fht-cell"></div>
                               </th>
                               <th data-field="salary">
-                                <div class="th-inner sortable both">Name</div>
+                                <div class="th-inner sortable both">Passenger</div>
+                                <div class="fht-cell"></div>
+                              </th>
+                              <th data-field="salary">
+                                <div class="th-inner sortable both">Seat</div>
+                                <div class="fht-cell"></div>
+                              </th>
+                              <th data-field="salary">
+                                <div class="th-inner sortable both">Route</div>
                                 <div class="fht-cell"></div>
                               </th>
                               <th data-field="country">
-                                <div class="th-inner sortable both">Type</div>
+                                <div class="th-inner sortable both">Date</div>
                                 <div class="fht-cell"></div>
                               </th>
                               <th class="td-actions text-right" data-field="actions">
@@ -190,30 +190,49 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
 
                             <?php
                             include_once '../../controllers/dbConnection.php';
+                            $user_nic = $_SESSION["user_nic"];
 
-                            $loadDataSql = "SELECT * FROM seat";
+                            $loadDataSql = "SELECT * FROM booking 
+                            INNER JOIN
+                            seat ON booking.seatId = seat.seatId
+                            INNER JOIN
+                            route ON booking.routeId = route.routeId
+                            INNER JOIN passenger
+                            ON booking.passengerNIC = passenger.nic WHERE booking.passengerNIC = $user_nic;";
 
                             $loadDataResult = $con->query($loadDataSql);
 
                             if ($loadDataResult->num_rows > 0) {
                               // output data of each row
                               while ($loadDataRow = $loadDataResult->fetch_assoc()) {
-                                $seatId = $loadDataRow["seatId"];
-                                $seatNumber = $loadDataRow["seatNumber"];
-                                $seatType = $loadDataRow["seatType"];
-                                $seatBusNumber = $loadDataRow["busNumber"];
+
+                                $bookingId = $loadDataRow["id"];
+
+                                $bookingPaNIC = $loadDataRow["passengerNIC"];
+                                $bookingPaName = $loadDataRow["fname"];
+
+                                $bookingSeatId = $loadDataRow["seatId"];
+                                $bookingSeatName = $loadDataRow["seatNumber"];
+
+                                $bookingRouteId = $loadDataRow["routeId"];
+                                $bookingRouteFrom = $loadDataRow["routeFrom"];
+                                $bookingRouteTo = $loadDataRow["routeTo"];
+
+                                $bookingDate = $loadDataRow["date"];
+
                                 echo '
                                 
                                 <tr class="row_data" data-index="0">
-                                  <td class="tbl-data">' . $seatId . '</td>
-                                  <td>' . $seatNumber . '</td>
-                                  <td>' . $seatType . '</td>
-                                  <td>' . $seatBusNumber . '</td>
+                                  <td class="tbl-data">' . $bookingId . '</td>
+                                  <td>' . $bookingPaName . ' (' . $bookingPaNIC . ')</td>
+                                  <td>' . $bookingSeatName . '</td>
+                                  <td>' . $bookingRouteFrom . ' - ' . $bookingRouteTo . '</td>
+                                  <td>' . $bookingDate . '</td>
                                   <td class="td-actions text-right">
-                                    <a rel="tooltip" title="Edit" class="btn btn-link btn-warning table-action" data-toggle="modal" data-target="#editSeat" onclick="SetSeatUpdateVal(\'' . $seatId . '\',\'' . $seatNumber . '\', \'' . $seatType . '\', \'' . $seatBusNumber . '\')">
+                                    <a rel="tooltip" title="Edit" class="btn btn-link btn-warning table-action" data-toggle="modal" data-target="#editBooking">
                                         <i class="fa fa-edit"></i>
                                     </a>
-                                    <a rel="tooltip" title="Remove" class="btn btn-link btn-danger table-action" data-toggle="modal" data-target="#deleteSeat" onclick="setValueToDiv(\'' . $seatId . '\', \'del_seat_id\')" >
+                                    <a rel="tooltip" title="Remove" class="btn btn-link btn-danger table-action" data-toggle="modal" data-target="#deleteBooking">
                                       <i class="fa fa-remove"></i>
                                     </a>
                                   </td>
@@ -250,19 +269,19 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
           <nav>
             <ul class="footer-menu">
               <li>
-                <a href="buses.php"> Buses </a>
+                <a href="bookNow.php"> Book Now </a>
               </li>
               <li>
-                <a href="passengers.php"> Passengers </a>
+                <a href="myBookings.php"> My bookings </a>
+              </li>
+              <li>
+                <a href="buses.php"> Buses </a>
               </li>
               <li>
                 <a href="routes.php"> Routes </a>
               </li>
               <li>
                 <a href="seats.php"> Seats </a>
-              </li>
-              <li>
-                <a href="bookings.php"> Bookings </a>
               </li>
             </ul>
             <p class="copyright text-center">
@@ -280,11 +299,11 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
 </body>
 <!--   Core JS Files   -->
 <script src="../../assets/custom-scripts/common.js" typ="text/javascript"></script>
-<script src="../../assets/custom-scripts/seat.js" typ="text/javascript"></script>
+<script src="../../assets/custom-scripts/booking.js" typ="text/javascript"></script>
 
-<?php include_once '../models/seats/createSeat.php'; ?>
-<?php include_once '../models/seats/updateSeat.php'; ?>
-<?php include_once '../models/seats/deleteSeat.php'; ?>
+<?php include_once '../models/bookings/createBooking.php'; ?>
+<?php include_once '../models/bookings/updateBooking.php'; ?>
+<?php include_once '../models/bookings/deleteBooking.php'; ?>
 
 <?php include_once '../components/footer-links.php'; ?>
 

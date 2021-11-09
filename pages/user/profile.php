@@ -1,7 +1,7 @@
 <?php
 // Start the session
 session_start();
-if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
+if (isset($_SESSION["user_status"]) && $_SESSION["user_status"] != null) {
 } else {
   header("Location: sign-in.php");
 }
@@ -42,27 +42,27 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
           </div>
           <div class="info">
             <a data-toggle="collapse" href="#collapseExample" class="collapsed">
-              <span><?= $_SESSION["admin_name"] ?></span>
+              <span><?= $_SESSION["user_fname"] . " " . $_SESSION["user_lname"] ?></span>
             </a>
           </div>
         </div>
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="dashboard.php">
-              <i class="material-icons" style="font-size: 30px">dashboard</i>
-              <p>Dashboard</p>
+            <a class="nav-link" href="bookNow.php">
+              <i class="material-icons" style="font-size: 30px">book_online</i>
+              <p>Book Now</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="myBookings.php">
+              <i class="material-icons" style="font-size: 30px">class</i>
+              <p>My Bookings</p>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="buses.php">
               <i class="material-icons" style="font-size: 30px">directions_bus</i>
               <p>Buses</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="passengers.php">
-              <i class="material-icons" style="font-size: 30px">people_alt</i>
-              <p>Passengers</p>
             </a>
           </li>
           <li class="nav-item">
@@ -75,12 +75,6 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
             <a class="nav-link" href="seats.php">
               <i class="material-icons" style="font-size: 30px">airline_seat_recline_normal</i>
               <p>Seats</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="bookings.php">
-              <i class="material-icons" style="font-size: 30px">library_books</i>
-              <p>Bookings</p>
             </a>
           </li>
         </ul>
@@ -146,35 +140,60 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
                   <h4 class="card-title">Update Profile</h4>
                 </div>
                 <div class="card-body ">
-                  <form id="adminUpDetails">
+
+                  <form id="userUpDetails">
+                    <div class="form-group">
+                      <label>NIC</label>
+                      <input type="text" placeholder="Enter first name" class="form-control" id="profileNIC" name="profileNIC" onchange="checkNIC()" value="<?= $_SESSION["user_nic"] ?>" required>
+                    </div>
                     <div class="form-group">
                       <label>First Name</label>
-                      <input type="text" placeholder="Enter first name" class="form-control" name="profileFName" value="<?= $_SESSION["admin_fname"] ?>" required>
+                      <input type="text" placeholder="Enter first name" class="form-control" name="profileFName" value="<?= $_SESSION["user_fname"] ?>" required>
                     </div>
                     <div class="form-group">
                       <label>Last Name</label>
-                      <input type="text" placeholder="Enter last name" class="form-control" name="profileLName" value="<?= $_SESSION["admin_lname"] ?>" required>
+                      <input type="text" placeholder="Enter last name" class="form-control" name="profileLName" value="<?= $_SESSION["user_lname"] ?>" required>
                     </div>
                     <div class="form-group">
                       <label>Gender</label>
                       <select class="form-control form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="profile_gender" name="profileGender" required>
                         <option hidden>Select gender</option>
-                        <option value="1">male</option>
-                        <option value="2">female</option>
+
+                        <?php
+                        if ($_SESSION["user_gender"] == "male") {
+                          echo '
+                            <option selected value="male">male</option>
+                            <option value="female">female</option>
+                          ';
+                        } else if ($_SESSION["user_gender"] == "female") {
+                          echo '
+                            <option value="male">male</option>
+                            <option selected value="female">female</option>
+                          ';
+                        } else {
+                          echo '
+                            <option value="male">male</option>
+                            <option value="female">female</option>
+                          ';
+                        }
+                        ?>
+
+
                       </select>
                     </div>
                     <div class="form-group">
                       <label>Phone number</label>
-                      <input type="number" placeholder="Enter phone number" class="form-control" name="profilePhone" value="<?= $_SESSION["admin_phone"] ?>" required>
+                      <input type="number" placeholder="Enter phone number" class="form-control" name="profilePhone" value="<?= $_SESSION["user_phone"] ?>" required>
                     </div>
                     <div class="form-group">
                       <label>Email address</label>
-                      <input type="email" placeholder="Enter email" class="form-control" name="profileEmail" value="<?= $_SESSION["admin_email"] ?>" required>
+                      <input type="email" placeholder="Enter email" class="form-control" name="profileEmail" value="<?= $_SESSION["user_email"] ?>" required>
                     </div>
                     <div class="card-footer text-center">
                       <button type="submit" class="btn btn-success" style="width: 20%; min-width:100px">Update</button>
                     </div>
                   </form>
+
                 </div>
               </div>
             </div>
@@ -186,7 +205,7 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
                   <h4 class="card-title">Update password</h4>
                 </div>
                 <div class="card-body ">
-                  <form id="adminUpPass">
+                  <form id="userUpPass">
                     <div class="form-group">
                       <label>New password</label>
                       <input type="password" placeholder="Enter new password" class="form-control" name="profileNewPass" required>
@@ -211,19 +230,19 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
           <nav>
             <ul class="footer-menu">
               <li>
-                <a href="buses.php"> Buses </a>
+                <a href="bookNow.php"> Book Now </a>
               </li>
               <li>
-                <a href="passengers.php"> Passengers </a>
+                <a href="myBookings.php"> My bookings </a>
+              </li>
+              <li>
+                <a href="buses.php"> Buses </a>
               </li>
               <li>
                 <a href="routes.php"> Routes </a>
               </li>
               <li>
                 <a href="seats.php"> Seats </a>
-              </li>
-              <li>
-                <a href="bookings.php"> Bookings </a>
               </li>
             </ul>
             <p class="copyright text-center">
@@ -241,21 +260,14 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
 </body>
 <!--   Core JS Files   -->
 <script>
-  $("#adminUpDetails").submit(function(event) {
-    adminUpDetails();
+  $("#userUpDetails").submit(function(event) {
+    userUpDetails();
     event.preventDefault();
   });
-  $("#adminUpPass").submit(function(event) {
-    adminUpPass();
+  $("#userUpPass").submit(function(event) {
+    userUpPass();
     event.preventDefault();
   });
-
-  var gender = '<?php echo $_SESSION["admin_gender"] ?>';
-  if (gender == "male") {
-    document.getElementById("profile_gender").value = "1";
-  } else if (gender == "female") {
-    document.getElementById("profile_gender").value = "2";
-  }
 </script>
 <script src="../../assets/custom-scripts/common.js" typ="text/javascript"></script>
 <script src="../../assets/custom-scripts/profile.js" typ="text/javascript"></script>

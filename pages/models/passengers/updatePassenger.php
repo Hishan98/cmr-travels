@@ -55,7 +55,7 @@
     <!-- model end -->
     <script>
         $("#updatePassengerForm").submit(function(event) {
-            updatePassenger();
+            updatePassengerFun('editPassenger');
             event.preventDefault();
         });
 

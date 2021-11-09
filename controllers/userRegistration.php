@@ -22,6 +22,7 @@ if (isset($_POST['userLogPassword'])) {
                         $_SESSION["user_nic"] = $r["nic"];
                         $_SESSION["user_fname"] = $r["fname"];
                         $_SESSION["user_lname"] = $r["lname"];
+                        $_SESSION["user_gender"] = $r["gender"];
                         $_SESSION["user_phone"] = $r["phone"];
                         $_SESSION["user_email"] = $r["email"];
                         $_SESSION["user_status"] = "logged";
@@ -40,6 +41,7 @@ if (isset($_POST['userLogPassword'])) {
     }
 } else if (isset($_POST['userReg']) && $_POST['userReg'] == true) {
     //define data
+    $userNIC = $_POST['userNIC'];
     $userFname = $_POST['userFname'];
     $userLname = $_POST['userLname'];
     $userEmail = $_POST['userEmail'];
@@ -53,7 +55,7 @@ if (isset($_POST['userLogPassword'])) {
         $crypt_pass = crypt($md5_pass, "db");
         $shal_pass = Sha1($crypt_pass); //encrypting password
 
-        $sql = "INSERT INTO passenger(fname, lname, email, password) VALUES ('" . $userFname . "','" . $userLname . "','" . $userEmail . "','" . $shal_pass . "')";
+        $sql = "INSERT INTO passenger(nic,fname, lname, email, password) VALUES ('" . $userNIC . "','" . $userFname . "','" . $userLname . "','" . $userEmail . "','" . $shal_pass . "')";
 
         if ($con->query($sql) === TRUE) {
             echo json_encode(['status' => '1', 'msg' => 'Account Created']);
@@ -63,6 +65,20 @@ if (isset($_POST['userLogPassword'])) {
         $con->close();
     } else {
         echo json_encode(['status' => '0', 'msg' => 'Password Mismatch']);
+    }
+} else if (isset($_POST['nicCheck']) && $_POST['nicCheck'] == true) {
+
+    $nic = $_POST['nic'];
+    $Query = "SELECT * FROM passenger WHERE nic = '" . $nic . "'";
+    try {
+        $Result = $con->query($Query);
+        if ($Result->num_rows > 0) {
+            echo json_encode(['status' => '0', 'msg' => 'NIC Already Registered']);
+        } else {
+            echo json_encode(['status' => '1', 'msg' => 'NIC Available']);
+        }
+    } catch (Exception $th) {
+        echo json_encode(['status' => '0', 'msg' => $th]);
     }
 } else {
     echo json_encode(['status' => '0', 'msg' => 'Outside error']);

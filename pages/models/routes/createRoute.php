@@ -46,7 +46,7 @@
                         </div>
                         <div class="form-group">
                             <label>Cost (Rs)</label>
-                            <input type="number" placeholder="Enter Trip starting location" class="form-control" id="route_cost" name="route_cost" required>
+                            <input type="number" placeholder="Enter Cost" class="form-control" id="route_cost" name="route_cost" required>
                         </div>
                         <button type="submit" class="btn btn-fill btn-success float-right">
                             Create Now
@@ -62,7 +62,7 @@
     <!-- model end -->
     <script>
         $("#createRouteForm").submit(function(event) {
-            cerateRoute();
+            cerateRouteFun('createRoute');
             event.preventDefault();
         });
     </script>

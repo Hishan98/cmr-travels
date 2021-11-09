@@ -212,7 +212,7 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
                             if ($loadDataResult->num_rows > 0) {
                               // output data of each row
                               while ($loadDataRow = $loadDataResult->fetch_assoc()) {
-                                $routeId = $loadDataRow["id"];
+                                $routeId = $loadDataRow["routeId"];
                                 $routeBusNumber = $loadDataRow["busNumber"];
                                 $routeTo = $loadDataRow["routeTo"];
                                 $routeFrom = $loadDataRow["routeFrom"];
@@ -231,7 +231,7 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
                                   <td>' . $routeDeparture . '</td>
                                   <td>' . $routePrice . '</td>
                                   <td class="td-actions text-right">
-                                    <a rel="tooltip" title="Edit" class="btn btn-link btn-warning table-action" data-toggle="modal" data-target="#editRoute" onclick="SetRouterUpdateVal(\'' . $routeId . '\',\'' . $routeBusNumber . '\', \'' . $routeTo . '\', \'' . $routeFrom . '\', \'' . $routeArrival . '\', \'' . $routeDeparture . '\')">
+                                    <a rel="tooltip" title="Edit" class="btn btn-link btn-warning table-action" data-toggle="modal" data-target="#editRoute" onclick="SetRouterUpdateVal(\'' . $routeId . '\',\'' . $routeBusNumber . '\', \'' . $routeTo . '\', \'' . $routeFrom . '\', \'' . $routeArrival . '\', \'' . $routeDeparture . '\', \'' . $routePrice . '\')">
                                         <i class="fa fa-edit"></i>
                                     </a>
                                     <a rel="tooltip" title="Remove" class="btn btn-link btn-danger table-action" data-toggle="modal" data-target="#deleteRoute" onclick="setValueToDiv(\'' . $routeId . '\', \'del_route_id\')" >

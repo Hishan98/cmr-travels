@@ -1,35 +1,29 @@
-function ceratePassenger() {
-  $.ajax({
-    type: "POST",
-    url: "../../controllers/adminPassengerController.php",
-    data: $("#createPassengerForm").serialize() + "&adminCreatePassenger=true",
-    dataType: "JSON",
-    beforeSend: function () {},
-    success: function (feedback) {
-      if (feedback.status == 1) {
-        toastr.success(feedback.msg);
-        setTimeout(function () {
-          location.reload();
-        }, 2000);
-      } else {
-        console.log(feedback.msg);
-        toastr.error(feedback.msg);
-      }
-    },
-    error: function (error) {
-      console.log(error);
-      toastr.warning("Error ocoured.");
-    },
-  });
+function ceratePassengerFun(modelId) {
+  var data =
+    $("#createPassengerForm").serialize() + "&adminCreatePassenger=true";
+  scheduleAjaxPost(data, modelId);
+}
+function updatePassengerFun(modelId) {
+  var data =
+    $("#updatePassengerForm").serialize() + "&adminUpdatePassenger=true";
+  scheduleAjaxPost(data, modelId);
+}
+function deletePassengerFun(modelId) {
+  var data =
+    $("#deletePassengerForm").serialize() + "&adminDeletePassenger=true";
+  scheduleAjaxPost(data, modelId);
 }
 
-function updatePassenger() {
+function scheduleAjaxPost(data, modelId) {
   $.ajax({
     type: "POST",
     url: "../../controllers/adminPassengerController.php",
-    data: $("#updatePassengerForm").serialize() + "&adminUpdatePassenger=true",
+    data: data,
     dataType: "JSON",
-    beforeSend: function () {},
+    beforeSend: function () {
+      $("#" + modelId).modal("hide");
+      pageLoaderToggle(true);
+    },
     success: function (feedback) {
       if (feedback.status == 1) {
         toastr.success(feedback.msg);
@@ -37,41 +31,13 @@ function updatePassenger() {
           location.reload();
         }, 2000);
       } else {
-        console.log(feedback.msg);
-        toastr.error(feedback.msg);
+        toastr.warning(feedback.msg);
       }
+      pageLoaderToggle(false);
     },
     error: function (error) {
-      console.log(error);
-      toastr.warning("Error occoured.");
-    },
-  });
-}
-
-function deletePassenger() {
-  var nic = document.getElementById("del_passenger_nic").value;
-  $.ajax({
-    type: "POST",
-    url: "../../controllers/adminPassengerController.php",
-    data: {
-      nic: nic,
-      adminDeletePassenger: true,
-    },
-    dataType: "JSON",
-    beforeSend: function () {},
-    success: function (feedback) {
-      if (feedback.status == 1) {
-        toastr.success(feedback.msg);
-        setTimeout(function () {
-          location.reload();
-        }, 2000);
-      } else {
-        toastr.error(feedback.msg);
-      }
-    },
-    error: function (error) {
-      console.log(error);
-      toastr.warning("Error occoured.");
+      errorDisplay(error);
+      pageLoaderToggle(false);
     },
   });
 }

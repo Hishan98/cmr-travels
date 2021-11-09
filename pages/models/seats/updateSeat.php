@@ -19,7 +19,7 @@
                             <select class="form-control form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="up_seat_type" name="up_seat_type">
                                 <option selected hidden>Select Seat Type</option>
                                 <option value="window">Window</option>
-                                <option value="non window">Non window"</option>
+                                <option value="non window">Non window</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -55,7 +55,7 @@
     <!-- model end -->
     <script>
         $("#updateSeatForm").submit(function(event) {
-            updateSeat();
+            updateSeatFun('editSeat');
             event.preventDefault();
         });
 

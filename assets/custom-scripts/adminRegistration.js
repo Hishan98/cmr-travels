@@ -9,7 +9,7 @@ function adminLogin() {
       if (feedback.status == 1) {
         toastr.success(feedback.msg);
         setTimeout(function () {
-          location.replace("dashboard.php");
+          location.replace("../admin/dashboard.php");
         }, 2000);
       } else {
         console.log(feedback.msg);

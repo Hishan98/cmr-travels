@@ -234,7 +234,7 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
                         <?php
                         include_once '../../controllers/dbConnection.php';
 
-                        $loadDataSql = "SELECT COUNT(id) AS idCount FROM route;";
+                        $loadDataSql = "SELECT COUNT(routeId) AS idCount FROM route;";
 
                         $loadDataResult = $con->query($loadDataSql);
 

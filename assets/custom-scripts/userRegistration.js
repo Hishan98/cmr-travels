@@ -1,49 +1,54 @@
 function userLogin() {
-  $.ajax({
-    type: "POST",
-    url: "../../controllers/userRegistration.php",
-    data: $("#userLogin").serialize() + "&userLogin=true",
-    dataType: "JSON",
-    beforeSend: function () {},
-    success: function (feedback) {
-      if (feedback.status == 1) {
-        toastr.success(feedback.msg);
-        setTimeout(function () {
-          location.replace("booking.php");
-        }, 2000);
-      } else {
-        console.log(feedback.msg);
-        toastr.error(feedback.msg);
-      }
-    },
-    error: function (error) {
-      console.log(error);
-      toastr.warning("Error ocoured.");
-    },
-  });
+  var data = $("#userLogin").serialize() + "&userLogin=true";
+  scheduleAjaxPost(data, "log");
+}
+function userRegistration() {
+  var data = $("#userRegistration").serialize() + "&userReg=true";
+  scheduleAjaxPost(data, "reg");
 }
 
-function userRegistration() {
+function checkNIC() {
+  var NICNum = document.getElementById("userNIC").value;
+  var data = "nic=" + NICNum + "&nicCheck=true";
+  scheduleAjaxPost(data, "nic");
+}
+
+function scheduleAjaxPost(data, status) {
+  var signUpBtn = document.getElementById("userSignUpBtn");
   $.ajax({
     type: "POST",
     url: "../../controllers/userRegistration.php",
-    data: $("#userRegistration").serialize() + "&userReg=true",
+    data: data,
     dataType: "JSON",
-    beforeSend: function () {},
+    beforeSend: function () {
+      pageLoaderToggle(true);
+    },
     success: function (feedback) {
       if (feedback.status == 1) {
         toastr.success(feedback.msg);
-        setTimeout(function () {
-          location.replace("sign-in.php");
-        }, 2000);
+
+        if (status == "log") {
+          setTimeout(function () {
+            location.replace("bookNow.php");
+          }, 2000);
+        } else if (status == "reg") {
+          setTimeout(function () {
+            location.replace("sign-in.php");
+          }, 2000);
+        } else if (status == "nic") {
+          signUpBtn.disabled = false;
+        }
       } else {
-        console.log(feedback.msg);
         toastr.error(feedback.msg);
+        if (status == "nic") {
+          signUpBtn.disabled = true;
+        }
       }
+      pageLoaderToggle(false);
     },
     error: function (error) {
-      console.log(error);
-      toastr.warning("Error occoured.");
+      errorDisplay(error);
+      pageLoaderToggle(false);
     },
   });
 }

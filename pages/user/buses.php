@@ -1,7 +1,7 @@
 <?php
 // Start the session
 session_start();
-if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
+if (isset($_SESSION["user_status"]) && $_SESSION["user_status"] != null) {
 } else {
   header("Location: sign-in.php");
 }
@@ -22,7 +22,7 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
 <body>
 
   <!-- loader -->
-  <div class="loading-overlay">
+  <div class="loading-overlay pageLoader">
     <lord-icon src="https://cdn.lordicon.com/dpinvufc.json" trigger="loop" colors="primary:#F5A953,secondary:#08a88a" style="width:100px;height:100px">
     </lord-icon>
   </div>
@@ -42,27 +42,27 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
           </div>
           <div class="info">
             <a data-toggle="collapse" href="#collapseExample" class="collapsed">
-              <span><?= $_SESSION["admin_name"] ?></span>
+              <span><?= $_SESSION["user_fname"] . " " . $_SESSION["user_lname"] ?></span>
             </a>
           </div>
         </div>
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="dashboard.php">
-              <i class="material-icons" style="font-size: 30px">dashboard</i>
-              <p>Dashboard</p>
+            <a class="nav-link" href="bookNow.php">
+              <i class="material-icons" style="font-size: 30px">book_online</i>
+              <p>Book Now</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="myBookings.php">
+              <i class="material-icons" style="font-size: 30px">class</i>
+              <p>My Bookings</p>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="buses.php">
               <i class="material-icons" style="font-size: 30px">directions_bus</i>
               <p>Buses</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="passengers.php">
-              <i class="material-icons" style="font-size: 30px">people_alt</i>
-              <p>Passengers</p>
             </a>
           </li>
           <li class="nav-item">
@@ -75,12 +75,6 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
             <a class="nav-link" href="seats.php">
               <i class="material-icons" style="font-size: 30px">airline_seat_recline_normal</i>
               <p>Seats</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="bookings.php">
-              <i class="material-icons" style="font-size: 30px">library_books</i>
-              <p>Bookings</p>
             </a>
           </li>
         </ul>
@@ -100,7 +94,7 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
                 <i class="fa fa-navicon visible-on-sidebar-mini"></i>
               </button>
             </div>
-            <a class="navbar-brand" href="#pablo">Seats</a>
+            <a class="navbar-brand" href="#pablo"> Buses</a>
           </div>
           <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar burger-lines"></span>
@@ -141,16 +135,13 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
         <div class="container-fluid">
           <div class="row justify-content-center">
             <div class="col-md-5">
-              <h3 style="margin: 10px;">List Of Seats</h3>
+              <h3 style="margin: 10px;">List Of Buses</h3>
             </div>
             <div class="col-md-3">
               <div class="form-group has-search">
                 <span class="fa fa-search form-control-feedback"></span>
                 <input type="text" class="form-control" placeholder="Search" id="txt_search" onkeyup="sort_dives('txt_search', 'row_data')">
               </div>
-            </div>
-            <div class="col-md-2">
-              <button class="btn btn-success btn-wd" data-toggle="modal" data-target="#createSeat" style="width: 100%;"><span class="fa fa-plus-circle pr-3"></span>Create</button>
             </div>
           </div>
           <div class="row justify-content-center">
@@ -191,29 +182,27 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
                             <?php
                             include_once '../../controllers/dbConnection.php';
 
-                            $loadDataSql = "SELECT * FROM seat";
+                            $loadDataSql = "SELECT * FROM bus";
 
                             $loadDataResult = $con->query($loadDataSql);
 
                             if ($loadDataResult->num_rows > 0) {
                               // output data of each row
                               while ($loadDataRow = $loadDataResult->fetch_assoc()) {
-                                $seatId = $loadDataRow["seatId"];
-                                $seatNumber = $loadDataRow["seatNumber"];
-                                $seatType = $loadDataRow["seatType"];
-                                $seatBusNumber = $loadDataRow["busNumber"];
+                                $busNumber = $loadDataRow["busNumber"];
+                                $busName = $loadDataRow["busName"];
+                                $busType = $loadDataRow["busType"];
                                 echo '
                                 
                                 <tr class="row_data" data-index="0">
-                                  <td class="tbl-data">' . $seatId . '</td>
-                                  <td>' . $seatNumber . '</td>
-                                  <td>' . $seatType . '</td>
-                                  <td>' . $seatBusNumber . '</td>
+                                  <td class="tbl-data">' . $busNumber . '</td>
+                                  <td>' . $busName . '</td>
+                                  <td>' . $loadDataRow["busType"] . '</td>
                                   <td class="td-actions text-right">
-                                    <a rel="tooltip" title="Edit" class="btn btn-link btn-warning table-action" data-toggle="modal" data-target="#editSeat" onclick="SetSeatUpdateVal(\'' . $seatId . '\',\'' . $seatNumber . '\', \'' . $seatType . '\', \'' . $seatBusNumber . '\')">
+                                    <a rel="tooltip" title="Edit" class="btn btn-link btn-warning table-action" data-toggle="modal" data-target="#editBus" onclick="setValueToDiv2(\'' . $busNumber . '\', \'' . $busName . '\', \'' . $busType . '\')">
                                         <i class="fa fa-edit"></i>
                                     </a>
-                                    <a rel="tooltip" title="Remove" class="btn btn-link btn-danger table-action" data-toggle="modal" data-target="#deleteSeat" onclick="setValueToDiv(\'' . $seatId . '\', \'del_seat_id\')" >
+                                    <a rel="tooltip" title="Remove" class="btn btn-link btn-danger table-action" data-toggle="modal" data-target="#deleteBus" onclick="setValueToDiv(\'' . $busNumber . '\', \'del_bus_num\')" >
                                       <i class="fa fa-remove"></i>
                                     </a>
                                   </td>
@@ -250,19 +239,19 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
           <nav>
             <ul class="footer-menu">
               <li>
-                <a href="buses.php"> Buses </a>
+                <a href="bookNow.php"> Book Now </a>
               </li>
               <li>
-                <a href="passengers.php"> Passengers </a>
+                <a href="myBookings.php"> My bookings </a>
+              </li>
+              <li>
+                <a href="buses.php"> Buses </a>
               </li>
               <li>
                 <a href="routes.php"> Routes </a>
               </li>
               <li>
                 <a href="seats.php"> Seats </a>
-              </li>
-              <li>
-                <a href="bookings.php"> Bookings </a>
               </li>
             </ul>
             <p class="copyright text-center">
@@ -280,11 +269,11 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
 </body>
 <!--   Core JS Files   -->
 <script src="../../assets/custom-scripts/common.js" typ="text/javascript"></script>
-<script src="../../assets/custom-scripts/seat.js" typ="text/javascript"></script>
+<script src="../../assets/custom-scripts/bus.js" typ="text/javascript"></script>
 
-<?php include_once '../models/seats/createSeat.php'; ?>
-<?php include_once '../models/seats/updateSeat.php'; ?>
-<?php include_once '../models/seats/deleteSeat.php'; ?>
+<?php include_once '../models/bus/createBus.php'; ?>
+<?php include_once '../models/bus/updateBus.php'; ?>
+<?php include_once '../models/bus/deleteBus.php'; ?>
 
 <?php include_once '../components/footer-links.php'; ?>
 

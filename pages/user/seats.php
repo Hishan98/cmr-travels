@@ -1,7 +1,7 @@
 <?php
 // Start the session
 session_start();
-if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
+if (isset($_SESSION["user_status"]) && $_SESSION["user_status"] != null) {
 } else {
   header("Location: sign-in.php");
 }
@@ -42,27 +42,27 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
           </div>
           <div class="info">
             <a data-toggle="collapse" href="#collapseExample" class="collapsed">
-              <span><?= $_SESSION["admin_name"] ?></span>
+              <span><?= $_SESSION["user_fname"] . " " . $_SESSION["user_lname"] ?></span>
             </a>
           </div>
         </div>
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="dashboard.php">
-              <i class="material-icons" style="font-size: 30px">dashboard</i>
-              <p>Dashboard</p>
+            <a class="nav-link" href="bookNow.php">
+              <i class="material-icons" style="font-size: 30px">book_online</i>
+              <p>Book Now</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="myBookings.php">
+              <i class="material-icons" style="font-size: 30px">class</i>
+              <p>My Bookings</p>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="buses.php">
               <i class="material-icons" style="font-size: 30px">directions_bus</i>
               <p>Buses</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="passengers.php">
-              <i class="material-icons" style="font-size: 30px">people_alt</i>
-              <p>Passengers</p>
             </a>
           </li>
           <li class="nav-item">
@@ -75,12 +75,6 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
             <a class="nav-link" href="seats.php">
               <i class="material-icons" style="font-size: 30px">airline_seat_recline_normal</i>
               <p>Seats</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="bookings.php">
-              <i class="material-icons" style="font-size: 30px">library_books</i>
-              <p>Bookings</p>
             </a>
           </li>
         </ul>
@@ -148,9 +142,6 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
                 <span class="fa fa-search form-control-feedback"></span>
                 <input type="text" class="form-control" placeholder="Search" id="txt_search" onkeyup="sort_dives('txt_search', 'row_data')">
               </div>
-            </div>
-            <div class="col-md-2">
-              <button class="btn btn-success btn-wd" data-toggle="modal" data-target="#createSeat" style="width: 100%;"><span class="fa fa-plus-circle pr-3"></span>Create</button>
             </div>
           </div>
           <div class="row justify-content-center">
@@ -250,19 +241,19 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
           <nav>
             <ul class="footer-menu">
               <li>
-                <a href="buses.php"> Buses </a>
+                <a href="bookNow.php"> Book Now </a>
               </li>
               <li>
-                <a href="passengers.php"> Passengers </a>
+                <a href="myBookings.php"> My bookings </a>
+              </li>
+              <li>
+                <a href="buses.php"> Buses </a>
               </li>
               <li>
                 <a href="routes.php"> Routes </a>
               </li>
               <li>
                 <a href="seats.php"> Seats </a>
-              </li>
-              <li>
-                <a href="bookings.php"> Bookings </a>
               </li>
             </ul>
             <p class="copyright text-center">
@@ -281,10 +272,6 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
 <!--   Core JS Files   -->
 <script src="../../assets/custom-scripts/common.js" typ="text/javascript"></script>
 <script src="../../assets/custom-scripts/seat.js" typ="text/javascript"></script>
-
-<?php include_once '../models/seats/createSeat.php'; ?>
-<?php include_once '../models/seats/updateSeat.php'; ?>
-<?php include_once '../models/seats/deleteSeat.php'; ?>
 
 <?php include_once '../components/footer-links.php'; ?>
 

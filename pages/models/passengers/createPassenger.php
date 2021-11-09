@@ -55,7 +55,7 @@
     <!-- model end -->
     <script>
         $("#createPassengerForm").submit(function(event) {
-            ceratePassenger();
+            ceratePassengerFun('createPassenger');
             event.preventDefault();
         });
     </script>

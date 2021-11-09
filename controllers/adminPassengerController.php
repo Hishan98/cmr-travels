@@ -29,7 +29,7 @@ if (isset($_POST['adminCreatePassenger']) && $_POST['adminCreatePassenger'] == t
     $con->close();
 } else if (isset($_POST['adminDeletePassenger']) && $_POST['adminDeletePassenger'] == true) {
     //define data
-    $passenger_nic = $_POST['nic'];
+    $passenger_nic = $_POST['del_passenger_nic'];
 
     $sql = "DELETE FROM passenger WHERE nic='" . $passenger_nic . "'";
 

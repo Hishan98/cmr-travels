@@ -107,6 +107,8 @@
     });
   </script>
   <script src="../../assets/custom-scripts/userRegistration.js" type="text/javascript"></script>
+  <script src="../../assets/custom-scripts/common.js" type="text/javascript"></script>
+
   <?php include_once '../components/loginRegFooter-links.php'; ?>
 </body>
 

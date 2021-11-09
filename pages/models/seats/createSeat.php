@@ -52,9 +52,10 @@
         </div>
     </div>
     <!-- model end -->
+
     <script>
         $("#createSeatForm").submit(function(event) {
-            cerateSeat();
+            cerateSeatFun('createSeat');
             event.preventDefault();
         });
     </script>

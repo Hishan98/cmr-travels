@@ -1,35 +1,26 @@
-function cerateRoute() {
-  $.ajax({
-    type: "POST",
-    url: "../../controllers/adminRouteController.php",
-    data: $("#createRouteForm").serialize() + "&adminCreateRoute=true",
-    dataType: "JSON",
-    beforeSend: function () {},
-    success: function (feedback) {
-      if (feedback.status == 1) {
-        toastr.success(feedback.msg);
-        setTimeout(function () {
-          location.reload();
-        }, 2000);
-      } else {
-        console.log(feedback.msg);
-        toastr.error(feedback.msg);
-      }
-    },
-    error: function (error) {
-      console.log(error);
-      toastr.warning("Error ocoured.");
-    },
-  });
+function cerateRouteFun(modelId) {
+  var data = $("#createRouteForm").serialize() + "&adminCreateRoute=true";
+  scheduleAjaxPost(data, modelId);
+}
+function updateRouteFun(modelId) {
+  var data = $("#updateRouteForm").serialize() + "&adminUpdateRoute=true";
+  scheduleAjaxPost(data, modelId);
+}
+function deleteRouteFun(modelId) {
+  var data = $("#deleteRouteForm").serialize() + "&adminDeleteRoute=true";
+  scheduleAjaxPost(data, modelId);
 }
 
-function updateRoute() {
+function scheduleAjaxPost(data, modelId) {
   $.ajax({
     type: "POST",
     url: "../../controllers/adminRouteController.php",
-    data: $("#updateRouteForm").serialize() + "&adminUpdateRoute=true",
+    data: data,
     dataType: "JSON",
-    beforeSend: function () {},
+    beforeSend: function () {
+      $("#" + modelId).modal("hide");
+      pageLoaderToggle(true);
+    },
     success: function (feedback) {
       if (feedback.status == 1) {
         toastr.success(feedback.msg);
@@ -37,41 +28,13 @@ function updateRoute() {
           location.reload();
         }, 2000);
       } else {
-        console.log(feedback.msg);
-        toastr.error(feedback.msg);
+        toastr.warning(feedback.msg);
       }
+      pageLoaderToggle(false);
     },
     error: function (error) {
-      console.log(error);
-      toastr.warning("Error occoured.");
-    },
-  });
-}
-
-function deleteRoute() {
-  var id = document.getElementById("del_route_id").value;
-  $.ajax({
-    type: "POST",
-    url: "../../controllers/adminRouteController.php",
-    data: {
-      id: id,
-      adminDeleteRoute: true,
-    },
-    dataType: "JSON",
-    beforeSend: function () {},
-    success: function (feedback) {
-      if (feedback.status == 1) {
-        toastr.success(feedback.msg);
-        setTimeout(function () {
-          location.reload();
-        }, 2000);
-      } else {
-        toastr.error(feedback.msg);
-      }
-    },
-    error: function (error) {
-      console.log(error);
-      toastr.warning("Error occoured.");
+      errorDisplay(error);
+      pageLoaderToggle(false);
     },
   });
 }
