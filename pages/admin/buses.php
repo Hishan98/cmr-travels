@@ -166,17 +166,25 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
                         <table id="bootstrap-table" class="table table-hover">
                           <thead>
                             <tr>
-                              <th data-field="name">
+                              <th data-field="busNumber">
                                 <div class="th-inner sortable both tbl-header">
                                   Bus Number
                                 </div>
                                 <div class="fht-cell"></div>
                               </th>
-                              <th data-field="salary">
+                              <th data-field="name">
                                 <div class="th-inner sortable both">Name</div>
                                 <div class="fht-cell"></div>
                               </th>
-                              <th data-field="country">
+                              <th data-field="departure">
+                                <div class="th-inner sortable both">Departure Time</div>
+                                <div class="fht-cell"></div>
+                              </th>
+                              <th data-field="arrival">
+                                <div class="th-inner sortable both">Arrival Time</div>
+                                <div class="fht-cell"></div>
+                              </th>
+                              <th data-field="type">
                                 <div class="th-inner sortable both">Type</div>
                                 <div class="fht-cell"></div>
                               </th>
@@ -200,15 +208,23 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
                               while ($loadDataRow = $loadDataResult->fetch_assoc()) {
                                 $busNumber = $loadDataRow["busNumber"];
                                 $busName = $loadDataRow["busName"];
+                                $departureTime = $loadDataRow["departureTime"];
+                                $arrivalTime = $loadDataRow["arrivalTime"];
                                 $busType = $loadDataRow["busType"];
+
+                                $newDTime = date('h:i A', strtotime($departureTime));
+                                $newATime = date('h:i A', strtotime($arrivalTime));
                                 echo '
                                 
                                 <tr class="row_data" data-index="0">
                                   <td class="tbl-data">' . $busNumber . '</td>
                                   <td>' . $busName . '</td>
+                                  <td>' . $newDTime . '</td>
+                                  <td>' . $newATime . '</td>
                                   <td>' . $loadDataRow["busType"] . '</td>
+                                  
                                   <td class="td-actions text-right">
-                                    <a rel="tooltip" title="Edit" class="btn btn-link btn-warning table-action" data-toggle="modal" data-target="#editBus" onclick="setValueToDiv2(\'' . $busNumber . '\', \'' . $busName . '\', \'' . $busType . '\')">
+                                    <a rel="tooltip" title="Edit" class="btn btn-link btn-warning table-action" data-toggle="modal" data-target="#editBus" onclick="setValueToDiv2(\'' . $busNumber . '\', \'' . $busName . '\', \'' . $departureTime . '\', \'' . $arrivalTime . '\', \'' . $busType . '\')">
                                         <i class="fa fa-edit"></i>
                                     </a>
                                     <a rel="tooltip" title="Remove" class="btn btn-link btn-danger table-action" data-toggle="modal" data-target="#deleteBus" onclick="setValueToDiv(\'' . $busNumber . '\', \'del_bus_num\')" >

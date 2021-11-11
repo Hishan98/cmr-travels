@@ -17,9 +17,12 @@ function sort_dives(input_id, class_name) {
 function setValueToDiv(inp_data, div_id) {
   document.getElementById(div_id).value = inp_data;
 }
-function setValueToDiv2(inp_busNum, inp_busName, inp_busType) {
+function setValueToDiv2(inp_busNum, inp_busName, dep, ari, inp_busType) {
   document.getElementById("up_bus_num").value = inp_busNum;
   document.getElementById("up_bus_name").value = inp_busName;
+  document.getElementById("up_dep_time").value = dep;
+  document.getElementById("up_ari_time").value = ari;
+
   if (inp_busType == "Normal") {
     document.getElementById("up_bus_type").value = "1";
   } else if (inp_busType == "Semi Luxury") {
@@ -65,4 +68,32 @@ function pageLoaderToggle(state) {
       proBarCount[index].classList.add("is-active");
     }
   }
+}
+
+function sendMailFun(bookingId) {
+  // var data = "bookingId=" + bookingId + "&passengerNIC=" + "&sendEmail=true";
+  $.ajax({
+    type: "POST",
+    url: "../../controllers/mailer.php",
+    data: {
+      bookingId: bookingId,
+      sendEmail: true,
+    },
+    dataType: "JSON",
+    beforeSend: function () {
+      pageLoaderToggle(true);
+    },
+    success: function (feedback) {
+      if (feedback.status == 1) {
+        toastr.success(feedback.msg);
+      } else {
+        toastr.warning(feedback.msg);
+      }
+      pageLoaderToggle(false);
+    },
+    error: function (error) {
+      errorDisplay(error);
+      pageLoaderToggle(false);
+    },
+  });
 }

@@ -12,7 +12,35 @@
                         <input type="text" class="cs-hide" id="up_bus_num" name="up_bus_num" />
                         <div class="form-group">
                             <label>Name</label>
-                            <input type="text" placeholder="Enter Name" class="form-control" id="up_bus_name" name="up_bus_name" value="<?= $busName ?>" />
+                            <input type="text" placeholder="Enter Name" class="form-control" id="up_bus_name" name="up_bus_name" />
+                        </div>
+                        <div class="form-group">
+                            <label>Departure Time</label>
+
+                            <input type="text" class="form-control timepicker" placeholder="Departure time" id="up_dep_time" name="up_dep_time" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Arrival Time</label>
+                            <input type="text" class="form-control timepicker" placeholder="Arrival time" id="up_ari_time" name="up_ari_time" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Route Id</label>
+                            <select class="form-control form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="up_route_id" name="up_route_id">
+                                <option selected hidden>Select Route Id</option>
+                                <?php
+                                include_once '../../controllers/dbConnection.php';
+                                $loadDataSql = "SELECT * FROM route";
+                                $loadDataResult = $con->query($loadDataSql);
+                                if ($loadDataResult->num_rows > 0) {
+                                    // output data of each row
+                                    while ($loadDataRow = $loadDataResult->fetch_assoc()) {
+                                        echo '
+                                            <option value="' . $loadDataRow["routeId"] . '">' . $loadDataRow["routeFrom"] . ' - ' . $loadDataRow["routeTo"] . '</option>
+                                        ';
+                                    }
+                                }
+                                ?>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label>Type</label>
@@ -25,7 +53,7 @@
                         </div>
 
                     </div>
-                    <div class="card-footer">
+                    <div class="card-footer mb-2">
                         <button type="submit" class="btn btn-fill btn-success float-right">
                             Update Now
                         </button>

@@ -170,28 +170,12 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
                                 <div class="th-inner sortable both tbl-header">Id</div>
                                 <div class="fht-cell"></div>
                               </th>
-                              <th data-field="name">
-                                <div class="th-inner sortable both">Bus Number</div>
-                                <div class="fht-cell"></div>
-                              </th>
                               <th data-field="salary">
                                 <div class="th-inner sortable both">To</div>
                                 <div class="fht-cell"></div>
                               </th>
                               <th data-field="country">
                                 <div class="th-inner sortable both">From</div>
-                                <div class="fht-cell"></div>
-                              </th>
-                              <th data-field="country">
-                                <div class="th-inner sortable both">Arrival Time</div>
-                                <div class="fht-cell"></div>
-                              </th>
-                              <th data-field="country">
-                                <div class="th-inner sortable both">Departure Time</div>
-                                <div class="fht-cell"></div>
-                              </th>
-                              <th data-field="country">
-                                <div class="th-inner sortable both">Cost (Rs)</div>
                                 <div class="fht-cell"></div>
                               </th>
                               <th class="td-actions text-right" data-field="actions">
@@ -213,25 +197,17 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
                               // output data of each row
                               while ($loadDataRow = $loadDataResult->fetch_assoc()) {
                                 $routeId = $loadDataRow["routeId"];
-                                $routeBusNumber = $loadDataRow["busNumber"];
                                 $routeTo = $loadDataRow["routeTo"];
                                 $routeFrom = $loadDataRow["routeFrom"];
-                                $routeArrival = $loadDataRow["arrivalTime"];
-                                $routeDeparture = $loadDataRow["departureTime"];
-                                $routePrice = $loadDataRow["price"];
 
                                 echo '
                                 
                                 <tr class="row_data" data-index="0">
                                   <td class="tbl-data">' . $routeId . '</td>
-                                  <td>' . $routeBusNumber . '</td>
                                   <td>' . $routeTo . '</td>
                                   <td>' . $routeFrom . '</td>
-                                  <td>' . $routeArrival . '</td>
-                                  <td>' . $routeDeparture . '</td>
-                                  <td>' . $routePrice . '</td>
                                   <td class="td-actions text-right">
-                                    <a rel="tooltip" title="Edit" class="btn btn-link btn-warning table-action" data-toggle="modal" data-target="#editRoute" onclick="SetRouterUpdateVal(\'' . $routeId . '\',\'' . $routeBusNumber . '\', \'' . $routeTo . '\', \'' . $routeFrom . '\', \'' . $routeArrival . '\', \'' . $routeDeparture . '\', \'' . $routePrice . '\')">
+                                    <a rel="tooltip" title="Edit" class="btn btn-link btn-warning table-action" data-toggle="modal" data-target="#editRoute" onclick="SetRouterUpdateVal(\'' . $routeId . '\', \'' . $routeTo . '\', \'' . $routeFrom . '\')">
                                         <i class="fa fa-edit"></i>
                                     </a>
                                     <a rel="tooltip" title="Remove" class="btn btn-link btn-danger table-action" data-toggle="modal" data-target="#deleteRoute" onclick="setValueToDiv(\'' . $routeId . '\', \'del_route_id\')" >

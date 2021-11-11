@@ -369,7 +369,7 @@
           <?php
           include_once 'controllers/dbConnection.php';
 
-          $loadDataSql = "SELECT * FROM route INNER JOIN bus ON route.busNumber = bus.busNumber LIMIT 4;";
+          $loadDataSql = "SELECT * FROM route INNER JOIN bus ON route.routeId = bus.busRouteId  LIMIT 4;";
 
           $loadDataResult = $con->query($loadDataSql);
 
@@ -382,7 +382,6 @@
               $routeDTime = $loadDataRow["departureTime"];
               $routeATime = $loadDataRow["arrivalTime"];
               $routeBusNum = $loadDataRow["busNumber"];
-              $routePrice = $loadDataRow["price"];
               $busCondition = $loadDataRow["busType"];
 
               $format = 'H:i:s';
@@ -398,9 +397,6 @@
                                 <div class="card-header bg-transparent text-sm-start text-center pt-4 pb-3 px-4">
                                   <h5 class="mb-1 text-white">' . $routeFrom . ' - ' . $routeTo . '</h5>
                                   <p class="mb-3 text-sm text-white">' . $busCondition . '</p>
-                                  <h3 class="font-weight-bolder mt-3 text-white">
-                                    Rs ' . $routePrice . ' <small class="text-sm text-white font-weight-bold">/ per head</small>
-                                  </h3>
                                   <a href="pages/user/sign-in.php" class="btn btn-sm btn-white w-100 border-radius-md mt-4 mb-2">Book now</a>
                                 </div>
                                 <hr class="horizontal light my-0">

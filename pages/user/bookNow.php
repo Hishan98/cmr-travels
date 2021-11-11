@@ -135,17 +135,17 @@ if (isset($_SESSION["user_status"]) && $_SESSION["user_status"] != null) {
         <div class="container-fluid">
           <div class="row justify-content-center">
 
-            <div class="col-md-4 align-container-center">
-              <form id="LoginValidation" action="" method="" novalidate="novalidate">
+            <div id="bookingForm" class="col-md-4 align-container-center">
+              <form id="createBookingForm">
                 <div class="card ">
-                  <div class="card-header mt-2">
-                    <h4 class="card-title text-center">Reservation Form</h4>
+                  <div class="card-header mt-3">
+                    <h4 class="card-title text-center">Place a Reservation</h4>
                   </div>
                   <div class="card-body">
-
+                    <input type="text" class="cs-hide" name="booking_passenger_NIC" id="booking_passenger_NIC" value="<?= $_SESSION["user_nic"] ?>">
                     <div class="form-group has-label">
                       <label>Route <star class="star">*</star></label>
-                      <select class="form-control form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="booking_route" name="booking_route" required>
+                      <select class="form-control form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="booking_route_id" name="booking_route_id" onchange="onSelectLoad(this,'booking_bus')" required>
                         <option hidden>Select Route</option>
                         <?php
                         include_once '../../controllers/dbConnection.php';
@@ -160,15 +160,9 @@ if (isset($_SESSION["user_status"]) && $_SESSION["user_status"] != null) {
                             $routeId = $loadDataRow["routeId"];
                             $routeTo = $loadDataRow["routeTo"];
                             $routeFrom = $loadDataRow["routeFrom"];
-                            $routeATime = $loadDataRow["arrivalTime"];
-                            $routeDTime = $loadDataRow["departureTime"];
-                            $routePrice = $loadDataRow["price"];
-
-                            $newDTime =  date('h:i a', strtotime($routeDTime));
-                            $newATime =  date('h:i a', strtotime($routeATime));
 
                             echo '
-                              <option value="' . $routeId . '">' . $routeFrom . ' to ' . $routeTo . '<b> (' . $newDTime . ' - ' . $newATime . ')</b></option>
+                              <option value="' . $routeId . '">' . $routeFrom . ' to ' . $routeTo . '</option>
                             ';
                           }
                         }
@@ -177,14 +171,14 @@ if (isset($_SESSION["user_status"]) && $_SESSION["user_status"] != null) {
                     </div>
                     <div class="form-group has-label">
                       <label>Bus <star class="star">*</star></label>
-                      <select class="form-control form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="booking_bus" name="booking_bus" required>
-                        <option hidden>Select Bus</option>
+                      <select class="form-control form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="booking_bus" name="booking_bus" onchange="onSelectLoad(this,'booking_seat_id')" required>
+                        <option hidden>---</option>
                       </select>
                     </div>
                     <div class="form-group has-label">
                       <label>Seat <star class="star">*</star></label>
-                      <select class="form-control form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="booking_seat" name="booking_seat" required>
-                        <option hidden>Select Seat</option>
+                      <select class="form-control form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="booking_seat_id" name="booking_seat_id" required>
+                        <option hidden>---</option>
                       </select>
                     </div>
                     <div class="form-group has-label">
@@ -192,12 +186,75 @@ if (isset($_SESSION["user_status"]) && $_SESSION["user_status"] != null) {
                       <input type="text" class="form-control datepicker" placeholder="Date Picker Here" id="booking_date" name="booking_date" required>
                     </div>
 
+
+                    <div class="form-check form-check-radio">
+                      <label>Payment Method <star class="star">*</star></label><br>
+                      <label class="form-check-label mt-1">
+                        <input class="form-check-input" type="radio" name="payment" id="payment1" value="payment1" onclick="showHideDiv('cardDetails', 1)" required>
+                        <span class="form-check-sign"></span>
+                        Visa / Master Card
+                      </label>
+                      <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="payment" id="payment2" value="payment2" onclick="showHideDiv('cardDetails', 0)">
+                        <span class="form-check-sign"></span>
+                        Cash
+                      </label>
+                    </div>
+
+                    <div class="cs-hide" id="cardDetails">
+                      <hr>
+                      <div class="form-group has-label">
+                        <label>Card Number <star class="star">*</star></label>
+                        <input type="text" placeholder="Enter card number" class="form-control">
+                      </div>
+                      <div class="form-group has-label">
+                        <label>CVV<star class="star">*</star></label>
+                        <input type="text" placeholder="Enter cvv" class="form-control">
+                      </div>
+                    </div>
+
                   </div>
                   <div class="card-footer text-center mb-4">
-                    <button type="submit" class="btn btn-info btn-fill btn-wd">Reserve Now</button>
+                    <button type="submit" class="btn btn-success btn-fill btn-wd">Reserve Now</button>
                   </div>
                 </div>
               </form>
+            </div>
+
+            <div id="demoTicket" class="col-md-6 align-container-center cs-hide">
+              <div class="card ">
+                <div class="card-header mt-4">
+                  <h4 class="card-title text-center">Your Ticket</h4>
+                </div>
+                <div class="card-body">
+                  <div class="row justify-content-center">
+                    <div class="col-10 border-4 ticketDisplay">
+                      <div class="row text-center mt-3 mb-1">
+                        <div class="col-12">
+                          <h3 class="mt-1 mb-0">TICKET</h3>
+                        </div>
+                        <div class="col-12">
+                          <p class="tkt_num mb-1"> Bus Name 3 | #98867</p>
+                        </div>
+                      </div>
+                      <div class="row text-center mb-3">
+                        <div class="col-12">
+                          <p class="mb-0 tktDetails">Gampaha - Ragama</p>
+                          <p class="mb-1 mt-0">Depeture Time:<b> 10:50 am</b></p>
+                          <p class="mb-1 mt-0">Bus Number:<b> CAW2224</b></p>
+                          <p class="mb-0 tktDetails">Rs 500.00 /=</p>
+
+                        </div>
+                      </div>
+
+                    </div>
+
+                  </div>
+                </div>
+                <div class="card-footer text-center mb-4">
+                  <button class="btn btn-warning btn-fill btn-wd" onclick="locationReload()">Back</button>
+                </div>
+              </div>
             </div>
 
           </div>
@@ -241,9 +298,12 @@ if (isset($_SESSION["user_status"]) && $_SESSION["user_status"] != null) {
 <script src="../../assets/custom-scripts/common.js" typ="text/javascript"></script>
 <script src="../../assets/custom-scripts/booking.js" typ="text/javascript"></script>
 
-<?php include_once '../models/bookings/createBooking.php'; ?>
-<?php include_once '../models/bookings/updateBooking.php'; ?>
-<?php include_once '../models/bookings/deleteBooking.php'; ?>
+<script>
+  $("#createBookingForm").submit(function(event) {
+    cerateUsrBookingFun();
+    event.preventDefault();
+  });
+</script>
 
 <?php include_once '../components/footer-links.php'; ?>
 

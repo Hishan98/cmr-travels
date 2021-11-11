@@ -14,7 +14,7 @@ if (isset($_SESSION["user_status"]) && $_SESSION["user_status"] != null) {
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png" />
   <link rel="icon" type="image/png" href="../../assets/img/favicon.png" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <title>Buses</title>
+  <title>Seats</title>
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no" name="viewport" />
   <?php include_once '../components/header-links.php'; ?>
 </head>
@@ -134,8 +134,8 @@ if (isset($_SESSION["user_status"]) && $_SESSION["user_status"] != null) {
       <div class="content">
         <div class="container-fluid">
           <div class="row justify-content-center">
-            <div class="col-md-5">
-              <h3 style="margin: 10px;">List Of Seats</h3>
+            <div class="col-md-7">
+              <h3>List Of Seats</h3>
             </div>
             <div class="col-md-3">
               <div class="form-group has-search">
@@ -157,22 +157,30 @@ if (isset($_SESSION["user_status"]) && $_SESSION["user_status"] != null) {
                         <table id="bootstrap-table" class="table table-hover">
                           <thead>
                             <tr>
-                              <th data-field="name">
+                              <th data-field="seatNumber">
                                 <div class="th-inner sortable both tbl-header">
-                                  Bus Number
+                                  Seat Id
                                 </div>
                                 <div class="fht-cell"></div>
                               </th>
-                              <th data-field="salary">
+                              <th data-field="name">
                                 <div class="th-inner sortable both">Name</div>
                                 <div class="fht-cell"></div>
                               </th>
-                              <th data-field="country">
+                              <th data-field="type">
                                 <div class="th-inner sortable both">Type</div>
                                 <div class="fht-cell"></div>
                               </th>
-                              <th class="td-actions text-right" data-field="actions">
-                                <div class="th-inner">Actions</div>
+                              <th data-field="busNumber">
+                                <div class="th-inner sortable both">Bus Number</div>
+                                <div class="fht-cell"></div>
+                              </th>
+                              <th data-field="cost">
+                                <div class="th-inner sortable both">Cost(Rs)</div>
+                                <div class="fht-cell"></div>
+                              </th>
+                              <th data-field="availability">
+                                <div class="th-inner sortable both">Availability</div>
                                 <div class="fht-cell"></div>
                               </th>
                             </tr>
@@ -193,6 +201,13 @@ if (isset($_SESSION["user_status"]) && $_SESSION["user_status"] != null) {
                                 $seatNumber = $loadDataRow["seatNumber"];
                                 $seatType = $loadDataRow["seatType"];
                                 $seatBusNumber = $loadDataRow["busNumber"];
+                                $seatPrice = $loadDataRow["seatPrice"];
+                                $seatAvailability = $loadDataRow["seatAvailability"];
+                                if ($seatAvailability == 1) {
+                                  $seatAvailability = "<td class='text-success'>Available</td>";
+                                } else {
+                                  $seatAvailability = "<td class='text-danger'>Not Available</td>";
+                                }
                                 echo '
                                 
                                 <tr class="row_data" data-index="0">
@@ -200,14 +215,8 @@ if (isset($_SESSION["user_status"]) && $_SESSION["user_status"] != null) {
                                   <td>' . $seatNumber . '</td>
                                   <td>' . $seatType . '</td>
                                   <td>' . $seatBusNumber . '</td>
-                                  <td class="td-actions text-right">
-                                    <a rel="tooltip" title="Edit" class="btn btn-link btn-warning table-action" data-toggle="modal" data-target="#editSeat" onclick="SetSeatUpdateVal(\'' . $seatId . '\',\'' . $seatNumber . '\', \'' . $seatType . '\', \'' . $seatBusNumber . '\')">
-                                        <i class="fa fa-edit"></i>
-                                    </a>
-                                    <a rel="tooltip" title="Remove" class="btn btn-link btn-danger table-action" data-toggle="modal" data-target="#deleteSeat" onclick="setValueToDiv(\'' . $seatId . '\', \'del_seat_id\')" >
-                                      <i class="fa fa-remove"></i>
-                                    </a>
-                                  </td>
+                                  <td>' . $seatPrice . '</td>
+                                  ' . $seatAvailability . '
                                 </tr>
 
                                 ';

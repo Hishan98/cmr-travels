@@ -163,7 +163,7 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
                         <table id="bootstrap-table" class="table table-hover">
                           <thead>
                             <tr>
-                              <th data-field="name">
+                              <th data-field="nic">
                                 <div class="th-inner sortable both tbl-header">
                                   Nic
                                 </div>
@@ -175,11 +175,11 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
                                 </div>
                                 <div class="fht-cell"></div>
                               </th>
-                              <th data-field="country">
+                              <th data-field="phone">
                                 <div class="th-inner sortable both">Phone Number</div>
                                 <div class="fht-cell"></div>
                               </th>
-                              <th data-field="country">
+                              <th data-field="email">
                                 <div class="th-inner sortable both">Email</div>
                                 <div class="fht-cell"></div>
                               </th>

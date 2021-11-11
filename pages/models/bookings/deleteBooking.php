@@ -7,7 +7,7 @@
                         <div class="icon-box">
                             <i class="material-icons">&#xE5CD;</i>
                         </div>
-                        <input type="text" class="cs-hide" id="del_booking_id" value="<?= $bookingId ?>">
+                        <input type="text" class="cs-hide" name="del_booking_id" id="del_booking_id" value="<?= $bookingId ?>">
                         <h4 class="modal-title w-100">Are you sure?</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                             &times;

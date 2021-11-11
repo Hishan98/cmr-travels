@@ -134,8 +134,8 @@ if (isset($_SESSION["user_status"]) && $_SESSION["user_status"] != null) {
       <div class="content">
         <div class="container-fluid">
           <div class="row justify-content-center">
-            <div class="col-md-5">
-              <h3 style="margin: 10px;">Routes</h3>
+            <div class="col-md-7">
+              <h3>Routes</h3>
             </div>
             <div class="col-md-3">
               <div class="form-group has-search">
@@ -157,36 +157,16 @@ if (isset($_SESSION["user_status"]) && $_SESSION["user_status"] != null) {
                         <table id="bootstrap-table" class="table table-hover">
                           <thead>
                             <tr>
-                              <th data-field="name">
+                              <th data-field="id">
                                 <div class="th-inner sortable both tbl-header">Id</div>
                                 <div class="fht-cell"></div>
                               </th>
-                              <th data-field="name">
-                                <div class="th-inner sortable both">Bus Number</div>
-                                <div class="fht-cell"></div>
-                              </th>
-                              <th data-field="salary">
+                              <th data-field="to">
                                 <div class="th-inner sortable both">To</div>
                                 <div class="fht-cell"></div>
                               </th>
-                              <th data-field="country">
+                              <th data-field="from">
                                 <div class="th-inner sortable both">From</div>
-                                <div class="fht-cell"></div>
-                              </th>
-                              <th data-field="country">
-                                <div class="th-inner sortable both">Arrival Time</div>
-                                <div class="fht-cell"></div>
-                              </th>
-                              <th data-field="country">
-                                <div class="th-inner sortable both">Departure Time</div>
-                                <div class="fht-cell"></div>
-                              </th>
-                              <th data-field="country">
-                                <div class="th-inner sortable both">Cost (Rs)</div>
-                                <div class="fht-cell"></div>
-                              </th>
-                              <th class="td-actions text-right" data-field="actions">
-                                <div class="th-inner">Actions</div>
                                 <div class="fht-cell"></div>
                               </th>
                             </tr>
@@ -204,31 +184,15 @@ if (isset($_SESSION["user_status"]) && $_SESSION["user_status"] != null) {
                               // output data of each row
                               while ($loadDataRow = $loadDataResult->fetch_assoc()) {
                                 $routeId = $loadDataRow["routeId"];
-                                $routeBusNumber = $loadDataRow["busNumber"];
                                 $routeTo = $loadDataRow["routeTo"];
                                 $routeFrom = $loadDataRow["routeFrom"];
-                                $routeArrival = $loadDataRow["arrivalTime"];
-                                $routeDeparture = $loadDataRow["departureTime"];
-                                $routePrice = $loadDataRow["price"];
 
                                 echo '
                                 
                                 <tr class="row_data" data-index="0">
                                   <td class="tbl-data">' . $routeId . '</td>
-                                  <td>' . $routeBusNumber . '</td>
                                   <td>' . $routeTo . '</td>
                                   <td>' . $routeFrom . '</td>
-                                  <td>' . $routeArrival . '</td>
-                                  <td>' . $routeDeparture . '</td>
-                                  <td>' . $routePrice . '</td>
-                                  <td class="td-actions text-right">
-                                    <a rel="tooltip" title="Edit" class="btn btn-link btn-warning table-action" data-toggle="modal" data-target="#editRoute" onclick="SetRouterUpdateVal(\'' . $routeId . '\',\'' . $routeBusNumber . '\', \'' . $routeTo . '\', \'' . $routeFrom . '\', \'' . $routeArrival . '\', \'' . $routeDeparture . '\', \'' . $routePrice . '\')">
-                                        <i class="fa fa-edit"></i>
-                                    </a>
-                                    <a rel="tooltip" title="Remove" class="btn btn-link btn-danger table-action" data-toggle="modal" data-target="#deleteRoute" onclick="setValueToDiv(\'' . $routeId . '\', \'del_route_id\')" >
-                                      <i class="fa fa-remove"></i>
-                                    </a>
-                                  </td>
                                 </tr>
 
                                 ';

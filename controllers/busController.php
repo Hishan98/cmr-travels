@@ -7,11 +7,14 @@ if (isset($_POST['createBus']) && $_POST['createBus'] == true) {
     //define data
     $busNumber = $_POST['input_bus_number'];
     $busName = $_POST['input_bus_name'];
+    $busDeparture = $_POST['input_dep_time'];
+    $busArrival = $_POST['input_ari_time'];
+    $busRouteId = $_POST['input_route_id'];
     $busType = $_POST['input_bus_type'];
 
 
-    $sql = "INSERT INTO bus (busNumber, busName, busType) 
-    VALUES ('" . $busNumber . "','" . $busName . "','" . $busType . "')";
+    $sql = "INSERT INTO bus (busNumber, busName, departureTime, arrivalTime, busRouteId, busType) 
+    VALUES ('" . $busNumber . "','" . $busName . "','" . $busDeparture . "','" . $busArrival . "','" . $busRouteId . "','" . $busType . "')";
 
     if ($con->query($sql) === TRUE) {
         echo json_encode(['status' => '1', 'msg' => 'Created']);
@@ -35,9 +38,12 @@ if (isset($_POST['createBus']) && $_POST['createBus'] == true) {
     //define data
     $busNumber = $_POST['up_bus_num'];
     $busName = $_POST['up_bus_name'];
+    $busDeparture = $_POST['up_dep_time'];
+    $busArrival = $_POST['up_ari_time'];
+    $busRouteId = $_POST['up_route_id'];
     $busType = $_POST['up_bus_type'];
 
-    $sql = "UPDATE bus SET busName='" . $busName . "', busType='" . $busType . "' WHERE busNumber='" . $busNumber . "'";
+    $sql = "UPDATE bus SET busName='" . $busName . "',departureTime='" . $busDeparture . "',arrivalTime='" . $busArrival . "',busRouteId='" . $busRouteId . "', busType='" . $busType . "' WHERE busNumber='" . $busNumber . "'";
 
     if ($con->query($sql) === TRUE) {
         echo json_encode(['status' => '1', 'msg' => 'Updated']);

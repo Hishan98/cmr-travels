@@ -40,7 +40,7 @@
                                     // output data of each row
                                     while ($loadDataRow = $loadDataResult->fetch_assoc()) {
                                         echo '
-                                            <option value="' . $loadDataRow["id"] . '">' . $loadDataRow["seatNumber"] . '</option>
+                                            <option value="' . $loadDataRow["seatId"] . '">' . $loadDataRow["seatNumber"] . '</option>
                                         ';
                                     }
                                 }
@@ -59,7 +59,7 @@
                                     // output data of each row
                                     while ($loadDataRow = $loadDataResult->fetch_assoc()) {
                                         echo '
-                                            <option value="' . $loadDataRow["id"] . '">' . $loadDataRow["routeFrom"] . ' - ' . $loadDataRow["routeTo"] . '</option>
+                                            <option value="' . $loadDataRow["routeId"] . '">' . $loadDataRow["routeFrom"] . ' - ' . $loadDataRow["routeTo"] . '</option>
                                         ';
                                     }
                                 }

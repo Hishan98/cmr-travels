@@ -134,8 +134,8 @@ if (isset($_SESSION["user_status"]) && $_SESSION["user_status"] != null) {
       <div class="content">
         <div class="container-fluid">
           <div class="row justify-content-center">
-            <div class="col-md-5">
-              <h3 style="margin: 10px;">List Of Buses</h3>
+            <div class="col-md-7">
+              <h3>List Of Buses</h3>
             </div>
             <div class="col-md-3">
               <div class="form-group has-search">
@@ -157,22 +157,26 @@ if (isset($_SESSION["user_status"]) && $_SESSION["user_status"] != null) {
                         <table id="bootstrap-table" class="table table-hover">
                           <thead>
                             <tr>
-                              <th data-field="name">
+                              <th data-field="busNumber">
                                 <div class="th-inner sortable both tbl-header">
                                   Bus Number
                                 </div>
                                 <div class="fht-cell"></div>
                               </th>
-                              <th data-field="salary">
+                              <th data-field="name">
                                 <div class="th-inner sortable both">Name</div>
                                 <div class="fht-cell"></div>
                               </th>
-                              <th data-field="country">
+                              <th data-field="type">
                                 <div class="th-inner sortable both">Type</div>
                                 <div class="fht-cell"></div>
                               </th>
-                              <th class="td-actions text-right" data-field="actions">
-                                <div class="th-inner">Actions</div>
+                              <th data-field="arrivalTime">
+                                <div class="th-inner sortable both">Arrival Time</div>
+                                <div class="fht-cell"></div>
+                              </th>
+                              <th data-field="departureTime">
+                                <div class="th-inner sortable both">Departure Time</div>
                                 <div class="fht-cell"></div>
                               </th>
                             </tr>
@@ -192,20 +196,21 @@ if (isset($_SESSION["user_status"]) && $_SESSION["user_status"] != null) {
                                 $busNumber = $loadDataRow["busNumber"];
                                 $busName = $loadDataRow["busName"];
                                 $busType = $loadDataRow["busType"];
+
+                                $departureTime = $loadDataRow["departureTime"];
+                                $arrivalTime = $loadDataRow["arrivalTime"];
+
+                                $newDTime = date('h:i a', strtotime($departureTime));
+                                $newATime = date('h:i a', strtotime($arrivalTime));
+
                                 echo '
                                 
                                 <tr class="row_data" data-index="0">
                                   <td class="tbl-data">' . $busNumber . '</td>
                                   <td>' . $busName . '</td>
                                   <td>' . $loadDataRow["busType"] . '</td>
-                                  <td class="td-actions text-right">
-                                    <a rel="tooltip" title="Edit" class="btn btn-link btn-warning table-action" data-toggle="modal" data-target="#editBus" onclick="setValueToDiv2(\'' . $busNumber . '\', \'' . $busName . '\', \'' . $busType . '\')">
-                                        <i class="fa fa-edit"></i>
-                                    </a>
-                                    <a rel="tooltip" title="Remove" class="btn btn-link btn-danger table-action" data-toggle="modal" data-target="#deleteBus" onclick="setValueToDiv(\'' . $busNumber . '\', \'del_bus_num\')" >
-                                      <i class="fa fa-remove"></i>
-                                    </a>
-                                  </td>
+                                  <td>' . $newDTime . '</td>
+                                  <td>' . $newATime . '</td>
                                 </tr>
 
                                 ';

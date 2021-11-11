@@ -9,7 +9,7 @@
                 </div>
                 <div class="card-body">
                     <form id="updateBookingForm">
-                        <input type="text" class="cs-hide" id="up_booking_id" name="up_booking_id" value="<?= $bookingId ?>">
+                        <input type="text" class="cs-hide" id="up_booking_id" name="up_booking_id">
                         <div class="form-group">
                             <label>Passenger Id</label>
                             <select class="form-control form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="up_booking_passenger_NIC" name="up_booking_passenger_NIC" required>
@@ -21,15 +21,9 @@
                                 if ($loadDataResult->num_rows > 0) {
                                     // output data of each row
                                     while ($loadDataRow = $loadDataResult->fetch_assoc()) {
-                                        if ($bookingPaNIC == $loadDataRow["nic"]) {
-                                            echo '
-                                                <option selected value="' . $loadDataRow["nic"] . '">' . $loadDataRow["fname"] . ' ' . $loadDataRow["lname"] . '</option>
-                                            ';
-                                        } else {
-                                            echo '
+                                        echo '
                                                 <option value="' . $loadDataRow["nic"] . '">' . $loadDataRow["fname"] . ' ' . $loadDataRow["lname"] . '</option>
                                             ';
-                                        }
                                     }
                                 }
                                 ?>
@@ -46,15 +40,9 @@
                                 if ($loadDataResult->num_rows > 0) {
                                     // output data of each row
                                     while ($loadDataRow = $loadDataResult->fetch_assoc()) {
-                                        if ($bookingSeatId == $loadDataRow["id"]) {
-                                            echo '
-                                                <option selected value="' . $loadDataRow["id"] . '">' . $loadDataRow["seatNumber"] . '</option>
+                                        echo '
+                                                <option value="' . $loadDataRow["seatId"] . '">' . $loadDataRow["seatNumber"] . '</option>
                                             ';
-                                        } else {
-                                            echo '
-                                                <option value="' . $loadDataRow["id"] . '">' . $loadDataRow["seatNumber"] . '</option>
-                                            ';
-                                        }
                                     }
                                 }
                                 ?>
@@ -71,15 +59,9 @@
                                 if ($loadDataResult->num_rows > 0) {
                                     // output data of each row
                                     while ($loadDataRow = $loadDataResult->fetch_assoc()) {
-                                        if ($bookingRouteId == $loadDataRow["id"]) {
-                                            echo '
-                                                <option selected value="' . $loadDataRow["id"] . '">' . $loadDataRow["routeFrom"] . ' - ' . $loadDataRow["routeTo"] . '</option>
+                                        echo '
+                                                <option value="' . $loadDataRow["routeId"] . '">' . $loadDataRow["routeFrom"] . ' - ' . $loadDataRow["routeTo"] . '</option>
                                             ';
-                                        } else {
-                                            echo '
-                                                <option value="' . $loadDataRow["id"] . '">' . $loadDataRow["routeFrom"] . ' - ' . $loadDataRow["routeTo"] . '</option>
-                                            ';
-                                        }
                                     }
                                 }
                                 ?>
@@ -106,4 +88,10 @@
             updateBookingFun('editBooking');
             event.preventDefault();
         });
+
+        function SetUpdateVal(id, date) {
+            document.getElementById("up_booking_id").value = id;
+            document.getElementById("up_booking_date").value = date;
+
+        }
     </script>

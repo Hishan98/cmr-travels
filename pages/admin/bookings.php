@@ -234,10 +234,10 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
                                   <td>' . $bookingRouteFrom . ' - ' . $bookingRouteTo . '</td>
                                   <td>' . $bookingDate . '</td>
                                   <td class="td-actions text-right">
-                                    <a rel="tooltip" title="Edit" class="btn btn-link btn-warning table-action" data-toggle="modal" data-target="#editBooking">
+                                    <a rel="tooltip" title="Edit" class="btn btn-link btn-warning table-action" data-toggle="modal" data-target="#editBooking" onclick="SetUpdateVal(\'' . $bookingId . '\', \'' . $bookingDate . '\')">
                                         <i class="fa fa-edit"></i>
                                     </a>
-                                    <a rel="tooltip" title="Remove" class="btn btn-link btn-danger table-action" data-toggle="modal" data-target="#deleteBooking">
+                                    <a rel="tooltip" title="Remove" class="btn btn-link btn-danger table-action" data-toggle="modal" data-target="#deleteBooking" onclick="setValueToDiv(\'' . $bookingId . '\', \'del_booking_id\')">
                                       <i class="fa fa-remove"></i>
                                     </a>
                                   </td>

@@ -134,8 +134,8 @@ if (isset($_SESSION["user_status"]) && $_SESSION["user_status"] != null) {
       <div class="content">
         <div class="container-fluid">
           <div class="row justify-content-center">
-            <div class="col-md-5">
-              <h3 style="margin: 10px;">List Of Bookings</h3>
+            <div class="col-md-7">
+              <h3>List Of Bookings</h3>
             </div>
             <div class="col-md-3">
               <div class="form-group has-search">
@@ -143,9 +143,7 @@ if (isset($_SESSION["user_status"]) && $_SESSION["user_status"] != null) {
                 <input type="text" class="form-control" placeholder="Search" id="txt_search" onkeyup="sort_dives('txt_search', 'row_data')">
               </div>
             </div>
-            <div class="col-md-2">
-              <button class="btn btn-success btn-wd" data-toggle="modal" data-target="#createBooking" style="width: 100%;"><span class="fa fa-plus-circle pr-3"></span>Create</button>
-            </div>
+
           </div>
           <div class="row justify-content-center">
             <div class="col-md-10">
@@ -160,23 +158,23 @@ if (isset($_SESSION["user_status"]) && $_SESSION["user_status"] != null) {
                         <table id="bootstrap-table" class="table table-hover">
                           <thead>
                             <tr>
-                              <th data-field="name">
+                              <th data-field="bookingId">
                                 <div class="th-inner sortable both tbl-header">Booking Id</div>
                                 <div class="fht-cell"></div>
                               </th>
-                              <th data-field="salary">
+                              <th data-field="passenger">
                                 <div class="th-inner sortable both">Passenger</div>
                                 <div class="fht-cell"></div>
                               </th>
-                              <th data-field="salary">
+                              <th data-field="seat">
                                 <div class="th-inner sortable both">Seat</div>
                                 <div class="fht-cell"></div>
                               </th>
-                              <th data-field="salary">
+                              <th data-field="route">
                                 <div class="th-inner sortable both">Route</div>
                                 <div class="fht-cell"></div>
                               </th>
-                              <th data-field="country">
+                              <th data-field="date">
                                 <div class="th-inner sortable both">Date</div>
                                 <div class="fht-cell"></div>
                               </th>
@@ -229,9 +227,6 @@ if (isset($_SESSION["user_status"]) && $_SESSION["user_status"] != null) {
                                   <td>' . $bookingRouteFrom . ' - ' . $bookingRouteTo . '</td>
                                   <td>' . $bookingDate . '</td>
                                   <td class="td-actions text-right">
-                                    <a rel="tooltip" title="Edit" class="btn btn-link btn-warning table-action" data-toggle="modal" data-target="#editBooking">
-                                        <i class="fa fa-edit"></i>
-                                    </a>
                                     <a rel="tooltip" title="Remove" class="btn btn-link btn-danger table-action" data-toggle="modal" data-target="#deleteBooking">
                                       <i class="fa fa-remove"></i>
                                     </a>
@@ -296,14 +291,11 @@ if (isset($_SESSION["user_status"]) && $_SESSION["user_status"] != null) {
       </footer>
     </div>
   </div>
+  <?php include_once '../models/bookings/deleteBooking.php'; ?>
 </body>
 <!--   Core JS Files   -->
 <script src="../../assets/custom-scripts/common.js" typ="text/javascript"></script>
 <script src="../../assets/custom-scripts/booking.js" typ="text/javascript"></script>
-
-<?php include_once '../models/bookings/createBooking.php'; ?>
-<?php include_once '../models/bookings/updateBooking.php'; ?>
-<?php include_once '../models/bookings/deleteBooking.php'; ?>
 
 <?php include_once '../components/footer-links.php'; ?>
 
