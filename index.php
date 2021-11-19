@@ -403,12 +403,12 @@
                                 <div class="card-body">
                                   <div class="d-flex pb-3">
                                     <i class="material-icons my-auto text-white">done</i>
-                                    <span class="text-sm text-white ps-3">' . $newATime . ' From ' . $routeFrom . '</span>
+                                    <span class="text-sm text-white ps-3">' . $newDTime. ' From ' . $routeFrom . '</span>
                                   </div>
 
                                   <div class="d-flex pb-3">
                                     <i class="material-icons my-auto text-white">done</i>
-                                    <span class="text-sm text-white ps-3">' . $newDTime . ' To ' . $routeTo . '</span>
+                                    <span class="text-sm text-white ps-3">' . $newATime . ' To ' . $routeTo . '</span>
                                   </div>
 
                                   <div class="d-flex pb-3">

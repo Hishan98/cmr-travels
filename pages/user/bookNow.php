@@ -137,7 +137,8 @@ if (isset($_SESSION["user_status"]) && $_SESSION["user_status"] != null) {
 
             <div id="bookingForm" class="col-md-4 align-container-center">
               <form id="createBookingForm">
-                <div class="card ">
+
+                <div class="card" id="firstCard">
                   <div class="card-header mt-3">
                     <h4 class="card-title text-center">Place a Reservation</h4>
                   </div>
@@ -181,6 +182,19 @@ if (isset($_SESSION["user_status"]) && $_SESSION["user_status"] != null) {
                         <option hidden>---</option>
                       </select>
                     </div>
+
+
+                  </div>
+                  <div class="card-footer text-center mb-4">
+                    <input type="button" class="btn btn-warning btn-fill btn-wd" onclick="showHideDiv('secondCard', 1);showHideDiv('firstCard', 0);" value="Next">
+                  </div>
+                </div>
+
+                <div class="card cs-hide" id="secondCard">
+                  <div class="card-header mt-3">
+                    <h4 class="card-title text-center">Place a Reservation</h4>
+                  </div>
+                  <div class="card-body">
                     <div class="form-group has-label">
                       <label>Date <star class="star">*</star></label>
                       <input type="text" class="form-control datepicker" placeholder="Date Picker Here" id="booking_date" name="booking_date" required>
@@ -212,12 +226,14 @@ if (isset($_SESSION["user_status"]) && $_SESSION["user_status"] != null) {
                         <input type="text" placeholder="Enter cvv" class="form-control">
                       </div>
                     </div>
-
                   </div>
                   <div class="card-footer text-center mb-4">
+                    <input type="button" class="btn btn-default btn-wd btn-back" onclick="showHideDiv('secondCard', 0);showHideDiv('firstCard', 1);" value="Back">
                     <button type="submit" class="btn btn-success btn-fill btn-wd">Reserve Now</button>
                   </div>
                 </div>
+
+
               </form>
             </div>
 
@@ -234,15 +250,15 @@ if (isset($_SESSION["user_status"]) && $_SESSION["user_status"] != null) {
                           <h3 class="mt-1 mb-0">TICKET</h3>
                         </div>
                         <div class="col-12">
-                          <p class="tkt_num mb-1"> Bus Name 3 | #98867</p>
+                          <p class="tkt_num mb-1" id="demoBusNameId"> Bus Name 3 | #98867</p>
                         </div>
                       </div>
                       <div class="row text-center mb-3">
                         <div class="col-12">
-                          <p class="mb-0 tktDetails">Gampaha - Ragama</p>
-                          <p class="mb-1 mt-0">Depeture Time:<b> 10:50 am</b></p>
-                          <p class="mb-1 mt-0">Bus Number:<b> CAW2224</b></p>
-                          <p class="mb-0 tktDetails">Rs 500.00 /=</p>
+                          <p class="mb-0 tktDetails" id="demoBusRoute">Gampaha - Ragama</p>
+                          <p class="mb-1 mt-0">Depeture Time:<b id="demoDepature"> 10:50 am</b></p>
+                          <p class="mb-1 mt-0">Bus Number:<b id="demoBusNum"> CAW2224</b></p>
+                          <p class="mb-0 tktDetails" id="demoPrice" >Rs 500.00 /=</p>
 
                         </div>
                       </div>

@@ -1,5 +1,5 @@
 function cerateBookingFun(modelId) {
-  var data = $("#createBookingForm").serialize() + "&adminCreateBooking=true";
+  var data = $("#createBookingForm").serialize() + "&createBooking=true";
   scheduleAjaxPost(data, modelId, 1);
 }
 function updateBookingFun(modelId) {
@@ -45,7 +45,7 @@ function scheduleAjaxPost(data, modelId, sendEmail) {
 }
 
 function cerateUsrBookingFun() {
-  var data = $("#createBookingForm").serialize() + "&adminCreateBooking=true";
+  var data = $("#createBookingForm").serialize() + "&createBooking=true";
   $.ajax({
     type: "POST",
     url: "../../controllers/bookingController.php",
@@ -57,10 +57,47 @@ function cerateUsrBookingFun() {
     success: function (feedback) {
       if (feedback.status == 1) {
         toastr.success(feedback.msg);
+        getBookingData(feedback.bookingId);
         showHideDiv("bookingForm", 0);
         showHideDiv("demoTicket", 1);
 
         sendMailFun(feedback.bookingId);
+      } else {
+        toastr.warning(feedback.msg);
+      }
+      pageLoaderToggle(false);
+    },
+    error: function (error) {
+      errorDisplay(error);
+      pageLoaderToggle(false);
+    },
+  });
+}
+
+function getBookingData(id) {
+  var data = "id=" + id + "&getBookingData=true";
+  $.ajax({
+    type: "POST",
+    url: "../../controllers/bookingController.php",
+    data: data,
+    dataType: "JSON",
+    beforeSend: function () {
+      pageLoaderToggle(true);
+    },
+    success: function (feedback) {
+      if (feedback.status == 1) {
+        toastr.success(feedback.msg);
+        const obj = JSON.parse(feedback.bookingData);
+
+        setDemoData(
+          obj.id,
+          obj.routeFrom,
+          obj.routeTo,
+          obj.seatPrice,
+          obj.busName,
+          obj.busNumber,
+          obj.departureTime
+        );
       } else {
         toastr.warning(feedback.msg);
       }
@@ -126,4 +163,11 @@ function showHideDiv(element, state) {
 }
 function locationReload() {
   location.reload();
+}
+function setDemoData(id, from, to, price, busName, busNumber, dTime) {
+  document.getElementById("demoBusNameId").innerHTML = busName + " | #" + id;
+  document.getElementById("demoBusRoute").innerHTML = from + " - " + to;
+  document.getElementById("demoDepature").innerHTML = " " + dTime;
+  document.getElementById("demoBusNum").innerHTML = " " + busNumber;
+  document.getElementById("demoPrice").innerHTML = "Rs " + price + ".00/=";
 }

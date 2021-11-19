@@ -213,7 +213,7 @@ if (isset($_SESSION["admin_status"]) && $_SESSION["admin_status"] != null) {
                                 
                                 <tr class="row_data" data-index="0">
                                 <td class="tbl-data">' . $passengerNic . '</td>
-                                  <td>' . $passengerName . '</td>
+                                  <td class="tbl-data">' . $passengerName . '</td>
                                   <td>' . $passengerPhone . '</td>
                                   <td>' . $passengerEmail . '</td>
                                   <td class="td-actions text-right">

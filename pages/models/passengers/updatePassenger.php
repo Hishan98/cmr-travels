@@ -10,6 +10,9 @@
                 <div class="card-body">
                     <form id="updatePassengerForm">
                         <div class="form-group">
+                            <!-- set hidden values -->
+                            <input type="text" class="form-control cs-hide" id="up_passenger_currentNIC" name="up_passenger_currentNIC">
+
                             <label>First Name</label>
                             <input type="text" placeholder="Enter First Namer" class="form-control" id="up_passenger_fname" name="up_passenger_fname" required>
                         </div>
@@ -60,6 +63,7 @@
         });
 
         function SetPassengerUpdateVal(nic, fname, lname, phone, email) {
+            document.getElementById("up_passenger_currentNIC").value = nic;
             document.getElementById("up_passenger_nic").value = nic;
             document.getElementById("up_passenger_fname").value = fname;
             document.getElementById("up_passenger_lname").value = lname;

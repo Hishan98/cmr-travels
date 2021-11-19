@@ -3,7 +3,7 @@
 include_once 'dbConnection.php';
 
 
-if (isset($_POST['adminCreateBooking']) && $_POST['adminCreateBooking'] == true) {
+if (isset($_POST['createBooking']) && $_POST['createBooking'] == true) {
     //define data
     $booking_id = rand(10000, 99999);
     $booking_passenger_NIC = $_POST['booking_passenger_NIC'];
@@ -50,6 +50,61 @@ if (isset($_POST['adminCreateBooking']) && $_POST['adminCreateBooking'] == true)
         echo json_encode(['status' => '0', 'msg' => $con->error]);
     }
     $con->close();
+} else if (isset($_POST['getBookingData']) && $_POST['getBookingData'] == true) {
+
+    $id = $_POST['id'];
+    $loadDataSql = "SELECT * FROM booking 
+                    INNER JOIN
+                    seat ON booking.seatId = seat.seatId
+                    INNER JOIN
+                    route ON booking.routeId = route.routeId
+                    INNER JOIN passenger
+                    ON booking.passengerNIC = passenger.nic 
+                    WHERE id='" . $id . "';";
+
+    $loadDataResult = $con->query($loadDataSql);
+    if ($loadDataResult->num_rows > 0) {
+        // output data of each row
+        while ($loadDataRow = $loadDataResult->fetch_assoc()) {
+
+            $busNumber = $loadDataRow["busNumber"];
+
+            $bookingId = $loadDataRow["id"];
+            $routeFrom = $loadDataRow["routeFrom"];
+            $routeTo = $loadDataRow["routeTo"];
+            $seatPrice = $loadDataRow["seatPrice"];
+        }
+
+
+        $loadBusDataSql = "SELECT * FROM bus WHERE busNumber='" . $busNumber . "'";
+        $loadBusDataResult = $con->query($loadBusDataSql);
+        if ($loadBusDataResult->num_rows > 0) {
+            // output data of each row
+            while ($loadBusDataRow = $loadBusDataResult->fetch_assoc()) {
+
+                $busName = $loadBusDataRow["busName"];
+                $departureTime = $loadBusDataRow["departureTime"];
+
+                $newDTime = date('h:i a', strtotime($departureTime));
+            }
+
+            $data = '{
+                "id": ' . $bookingId . ',
+                "routeFrom": "' . $routeFrom . '",
+                "routeTo": "' . $routeTo . '",
+                "seatPrice": ' . $seatPrice . ',
+                "busName": "' . $busName . '",
+                "busNumber": "' . $busNumber . '",
+                "departureTime": "' . $newDTime . '"
+            }';
+
+            echo json_encode(['status' => '1', 'msg' => 'Buses Found.', 'bookingData' => $data]);
+        } else {
+            echo json_encode(['status' => '0', 'msg' => 'Cannot Find Selected bus.']);
+        }
+    } else {
+        echo json_encode(['status' => '0', 'msg' => 'Cannot find values.']);
+    }
 } else if (isset($_POST['onSelectLoadItems']) && $_POST['onSelectLoadItems'] == true) {
     //define data
     $curElementVal = $_POST['curElementVal'];
