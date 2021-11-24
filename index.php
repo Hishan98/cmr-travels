@@ -19,6 +19,12 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet" />
   <!-- CSS Files -->
   <link id="pagestyle" href="assets/css/material-kit-pro.css?v=3.0.0" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!-- Toastr -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+  <script src="https://cdn.lordicon.com/libs/mssddfmo/lord-icon-2.1.0.js"></script>
+
 </head>
 
 <body class="coworking bg-gray-200">
@@ -92,7 +98,7 @@
             </a>
           </li>
           <li class="nav-item mx-2">
-            <a href="#team" class="
+            <a href="#contactUs" class="
                   nav-link
                   ps-2
                   d-flex
@@ -100,7 +106,7 @@
                   cursor-pointer
                   align-items-center
                 " role="button">
-              Team
+              Contact us
             </a>
           </li>
           <li class="nav-item dropdown dropdown-hover mx-2">
@@ -155,25 +161,6 @@
                       <span>Sign Up</span>
                     </a>
                   </li>
-                  <li class="
-                        nav-item
-                        dropdown dropdown-hover dropdown-subitem
-                        list-group-item
-                        border-0
-                        p-0
-                      ">
-                    <a href="pages/admin/sign-in.php" class="
-                          dropdown-item
-                          border-radius-md
-                          text-dark
-                          ps-3
-                          d-flex
-                          align-items-center
-                          mb-1
-                        " id="dropdownSignUp">
-                      <span>Admin portal</span>
-                    </a>
-                  </li>
                 </ul>
               </div>
             </div>
@@ -191,7 +178,7 @@
   <!-- End Navbar -->
   <!-- -------- START HEADER 1 w/ text and image on right ------- -->
   <header>
-    <div class="page-header min-vh-75" style="background-image: url('assets/img/custom/gallery 16.jpg')" loading="lazy">
+    <div id="Home" class="page-header min-vh-75" style="background-image: url('assets/img/custom/gallery 16.jpg')" loading="lazy">
       <span class="mask bg-gradient-dark opacity-5"></span>
       <div class="container">
         <div class="row">
@@ -221,139 +208,6 @@
   </header>
 
   <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6 mb-4">
-
-    <section class="py-md-7" id="Home">
-      <div class="container">
-        <div class="row justify-content-start">
-          <div class="col-md-4 ms-md-auto me-md-4">
-            <div class="text-start">
-              <div class="
-                    icon icon-md icon-shape
-                    bg-gradient-primary
-                    shadow-primary
-                    text-center
-                    border-radius-xl
-                    mt-n4
-                  ">
-                <i class="material-icons opacity-10">payment</i>
-              </div>
-              <h5 class="mt-3">No Bus Cancellation</h5>
-              <p>
-                If any of our customer made an online bus booking through
-                C.M.R Travels and the bus operator cancels the bus without
-                making any alternate arrangements, the customer will receive a
-                150% refund on their bus ticket costs.
-              </p>
-            </div>
-            <div class="primary text-start border-radius-lg mt-6">
-              <div class="
-                    icon icon-md icon-shape
-                    bg-gradient-primary
-                    shadow-primary
-                    text-center
-                    border-radius-xl
-                    mt-n4
-                  ">
-                <i class="material-icons opacity-10">insights</i>
-              </div>
-              <h5 class="mt-3">Bus On Time</h5>
-              <p>
-                With this benefit, customers will receive a 25% refund on
-                their bus ticket costs in case the bus that they need to
-                travel in is delayed by 30 minutes.
-              </p>
-            </div>
-          </div>
-          <div class="col-md-4 me-md-auto ms-md-4">
-            <div class="primary text-start border-radius-lg">
-              <div class="
-                    icon icon-md icon-shape
-                    bg-gradient-primary
-                    shadow-primary
-                    text-center
-                    border-radius-xl
-                    mt-n4
-                  ">
-                <i class="material-icons opacity-10">access_alarms</i>
-              </div>
-              <h5 class="mt-3">Alternate Assurance</h5>
-              <p>
-                If a bus breaks down, the customers would have to wait for an
-                alternate arrangement to be made by the bus operator. If this
-                arrangement is not made within 6 hours from the time of the
-                breakdown, the customers can get a 300% refund.
-              </p>
-            </div>
-            <div class="primary text-start border-radius-lg mt-6">
-              <div class="
-                    icon icon-md icon-shape
-                    bg-gradient-primary
-                    shadow-primary
-                    text-center
-                    border-radius-xl
-                    mt-n4
-                  ">
-                <i class="material-icons opacity-10">insights</i>
-              </div>
-              <h5 class="mt-3">Ez-Booking</h5>
-              <p>
-                Our customers can reserve their seat with in 30 seconds
-                because we made our booking system very customer friendly
-                design.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="py-4 position-relative" id="about-us">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-10 mx-auto bg-gradient-dark border-radius-lg">
-            <div class="row py-5">
-              <div class="col-xl-4 col-md-6 px-5 position-relative">
-                <img class="
-                      img
-                      border-radius-md
-                      max-width-300
-                      w-100
-                      position-relative
-                      z-index-2
-                      mt-n7
-                    " src="assets/img/custom/gallery 21.jpg" loading="lazy" alt="card image" />
-              </div>
-              <div class="
-                    col-xl-4 col-md-5
-                    z-index-2
-                    position-relative
-                    px-md-3 px-5
-                    my-md-auto
-                    mt-4
-                  ">
-                <i class="material-icons text-white text-5xl">format_quote</i>
-                <p class="text-lg text-white">
-                  Providing exceptional bus travel arrangements is the vision
-                  that’s followed at C.M.S travels so one can make the right
-                  travel arrangements for a great holiday. World largest
-                  online bus ticketing platform has driven the country’s bus
-                  booking journey over the past 15+ years through thousands of
-                  bus operators and routes.
-                </p>
-                <hr class="vertical start-100 ms-n5 d-xl-block d-none" />
-              </div>
-              <div class="col-1"></div>
-              <div class="col-xl-2 col-12 px-xl-0 px-5 my-xl-auto">
-                <h3 class="text-white mt-xl-0 mt-5">1,679,700 +</h3>
-                <p class="text-sm text-white opacity-8">
-                  Drivers and customers around the world using our service.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <section class="features-3 py-4" id="routes">
       <div class="container">
@@ -403,7 +257,7 @@
                                 <div class="card-body">
                                   <div class="d-flex pb-3">
                                     <i class="material-icons my-auto text-white">done</i>
-                                    <span class="text-sm text-white ps-3">' . $newDTime. ' From ' . $routeFrom . '</span>
+                                    <span class="text-sm text-white ps-3">' . $newDTime . ' From ' . $routeFrom . '</span>
                                   </div>
 
                                   <div class="d-flex pb-3">
@@ -439,7 +293,210 @@
       </div>
     </section>
 
-    <section class="pb-5 position-relative bg-gradient-dark mx-n3" id="team">
+    <section class="py-4 position-relative" id="about-us" style="margin-top: 8rem;">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-10 mx-auto bg-gradient-dark border-radius-lg">
+            <div class="row py-5">
+              <div class="col-xl-4 col-md-6 px-5 position-relative">
+                <img class="
+                      img
+                      border-radius-md
+                      max-width-300
+                      w-100
+                      position-relative
+                      z-index-2
+                      mt-n7
+                    " src="assets/img/custom/gallery 21.jpg" loading="lazy" alt="card image" />
+              </div>
+              <div class="
+                    col-xl-4 col-md-5
+                    z-index-2
+                    position-relative
+                    px-md-3 px-5
+                    my-md-auto
+                    mt-4
+                  ">
+                <i class="material-icons text-white text-5xl">format_quote</i>
+                <p class="text-lg text-white">
+                  Providing exceptional bus travel arrangements is the vision
+                  that’s followed at C.M.S travels so one can make the right
+                  travel arrangements for a great holiday. World largest
+                  online bus ticketing platform has driven the country’s bus
+                  booking journey over the past 15+ years through thousands of
+                  bus operators and routes.
+                </p>
+                <hr class="vertical start-100 ms-n5 d-xl-block d-none" />
+              </div>
+              <div class="col-1"></div>
+              <div class="col-xl-2 col-12 px-xl-0 px-5 my-xl-auto">
+                <h3 class="text-white mt-xl-0 mt-5">1,679,700 +</h3>
+                <p class="text-sm text-white opacity-8">
+                  Drivers and customers around the world using our service.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-md-7">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-7">
+            <div class="text-center">
+              <!-- <div class="
+                    icon icon-md icon-shape
+                    bg-gradient-primary
+                    shadow-primary
+                    text-center
+                    border-radius-xl
+                    mt-n4
+                  ">
+                <i class="material-icons opacity-10">payment</i>
+              </div> -->
+              <span class="badge rounded-pill badge-primary mb-2">Rule 01</span>
+              <h5 class="mt-0">No Bus Cancellation</h5>
+              <p class="mt-4">
+                With this benefit, customers will receive a 25% refund on their bus ticket costs in case the bus that they need to travel in is delayed by 30 minutes.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center mt-5">
+          <div class="col-md-7">
+            <div class="text-center">
+              <span class="badge rounded-pill badge-primary mb-2">Rule 02</span>
+              <h5 class="mt-0">Bus On Time</h5>
+              <p class="mt-4">
+                With this benefit, customers will receive a 25% refund on their bus ticket costs in case the bus that they need to travel in is delayed by 30 minutes.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center mt-5">
+          <div class="col-md-7">
+            <div class="text-center">
+              <span class="badge rounded-pill badge-primary mb-2">Rule 03</span>
+              <h5 class="mt-0">Alternate Assurance</h5>
+              <p class="mt-4">
+                If a bus breaks down, the customers would have to wait for an alternate arrangement to be made by the bus operator. If this arrangement is not made within 6 hours from the time of the breakdown, the customers can get a 300% refund.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center mt-5">
+          <div class="col-md-7">
+            <div class="text-center">
+              <span class="badge rounded-pill badge-primary mb-2">Rule 04</span>
+              <h5 class="mt-0">Ez-Booking</h5>
+              <p class="mt-4">
+                Our customers can reserve their seat with in 30 seconds because we made our booking system very customer friendly design.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="row">
+
+          <div class="col-md-4 ms-md-auto me-md-4">
+
+          </div>
+          <div class="col-md-4 me-md-auto ms-md-4">
+            <div class="primary text-start border-radius-lg">
+              <div class="
+                    icon icon-md icon-shape
+                    bg-gradient-primary
+                    shadow-primary
+                    text-center
+                    border-radius-xl
+                    mt-n4
+                  ">
+                <i class="material-icons opacity-10">access_alarms</i>
+              </div>
+              <h5 class="mt-3">Alternate Assurance</h5>
+              <p>
+                If a bus breaks down, the customers would have to wait for an
+                alternate arrangement to be made by the bus operator. If this
+                arrangement is not made within 6 hours from the time of the
+                breakdown, the customers can get a 300% refund.
+              </p>
+            </div>
+            <div class="primary text-start border-radius-lg mt-6">
+              <div class="
+                    icon icon-md icon-shape
+                    bg-gradient-primary
+                    shadow-primary
+                    text-center
+                    border-radius-xl
+                    mt-n4
+                  ">
+                <i class="material-icons opacity-10">insights</i>
+              </div>
+              <h5 class="mt-3">Ez-Booking</h5>
+              <p>
+                Our customers can reserve their seat with in 30 seconds
+                because we made our booking system very customer friendly
+                design.
+              </p>
+            </div>
+          </div>
+        </div> -->
+      </div>
+    </section>
+    <hr>
+
+    <section class="py-7" id="contactUs">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-8 mx-auto text-center">
+            <div class="ms-3 mb-md-5">
+              <h3>Contact us</h3>
+              <p>
+                For further questions, please contact us using our contact form.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <div class="card card-plain">
+              <form id="clientContact">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="input-group input-group-outline mb-4">
+                        <label class="form-label">Full Name</label>
+                        <input class="form-control" aria-label="Full Name" type="text" name="name" id="name">
+                      </div>
+                    </div>
+                    <div class="col-md-6 ps-md-2">
+                      <div class="input-group input-group-outline">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" name="email" id="email">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="input-group input-group-outline mb-4 mt-md-0 mt-4">
+                    <label class="form-label" id="msgLabel">What can we help you?</label>
+                    <textarea name="message" class="form-control" rows="6" name="message" id="message" onclick="clearElem('msgLabel')"></textarea>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12 text-center">
+                      <button type="submit" class="btn bg-gradient-primary mt-4">Send Message</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- <section class="pb-5 position-relative bg-gradient-dark mx-n3" id="team">
       <div class="container">
         <div class="row">
           <div class="col-md-8 text-start mb-5 mt-5">
@@ -448,46 +505,6 @@
             </h3>
           </div>
         </div>
-        <!-- <div class="row">
-          <div class="col-lg-6 col-12">
-            <div class="card card-profile mt-4">
-              <div class="row">
-                <div class="col-lg-4 col-md-6 col-12 mt-n5">
-                  <a href="javascript:;">
-                    <div class="p-3 pe-md-0">
-                      <img class="w-100 border-radius-md shadow-lg" src="assets/img/crew 4.jpg" alt="image" />
-                    </div>
-                  </a>
-                </div>
-                <div class="col-lg-8 col-md-6 col-12 my-auto">
-                  <div class="card-body ps-lg-0">
-                    <h5 class="mb-0">Kasun Frnando</h5>
-                    <h6 class="text-info">Founder</h6>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6 col-12">
-            <div class="card card-profile mt-lg-4 mt-5">
-              <div class="row">
-                <div class="col-lg-4 col-md-6 col-12 mt-n5">
-                  <a href="javascript:;">
-                    <div class="p-3 pe-md-0">
-                      <img class="w-100 border-radius-md shadow-lg" src="assets/img/crew 2.jpg" alt="image" />
-                    </div>
-                  </a>
-                </div>
-                <div class="col-lg-8 col-md-6 col-12 my-auto">
-                  <div class="card-body ps-lg-0">
-                    <h5 class="mb-0">Shehani Perera</h5>
-                    <h6 class="text-info">Co-Founder</h6>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> -->
         <div class="row mt-4">
           <div class="col-lg-6 col-12">
             <div class="card card-profile mt-4 z-index-2">
@@ -529,7 +546,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
     <!-- -------- END PRE-FOOTER 8 w/ TEXT, BG IMAGE AND 2 BUTTONS ------- -->
   </div>
   <footer class="footer pt-5 mt-5">
@@ -574,7 +591,7 @@
                 <a class="nav-link" href="#routes"> Routes </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#team"> Team </a>
+                <a class="nav-link" href="#contactUs"> Contact Us </a>
               </li>
             </ul>
           </div>
@@ -608,6 +625,7 @@
       </div>
     </div>
   </footer>
+
   <!--   Core JS Files   -->
   <script src="assets/js/core/popper.min.js" type="text/javascript"></script>
   <script src="assets/js/core/bootstrap.min.js" type="text/javascript"></script>
@@ -619,11 +637,25 @@
   <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
   <script src="assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
   <!--  Plugin for the blob animation -->
+  <script src="assets/custom-scripts/index.js" type="text/javascript"></script>
+  <script src="assets/custom-scripts/common.js" type="text/javascript"></script>
+
   <script src="assets/js/plugins/anime.min.js" type="text/javascript"></script>
   <!-- Control Center for Material UI Kit: parallax effects, scripts for the example pages etc -->
   <!--  Google Maps Plugin    -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTTfWur0PDbZWPr7Pmq8K3jiDp0_xUziI"></script>
   <script src="assets/js/material-kit-pro.min.js?v=3.0.0" type="text/javascript"></script>
+
+  <script>
+    $("#clientContact").submit(function(event) {
+      contactFormFun();
+      event.preventDefault();
+    });
+
+    function clearElem(element) {
+      document.getElementById(element).innerHTML = "";
+    }
+  </script>
 </body>
 
 </html>

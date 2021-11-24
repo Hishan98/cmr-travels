@@ -71,13 +71,42 @@ function pageLoaderToggle(state) {
 }
 
 function sendMailFun(bookingId) {
-  // var data = "bookingId=" + bookingId + "&passengerNIC=" + "&sendEmail=true";
   $.ajax({
     type: "POST",
     url: "../../controllers/mailer.php",
     data: {
       bookingId: bookingId,
       sendEmail: true,
+    },
+    dataType: "JSON",
+    beforeSend: function () {
+      pageLoaderToggle(true);
+    },
+    success: function (feedback) {
+      if (feedback.status == 1) {
+        toastr.success(feedback.msg);
+      } else {
+        toastr.warning(feedback.msg);
+      }
+      pageLoaderToggle(false);
+    },
+    error: function (error) {
+      errorDisplay(error);
+      pageLoaderToggle(false);
+    },
+  });
+}
+
+function sendContactMailFun(name, email, message) {
+  $.ajax({
+    type: "POST",
+    url: "controllers/mailer.php",
+
+    data: {
+      name: name,
+      email: email,
+      message: message,
+      sendContactEmail: true,
     },
     dataType: "JSON",
     beforeSend: function () {
