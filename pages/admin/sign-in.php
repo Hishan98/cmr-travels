@@ -26,7 +26,7 @@
       ">
     <div class="container">
       <a class="navbar-brand text-white d-none d-md-block" href="../../index.php" rel="tooltip" title="" data-placement="bottom" target="_blank">
-        C.M.R Travels
+        <img src="../../assets/img/CMR_long.png" style="width: 25%; height:20%;">
       </a>
       <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon mt-2">

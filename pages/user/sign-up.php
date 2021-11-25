@@ -24,8 +24,8 @@
         mt-4
       ">
     <div class="container">
-      <a class="navbar-brand text-white d-none d-md-block" href="../../index.php" rel="tooltip" title="Designed and Coded by Creative Tim" data-placement="bottom" target="_blank">
-        C.M.R Travels
+      <a class="navbar-brand text-white d-none d-md-block" href="../../index.php" rel="tooltip" title="" data-placement="bottom" target="_blank">
+        <img src="../../assets/img/CMR_long.png" style="width: 25%; height:20%;">
       </a>
       <div class="collapse navbar-collapse w-100 pt-3 pb-2 py-lg-0" id="navigation">
         <ul class="navbar-nav navbar-nav-hover ms-auto">
@@ -49,7 +49,7 @@
           <div class="card z-index-0 fadeIn3 fadeInBottom">
             <div class="card-body">
               <p style="text-align: center; font-size: 25px; font-weight: 600">
-                Login
+                Sign Up
               </p>
               <form id="userRegistration" role="form" class="text-start">
 

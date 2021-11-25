@@ -40,9 +40,9 @@
         z-index: 100;">
     <div class="container">
       <a class="navbar-brand text-white" href="#" rel="tooltip" title="Designed and Coded by Creative Tim" data-placement="bottom" target="_blank" style="font-size: 20px;
-      font-weight: 400;
+      font-weight: 600;
       padding: 0px;">
-        C.M.R Travels
+        <img src="assets/img/CMR_white.png" style="width: 10%; height: 10%;">&nbsp;&nbsp; C.M.R Travels
       </a>
       <a href="pages/user/sign-in.php" class="
             btn btn-sm
