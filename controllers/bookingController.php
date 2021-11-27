@@ -16,8 +16,8 @@ if (isset($_POST['createBooking']) && $_POST['createBooking'] == true) {
     VALUES ('" . $booking_id . "','" . $booking_passenger_NIC . "','" . $booking_seat_id . "','" . $booking_route_id . "','" . $booking_date . "')";
 
     if ($con->query($sql) === TRUE) {
-        //set seat not avilable
-        // setSeatAvailability(0, $booking_seat_id, $con);
+        //set seat not available
+        setSeatAvailability(0, $booking_seat_id, $con);
         echo json_encode(['status' => '1', 'msg' => 'Booking Created', 'bookingId' => $booking_id]);
     } else {
         echo json_encode(['status' => '0', 'msg' => $con->error]);
