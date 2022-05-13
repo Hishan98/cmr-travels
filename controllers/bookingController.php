@@ -34,6 +34,7 @@ if (isset($_POST['createBooking']) && $_POST['createBooking'] == true) {
         echo json_encode(['status' => '0', 'msg' => $con->error]);
     }
     $con->close();
+    
 } else if (isset($_POST['adminUpdateBooking']) && $_POST['adminUpdateBooking'] == true) {
     //define data
     $up_booking_id = $_POST['up_booking_id'];
